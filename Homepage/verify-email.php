@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success!</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
 <?php
 session_start();
 include('config.php');
@@ -23,7 +33,7 @@ if(isset($_GET['token']))
             if($update_query_run)
             {
                 $_SESSION['status']= "Verified successfully";
-                header("Location: LoginForm.php");
+                header("Location: Verify-Success.php");
                 exit(0);     
             }
             else{
@@ -50,3 +60,5 @@ else{
 
 }
 ?>
+
+</body>

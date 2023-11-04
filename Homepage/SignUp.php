@@ -77,7 +77,7 @@ if(isset($_POST['submit'])){
          $message[] = 'user already exist!'; //need rin pala ng message css
    }else{
         if($pass != $cpass){
-           $message[] = 'confirm password not matched!';
+           $message[] = 'Confirm password not matched!';
         }elseif($image_size > 2000000){
            $message[] = 'image size is too large!';
         }
@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
             move_uploaded_file($image_tmp_name, $image_folder);
             sendemail_verify("$username","$email","$token_verified");
             $message[] = 'registered successfully!'; 
-            header('location:LoginForm.php');
+            header('location:Signup-Confirmation.php');
          }else{
             $message[] = 'registration failed!';
          }
@@ -106,19 +106,34 @@ if(isset($_POST['submit'])){
     <title>Sign-in Login form</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="path_to_sweetalert2.js"></script>
 </head>
 <body>
+<?php
+                  if(isset($message)){
+                    foreach($message as $message){
+                     echo "<script>
+                             swal({
+                             title: '$message',
+                             icon: 'error',
+                             showClass: {
+                                popup: 'animate__animated animate__fadeInDown'
+                              },
+                              hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                              }
+                            })
+        </script>";
+         }
+      }
+      ?>
+      
     <div class="container">
         <a href="Index.php"><img src="/assets/images/VACUNNA logo.png" class="logo"></a>
         <form action="" method="post" enctype="multipart/form-data">
             <h1>CREATING PROFILE</h1>
-            <?php
-      if(isset($message)){
-         foreach($message as $message){
-            echo '<div class="message">'.$message.'</div>';
-         }
-      }
-      ?>
+   
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">First Name</span>
@@ -144,10 +159,14 @@ if(isset($_POST['submit'])){
                     <span class="details">Password</span>
                     <input type="password" name="password"  placeholder="Enter your password" required>
                 </div>
+                
+                    
                 <div class="input-box">
                     <span class="details">Confirm Password</span>
                     <input type="password" name="cpassword" placeholder="Confirm your password" required>
                 </div>
+                
+                  
                 <input type="hidden" name="usertype" value="parent">
                 <input type="hidden" name="userverify" value="2">
 
@@ -157,8 +176,11 @@ if(isset($_POST['submit'])){
                             <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="profile-picture-input">
                             <span class="file-label"></span>
                          </label>
-    </div>           
+                         
+    </div>     
+        
 </div>
+
             <p class="login-link">
                 By signing up, you agree to our <a href="#">Terms and Conditions</a>.
             </p>

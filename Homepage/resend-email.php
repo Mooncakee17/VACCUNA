@@ -109,12 +109,12 @@ if(isset($_POST['submitemail']))
 
         <form action="" method="post" enctype="multipart/form-data">
                 
-        <center> <h2>Resend Email Verification</h2> </center>
-        <h1>Email Address</h1>
- 
+        <center> <h1>Resend Email Verification</h1> </center>
+      
+        <div class="input-box">
             <center>   <input type="text" name="email" placeholder="Enter your email address" required> </center>
             <input type="submit" name="submitemail" value="Resend" class="btn">
-
+        </div>
 
 
         </form>

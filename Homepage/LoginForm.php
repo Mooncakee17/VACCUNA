@@ -60,15 +60,16 @@ if(isset($_POST['submit'])){
              </div>
 
             <input type="submit" name="submit" value="Log In" class="btn">
+            <div style="margin-bottom:20px;" class="signup_link">
+                <a href="resend-email.php" style="color:#8860D0; " >Forgot Password? </a>
+            </div>
+
 
             <div class="signup_link">
                 Don't have an account yet? <a href="SignUp.php" class="btn-create-account">Create Account</a>
             </div>
 
-            <div class="signup_link">
-                Did not receive your verification email? <a href="resend-email.php" class="btn-create-account">Resend</a>
-            </div>
-
+           
         </form>
     </div>
 
