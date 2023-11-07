@@ -82,6 +82,7 @@ if(isset($_POST['submit'])){
            $message[] = 'image size is too large!';
         }
    else{
+    $insert = mysqli_query($conn,"INSERT INTO reset_pass(email) VALUES('$email')") or die('query failed');
          $insert = mysqli_query($conn,"INSERT INTO usertable(firstname, lastname, user_email, username, phonenumber, password, usertype,token_verified, image) VALUES('$firstname','$lastname', '$email', '$username','$phonenumber','$pass', '$usertype','$token_verified', '$image')") or die('query failed');
          if($insert){
             move_uploaded_file($image_tmp_name, $image_folder);
