@@ -78,30 +78,112 @@
 
 .profile-pic h4 {
     text-align: center;
+    
 
 }
 .profile-details{
     margin-left: 20px;
     max-width: 1000px;
     min-height: 400px;
+
 }
 .profile-details h4 {
     margin-top: 20px;
     color: #504d56;
+  
 }
+.profile-details h3 {
+   
+    color: #2a568f;
+    font-size: 17px;
+}
+
+
 .btn{
-    width: 50%;
+    padding: 10px 20px 10px 20px;
     width: 200px;
     height: 45px;
     background: #8860D0;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 17px;
     color: white;
     cursor: pointer;
-    margin: 20px auto; 
+   
+}
+.btna{
+    margin-left: 650px ; 
+    margin-top: 50px;
+  
+}
+.btnb{
+    margin-left: 450px ; 
+    margin-top: 50px;
+    
+    display: flex;
+    text-align: center;
 }
 
+.btn-b{
+    padding: 10px 10px 10px 10px;
+    width: 200px;
+    height: 45px;
+    background: #8860D0;
+    border-radius: 10px;
+    font-size: 17px;
+    color: white;
+    cursor: pointer;
+   text-align: center;
+   margin-right: 10px;
+}
+.profile-details input{
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid  #2a568f;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #8860D0;
+    padding: 10px 20px;
+    transition: color 0.3s, border-color 0.3s;
+}
 
+.profile-details input::placeholder {
+    color: #8860D0;
+}
+
+.profile-details input:focus {
+    color: #0c0c0c;
+    border-color: #161616; 
+    border: 1.5px solid #84CEEB;
+
+}
+.profile-pic input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid  #2a568f;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #8860D0;
+    padding: 10px 20px;
+    transition: color 0.3s, border-color 0.3s;
+}
+.profile-pic input::placeholder {
+    color: #8860D0;
+}
+.profile-pic  input:focus {
+    color: #0c0c0c;
+    border-color: #161616; 
+    border: 1.5px solid #84CEEB;
+
+}
+
+.box1{
+    font-size: 5px;
+    width: 225px;
+}
 /*========================== RESPONSIVENESS ======================*/
 @media screen and (max-width: 2560px) {
   .dashboard img{

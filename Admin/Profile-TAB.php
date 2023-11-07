@@ -78,7 +78,7 @@ if(isset($_POST['update_image'])){
                 <h4>Account Data Created</h4>
                 <h3><?php echo $fetch['datecreated']; ?></h3>
                 <div class="btna">
-                <input type="submit" name="submit" value="Update Profle" class="btn">
+                <a class="btn">Update Profile</a>
                 </div>
                 </div>
              </div>

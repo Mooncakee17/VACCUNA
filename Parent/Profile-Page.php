@@ -17,7 +17,7 @@
             </div>
             </div>
              <div class="content">
-                <div class="profile-pic">
+             <div class="profile-pic">
                 <?php
                     $select = mysqli_query($conn, "SELECT * FROM `usertable` WHERE userid = '$user_id'") or die('query failed');
                      if(mysqli_num_rows($select) > 0){
@@ -26,14 +26,14 @@
                       if($fetch['image'] == ''){
                          echo '<img src="assets/images/default-avatar.png">';
                       }else{
-                     echo '<img src="../Homepage/uploaded_img/'.$fetch['image'].'" id ="profile" alt="Profile Avatar" class="profilepic">';
+                        echo '<img src="../Homepage/uploaded_img/'.$fetch['image'].'" id ="profile" alt="Profile Avatar" class="profilepic">';
                      }
                      ?>
-                   
                   <h2><?php echo $fetch['username']; ?></h2>
                   <h4><?php echo $fetch['usertype']; ?></h4>
-                  <input type="submit" name="submit" value="Update Profle" class="btn">
+                  
                 </div>
+                
                 <div class="profile-details">
                 <h4>First Name:</h4>
                 <h3><?php echo $fetch['firstname']; ?></h3>
@@ -45,7 +45,9 @@
                 <h3><?php echo $fetch['phonenumber']; ?></h3>
                 <h4>Account Data Created</h4>
                 <h3><?php echo $fetch['datecreated']; ?></h3>
-                
+                <div class="btna">
+                <a href="Update-Profile.php" class="btn">Update Profile</a>
+                </div>
                 </div>
              </div>
 
