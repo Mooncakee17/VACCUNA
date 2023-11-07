@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "vaccunadb";
+$database = "vaccunnadb";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 
