@@ -61,7 +61,7 @@ if(isset($_POST['submit'])){
 
             <input type="submit" name="submit" value="Log In" class="btn">
             <div style="margin-bottom:20px;" class="signup_link">
-                <a href="#" style="color:#8860D0; " >Forgot Password? </a>
+                <a href="forgot-password.php" style="color:#8860D0; " >Forgot Password? </a>
             </div>
 
 
