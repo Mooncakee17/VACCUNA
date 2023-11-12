@@ -1,7 +1,7 @@
 <?php
 
-
-include('../templates/Header.php'); 
+include '../Homepage/config.php';
+include'../templates/Header.php';
 
 // update profile for both users
 if(isset($_POST['update_profile'])){   
@@ -80,7 +80,7 @@ rel="stylesheet">
       ?>
     <div class="container">
         <div class="column1">
-          <?php include('../templates/Parent-Dash.php'); ?> <!------------call side bar template------------>
+          <?php include('../templates/Admin-Dash.php'); ?> <!------------call side bar template------------>
         </div>
 
         <div class="column">
@@ -118,7 +118,6 @@ rel="stylesheet">
                 <h4>Email</h4>
                 <h3><?php echo $fetch['user_email']; ?></h3>
                 <h4>Contact Number:</h4>
-<<<<<<< HEAD
                 <input type="text" name="update_phonenumber" value="<?php echo $fetch['phonenumber']; ?>" class="box">
         
                 
@@ -142,13 +141,6 @@ rel="stylesheet">
                                                          text-align: center;
                                                          margin-right: 10px;" value="Save Changes" >
                 <a href="Profile-TAB.php" class="btn-b">Cancel</a>
-=======
-                <h3><?php echo $fetch['phonenumber']; ?></h3>
-                <h4>Account Data Created</h4>
-                <h3><?php echo $fetch['datecreated']; ?></h3>
-                <div class="btna">
-                <a href="./Update-Profile1.php" class="btn">Update Profile</a>
->>>>>>> dea6cd807572820e84683e3d10f1b95ffcdbcf19
                 </div>
                 </div>
              </div>
