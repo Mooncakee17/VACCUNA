@@ -1,6 +1,3 @@
-
-
-
 <?php include('../templates/Header.php'); ?>
 <link rel="stylesheet" href="./css/style5.css">
 <link rel="stylesheet" href="./css/calendar-style.css">
@@ -59,7 +56,7 @@
                 </div>
                 <div class="add-event-body">
                   <div class="add-event-input">
-                    <input type="text" placeholder="Event Name" class="event-name" />
+                    <input type="text" placeholder="Doctor Administer" class="event-name" />
                   </div>
                   <div class="add-event-input">
                     <input
@@ -90,5 +87,7 @@
             </div>
         </div>
 </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/Calendar.js"></script>

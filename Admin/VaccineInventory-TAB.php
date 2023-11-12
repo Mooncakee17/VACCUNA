@@ -1,7 +1,5 @@
-
-
 <?php include('../templates/Header.php'); ?>
-<link rel="stylesheet" href="./css/style5.css">
+<link rel="stylesheet" href="../css/style5.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
 <body>

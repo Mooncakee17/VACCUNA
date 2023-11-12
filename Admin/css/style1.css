@@ -546,7 +546,7 @@
         width:130% !important;
         overflow: hidden !important;
     }
-    
+    /*sige sige. na experience ko na to kasi sa datepicker tinamaan din.*/
     table {
         width: 100% !important;
         table-layout: fixed !important;
@@ -623,13 +623,14 @@
         background-color: #F6F9FC !important;
     }
     
-    /* Style the modals */
+    /* Style the modals ito ata tumatama sa modal*/
     .modal {
-        display: none !important;
+        /*display: none !important;
         position: fixed !important;
-        z-index: 1 !important;
         left: 0 !important;
         top: 0 !important;
+        */
+        z-index: 100;
         width: 100% !important;
         height: 100% !important;
         background-color: rgba(0, 0, 0, 0.5) !important;

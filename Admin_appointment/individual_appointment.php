@@ -11,6 +11,19 @@ $appt_id = $_POST['appt_id'];
 		WHERE appt_id = $appt_id ") or die('query failed');
 	$appointmenttable = mysqli_fetch_all($select, MYSQLI_ASSOC);
 
+	//Get appointment date
+	foreach($appointmenttable as $value1){
+		$appointment_date = $value1['appt_date'];
+	}
+
+	//Get doctor description
+	$select = mysqli_query($conn, "SELECT description FROM business_day a 
+		WHERE available_date = '$appointment_date' ") or die('query failed');
+	$get_doctor_administer = mysqli_fetch_all($select, MYSQLI_ASSOC);
+	foreach($get_doctor_administer as $value2){
+		$doctor_administer = $value2['description'];
+	}
+
 
 	foreach($appointmenttable as $value){
 		 $response = array(
@@ -27,7 +40,8 @@ $appt_id = $_POST['appt_id'];
 		 	'age' => $value['age'],
 		 	'email' => $value['email'],
 		 	'vac_name' => $value['vac_name'],
-		 	'cid' => $value['cid']
+		 	'cid' => $value['cid'],
+		 	'doctor' => $doctor_administer 
 		 );
 	}
 	

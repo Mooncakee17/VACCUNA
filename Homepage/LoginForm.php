@@ -40,14 +40,14 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-in Login form</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="wrapper">
         
-        <a href="Index.php"><img src="/assets/images/VACUNNA logo.png" class="logo"></a>
+        <a href="Index.php"><img src="../assets/images/VACUNNA logo.png" class="logo"></a>
 
         <form action="" method="post" enctype="multipart/form-data">
             <h1>LOGIN</h1>

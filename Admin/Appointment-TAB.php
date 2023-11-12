@@ -1,13 +1,9 @@
-
-
 <!DOCTYPE html>
 <html>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
 rel="stylesheet">
-
-
-<link rel="stylesheet" href="../Admin/css/style1.css">
-
+<link rel="stylesheet" href="../Parent/css/style4.css">
+<link rel="stylesheet" href="./css/appointment_tab.css">
 <?php include('../include/include.php'); ?>
 <?php include('../templates/Header.php'); ?>
 <?php include('../Admin_appointment/admin_appointment_controller.php'); ?>
@@ -40,7 +36,7 @@ rel="stylesheet">
                                                     <text>child name</text>
                                                 </th>
                                                 <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>parent/guardian</text>
+                                                    <text>parent</text>
                                                 </th>
                                                 <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
                                                     <text>contact number</text>
@@ -95,17 +91,17 @@ rel="stylesheet">
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <a id="send_notif-<?php echo $appt_id; ?>"  style="cursor:pointer;">
-                                                                <i class="fas fa-sms"></i>
+                                                                <i class="fa fa-comment"></i>
                                                             </a>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <a id="view_details-<?php echo $appt_id; ?>" style="cursor:pointer;">
-                                                                <i class="fas fa-eye"></i>
+                                                                <i class="fa fa-eye"></i>
                                                             </a>
                                                         </div>
                                                         <div class="col-lg-4">
                                                              <a id="update_record-<?php echo $appt_id; ?>"  style="cursor:pointer;">
-                                                                <i class="fas fa-edit"></i>
+                                                                <i class="fa fa-edit"></i>
                                                              </a>
                                                         </div>
                                                     </div>
@@ -122,6 +118,7 @@ rel="stylesheet">
                                                                 <div class="row p-5 text-start header">
                                                                         <h4 class="fs-violet">Update</h4>
                                                                 </div>
+                                                                <br> <br>
                                                                 <input type="hidden" value="" id="userid" / >
                                                                 <input type="hidden" value="" id="cid" / >
                                                                 <input type="hidden" value="" id="appt_id" / >
@@ -178,16 +175,30 @@ rel="stylesheet">
                                                                 </div>
 
 
+                                                                <div class="row mt-3">
+                                                                    <div class="col-lg-12">
+                                                                         <input type="text" id="doctor" class="form-control" readonly>
+                                                                    </div>
+                                                                </div>
+
+
+
                                                                 <div class="row mt-5">
                                                                     <div class="col-sm-3"></div>
                                                                     <div class="col-sm-auto text-end">
-                                                                     <button type="button" id="update_appointment" class="btn btn-md rounded-5 border text-white" style="background-color: violet;">Update</button>
+                                                                     <button type="button" id="update_appointment" onclick="update_appointment()" class="btn btn-md rounded-5 border text-white" style="background-color: violet;">Update</button>
                                                                     </div>  
 
                                                                     <div class="col-sm-auto text-end">
                                                                         <button type="button" id="back_update_appointment" class="btn btn-md ps-5 pe-5 rounded-5 border text-white" style="background-color: violet;">Cancel</button>
                                                                     </div>  
 
+
+                                                                    <div class="col-sm-auto text-end">
+                                                                        <button type="button" id="missed_appointment" onclick="missed_appointment()" class="btn btn-md ps-5 pe-5 rounded-5 border text-white" style="background-color: violet;">Missed</button>
+                                                                    </div>  
+
+                                                                
 
                                                                 </div>
 
@@ -253,6 +264,7 @@ rel="stylesheet">
                                                             $("#vaccine_administer").val(response.vac_name);
                                                             $("#dosage").val(response.dose);
                                                             $("#dose").val(response.dose);
+                                                            $("#doctor").val(response.doctor);
                                                             $('#update_appointment').modal('show');
                                                          }
                                                     }
@@ -346,7 +358,7 @@ rel="stylesheet">
 
 
     <script src="./js/index.js"></script>
-    <script src="./js/appointmentpage.js"></script>
+    <script src="./js/appointmentpage.js?v="<?php echo date('YmdHis'); ?>></script>
 
 </body>
 </html>
