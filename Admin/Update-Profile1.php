@@ -8,10 +8,10 @@ if(isset($_POST['update_profile'])){
    $update_firstname = mysqli_real_escape_string($conn, $_POST['update_firstname']);
    $update_lastname = mysqli_real_escape_string($conn, $_POST['update_lastname']);
    $update_username = mysqli_real_escape_string($conn, $_POST['update_username']);
-  
+
 
    mysqli_query($conn, "UPDATE `usertable` SET firstname = '$update_firstname', lastname = '$update_lastname', username = '$update_username' WHERE userid = '$user_id'") or die('query failed');
- 
+
 
 
    $old_pass = $_POST['old_pass'];
@@ -107,9 +107,9 @@ rel="stylesheet">
                 <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box1">
                  <input type="text" name="update_username" value="<?php echo $fetch['username']; ?>" class="box">
                   <h4><?php echo $fetch['usertype']; ?></h4>
-                  
+
                 </div>
-                
+
                 <div class="profile-details">
                 <h4>First Name:</h4>
                 <input type="text"name="update_firstname" value="<?php echo $fetch['firstname']; ?>" class="box">
@@ -119,8 +119,8 @@ rel="stylesheet">
                 <h3><?php echo $fetch['user_email']; ?></h3>
                 <h4>Contact Number:</h4>
                 <input type="text" name="update_phonenumber" value="<?php echo $fetch['phonenumber']; ?>" class="box">
-        
-                
+
+
                 <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
                 <h4>Old Password:</h4>
                 <input type="password" name="update_pass" placeholder="Enter previous password" class="box">
@@ -145,9 +145,9 @@ rel="stylesheet">
                 </div>
              </div>
 
-            
+
         </div>
-    
+
     </div>
 
 </body>

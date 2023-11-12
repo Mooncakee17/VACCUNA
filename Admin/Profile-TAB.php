@@ -1,86 +1,44 @@
 <?php
 
+include('../templates/Header.php');
 
-include('../templates/Header.php'); 
+if(isset($_POST['update_image'])){  
+  $user_id=$_POST["id"];
 
-// update profile for both users
-if(isset($_POST['update_profile'])){   
-   $update_firstname = mysqli_real_escape_string($conn, $_POST['update_firstname']);
-   $update_lastname = mysqli_real_escape_string($conn, $_POST['update_lastname']);
-   $update_username = mysqli_real_escape_string($conn, $_POST['update_username']);
-  
+  $update_image = $_FILES['fileImg']['name'];
+  $update_image_size = $_FILES['fileImg']['size'];
+  $update_image_tmp_name = $_FILES['fileImg']['tmp_name'];
+  $update_image_folder = '../Homepage/uploaded_img/'.$update_image;
 
-   mysqli_query($conn, "UPDATE `usertable` SET firstname = '$update_firstname', lastname = '$update_lastname', username = '$update_username' WHERE userid = '$user_id'") or die('query failed');
- 
+  if(!empty($update_image)){
+     if($update_image_size > 2000000){
+        $message[] = 'image is too large';
+     }else{
+        $image_update_query = mysqli_query($conn, "UPDATE `usertable` SET image = '$update_image' WHERE userid = '$user_id'") or die('query failed');
+        if($image_update_query){
+           move_uploaded_file($update_image_tmp_name, $update_image_folder);
 
+          
+        }
+        $message[] = 'image updated succssfully!';
+        header('Location: Profile-TAB.php');
 
-   $old_pass = $_POST['old_pass'];
-   $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
-   $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-   $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
-
-   if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
-      if($update_pass != $old_pass){
-         $message[] = 'old password not matched!';
-      }elseif($new_pass != $confirm_pass){
-         $message[] = 'confirm password not matched!';
-      }else{
-         mysqli_query($conn, "UPDATE `usertable` SET password = '$confirm_pass' WHERE userid = '$user_id'") or die('query failed');
-         $message2[] = 'Updated successfully!';
-      }
-   }
-
-   $update_image = $_FILES['update_image']['name'];
-   $update_image_size = $_FILES['update_image']['size'];
-   $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-   $update_image_folder = '../Homepage/uploaded_img'.$update_image;
-
-   if(!empty($update_image)){
-      if($update_image_size > 2000000){
-         $message[] = 'image is too large';
-      }else{
-         $image_update_query = mysqli_query($conn, "UPDATE `usertable` SET image = '$update_image' WHERE userid = '$user_id'") or die('query failed');
-         if($image_update_query){
-            move_uploaded_file($update_image_tmp_name, $update_image_folder);
-         }
-         $message[] = 'Updated succssfully!';
-      }
-   }
-   if (mysqli_query($conn, "UPDATE `usertable` SET firstname = '$update_firstname', lastname = '$update_lastname', username = '$update_username' WHERE userid = '$user_id'")) {
-    $message[] = 'Updated successfully!';
-} else {
-    $message[] = 'Failed to update profile';
+        if(empty($message)){
+          header('Location: Profile-TAB.php');
 }
-}
+     }
+  }
 
+ }
 ?>
-<!DOCTYPE html>
-<html>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-rel="stylesheet">
+
+
 <link rel="stylesheet" href="../Parent/css/style2.css">
-<title> VACCUNA </title>
 
 <body>
-
-
-<?php
-                  if(isset($message)){
-                    foreach($message as $message){
-                     echo "<script>
-                             swal({
-                             title: '$message',
-                             html: '$message',
-                             
-                             confirmButtonText: 'Okay'
-            })
-        </script>";
-         }
-      }
-      ?>
     <div class="container">
         <div class="column1">
-          <?php include('../templates/Parent-Dash.php'); ?> <!------------call side bar template------------>
+          <?php include('../templates/Admin-Dash.php'); ?> <!------------call side bar template------------>
         </div>
 
         <div class="column">
@@ -92,7 +50,6 @@ rel="stylesheet">
             </div>
              <div class="content">
                 <div class="profile-pic">
-                <form action="" method="post" enctype="multipart/form-data">
                 <?php
                     $select = mysqli_query($conn, "SELECT * FROM `usertable` WHERE userid = '$user_id'") or die('query failed');
                      if(mysqli_num_rows($select) > 0){
@@ -101,54 +58,27 @@ rel="stylesheet">
                       if($fetch['image'] == ''){
                          echo '<img src="assets/images/default-avatar.png">';
                       }else{
-                     echo '<img src="../Homepage/uploaded_img/'.$fetch['image'].'" alt="Profile Avatar" class="profilepic">';
+                        echo '<img src="../Homepage/uploaded_img/'.$fetch['image'].'" id ="profile" alt="Profile Avatar" class="profilepic">';
                      }
                      ?>
-                <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box1">
-                 <input type="text" name="update_username" value="<?php echo $fetch['username']; ?>" class="box">
+                  <h2><?php echo $fetch['username']; ?></h2>
                   <h4><?php echo $fetch['usertype']; ?></h4>
                   
                 </div>
                 
                 <div class="profile-details">
                 <h4>First Name:</h4>
-                <input type="text"name="update_firstname" value="<?php echo $fetch['firstname']; ?>" class="box">
+                <h3><?php echo $fetch['firstname']; ?></h3>
                 <h4>Last Name:</h4>
-                <input type="text" name="update_lastname" value="<?php echo $fetch['lastname']; ?>" class="box">                
+                <h3><?php echo $fetch['lastname']; ?></h3>
                 <h4>Email</h4>
                 <h3><?php echo $fetch['user_email']; ?></h3>
                 <h4>Contact Number:</h4>
-<<<<<<< HEAD
-                <input type="text" name="update_phonenumber" value="<?php echo $fetch['phonenumber']; ?>" class="box">
-        
-                
-                <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-                <h4>Old Password:</h4>
-                <input type="password" name="update_pass" placeholder="Enter previous password" class="box">
-                <h4>New Password:</h4>
-                <input type="password" name="new_pass" placeholder="Enter new password" class="box">
-                <h4>Confirm Password:</h4>
-                <input type="password" name="confirm_pass" placeholder="Confirm new password" class="box">
-
-                <div class="btnb">
-                <input href="Update-Profile.php" type="submit" name="update_profile" style=" padding: 10px 10px 10px 10px;
-                                                         width: 200px;
-                                                         height: 45px;
-                                                         background: #8860D0;
-                                                         border-radius: 10px;
-                                                         font-size: 17px;
-                                                         color: white;
-                                                         cursor: pointer;
-                                                         text-align: center;
-                                                         margin-right: 10px;" value="Save Changes" >
-                <a href="Profile-TAB.php" class="btn-b">Cancel</a>
-=======
                 <h3><?php echo $fetch['phonenumber']; ?></h3>
                 <h4>Account Data Created</h4>
                 <h3><?php echo $fetch['datecreated']; ?></h3>
                 <div class="btna">
                 <a href="./Update-Profile1.php" class="btn">Update Profile</a>
->>>>>>> dea6cd807572820e84683e3d10f1b95ffcdbcf19
                 </div>
                 </div>
              </div>
