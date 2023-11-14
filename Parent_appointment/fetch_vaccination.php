@@ -55,11 +55,11 @@ if($dosage_status == 0){
 	        ELSE 'No'
 	    END AS mmr_recommended,     
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.birthdate, INTERVAL 12 MONTH)  THEN '1st dose'
+	        WHEN CURDATE() >= DATE_ADD(a.birthdate, INTERVAL 6 MONTH)  THEN '1st dose'
 	        ELSE 'No'
 	    END AS influenza_recommended,
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.birthdate, INTERVAL 6 MONTH) THEN '1st dose'
+	        WHEN CURDATE() >= DATE_ADD(a.birthdate, INTERVAL 12 MONTH) THEN '1st dose'
 	        ELSE 'No'
 	    END AS hepa1_recommended                            
 	FROM childtable a  
@@ -136,39 +136,39 @@ if($dosage_status == 1){
 	    a.appt_date AS appt_date,
 	    CURDATE() AS `current_date`,
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 1 DAY) THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 1 DAY) THEN '2nd dose'			
 	        ELSE  'No'
 	    END AS bcg_recommended,
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 1 DAY)  THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 1 MONTH)  THEN '2nd dose'
 	        ELSE 'No'
 	    END AS hepb1_recommended, 
 	    CASE
-	        WHEN CURDATE() >=  DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '2nd dose'
+	        WHEN CURDATE() >=  DATE_ADD(a.appt_date, INTERVAL 10 WEEK) THEN '2nd dose'
 	        ELSE 'No'
 	    END AS dtap1_recommended,    
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 10 WEEK) THEN '2nd dose'
 	        ELSE 'No'
 	    END AS hib1_recommended, 
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 10 WEEK) THEN '2nd dose'
 	        ELSE 'No'
 	    END AS ipv1_recommended,  
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 10 WEEK) THEN '2nd dose'
 	        ELSE 'No'
 	    END AS pcv1_recommended,   
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 10 WEEK) THEN '2nd dose'
 	        ELSE 'No'
 	    END AS rota1_recommended,
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 9 MONTH) THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 48 MONTH) THEN '2nd dose'
 	        ELSE 'No'
 	    END AS mmr_recommended,     
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 12 MONTH)  THEN '2nd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 4 WEEK)  THEN '2nd dose'
 	        ELSE 'No'
 	    END AS influenza_recommended,
 	    CASE
@@ -201,7 +201,9 @@ if($dosage_status == 1){
 	    "UPDATE child_vaccine_status SET recommended_age = '$hib1_recommended' WHERE vac_name ='HiB2' AND cid = $cid_session",
 	    "UPDATE child_vaccine_status SET recommended_age = '$ipv1_recommended' WHERE vac_name ='IPV2' AND cid = $cid_session",
 	    "UPDATE child_vaccine_status SET recommended_age = '$pcv1_recommended' WHERE vac_name ='PCV2' AND cid = $cid_session",
-		"UPDATE child_vaccine_status SET recommended_age = '$rota1_recommended' WHERE vac_name ='Rotavirus2' AND cid = $cid_session",
+	    "UPDATE child_vaccine_status SET recommended_age = '$rota1_recommended' WHERE vac_name ='Rotavirus2' AND cid = $cid_session",
+	    "UPDATE child_vaccine_status SET recommended_age = '$mmr_recommended' WHERE vac_name ='MMR2' AND cid = $cid_session",
+	    "UPDATE child_vaccine_status SET recommended_age = '$influenza_recommended' WHERE vac_name ='Influenza2' AND cid = $cid_session",
 	    "UPDATE child_vaccine_status SET recommended_age = '$hepa1_recommended' WHERE vac_name ='HepA2' AND cid = $cid_session"
 	];
 	
@@ -213,14 +215,6 @@ if($dosage_status == 1){
 
 
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -251,31 +245,31 @@ if($dosage_status == 2){
 	        ELSE  'No'
 	    END AS bcg_recommended,
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 1 DAY)  THEN '3rd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 MONTH)  THEN '3rd dose'
 	        ELSE 'No'
 	    END AS hepb1_recommended, 
 	    CASE
-	        WHEN CURDATE() >=  DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '3rd dose'
+	        WHEN CURDATE() >=  DATE_ADD(a.appt_date, INTERVAL 14 WEEK) THEN '3rd dose'
 	        ELSE 'No'
 	    END AS dtap1_recommended,    
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '3rd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 14 WEEK) THEN '3rd dose'
 	        ELSE 'No'
 	    END AS hib1_recommended, 
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '3rd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 14 WEEK) THEN '3rd dose'
 	        ELSE 'No'
 	    END AS ipv1_recommended,  
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '3rd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 14 WEEK) THEN '3rd dose'
 	        ELSE 'No'
 	    END AS pcv1_recommended,   
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 6 WEEK) THEN '3rd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 14 WEEK) THEN '3rd dose'
 	        ELSE 'No'
 	    END AS rota1_recommended,
 	    CASE
-	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 9 MONTH) THEN '3rd dose'
+	        WHEN CURDATE() >= DATE_ADD(a.appt_date, INTERVAL 48 MONTH) THEN '3rd dose'
 	        ELSE 'No'
 	    END AS mmr_recommended,     
 	    CASE
@@ -309,6 +303,9 @@ if($dosage_status == 2){
 	$updateQueries = [
 	    "UPDATE child_vaccine_status SET recommended_age = '$hepb1_recommended' WHERE vac_name ='HepB3' AND cid = $cid_session",
 	    "UPDATE child_vaccine_status SET recommended_age = '$dtap1_recommended' WHERE vac_name ='DTaP3' AND cid = $cid_session",
+	    "UPDATE child_vaccine_status SET recommended_age = '$hib1_recommended' WHERE vac_name ='HiB3' AND cid = $cid_session",
+	    "UPDATE child_vaccine_status SET recommended_age = '$pcv1_recommended' WHERE vac_name ='PCV3' AND cid = $cid_session",
+	    "UPDATE child_vaccine_status SET recommended_age = '$rota1_recommended' WHERE vac_name ='Rotavirus3' AND cid = $cid_session",
 	    "UPDATE child_vaccine_status SET recommended_age = '$ipv1_recommended' WHERE vac_name ='IPV3' AND cid = $cid_session",
 	];
 	
@@ -322,17 +319,6 @@ if($dosage_status == 2){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 	//using the recommended_age that we update above we get the vaccinename and vaccineid where the recommeded age is Yes
 	$vaccines = mysqli_query($conn, "
 	SELECT DISTINCT
@@ -341,8 +327,10 @@ if($dosage_status == 2){
 	    a.cid,
 	    b.dosage_status,
 	    b.status,
+		b.reco_age,
 	    a.mothername,
 	    b.recommended_age,
+
 	    CASE
 	        WHEN b.status = 0 THEN ''
 	        WHEN b.status = 1 THEN 'Waiting For Approval'

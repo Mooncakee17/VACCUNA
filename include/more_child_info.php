@@ -1,7 +1,6 @@
 <div class="container w-50 px-5" id="more_details_container" style="position:fixed; left:480px; top:0px; display:none;">
         <input type="hidden" id="cid-hidden" name="cid-hidden"/ >
         <?php 
-
             //get the data of children
             $select = mysqli_query($conn, "SELECT * FROM childtable a
                 LEFT JOIN usertable b ON b.userid = a.userid WHERE a.cid = '$cid'") or die('query failed');
@@ -22,99 +21,47 @@
             }
 
         ?>
-        <div class="card">
-            <div class="card-body bg-white">
+
+        <?php 
+            //get child vaccine record
+            $select1 = mysqli_query($conn, "SELECT      
+            CASE
+            WHEN a.status = 2 THEN 'YES'
+            WHEN a.status = 0 THEN 'NO'
+            WHEN a.status = 1 THEN 'NO'
+            END AS vaccine_status,
+            a.vac_name
+            FROM child_vaccine_status a WHERE a.cid = '$cid'") or die('query failed');
+            $vaccine_record = mysqli_fetch_all($select1, MYSQLI_ASSOC);  
+        ?>
+
+        <div class="card" >
+            <div class="card-body bg-white" >
                 <div class="detail_container w-100">
-                     <!--Header of Content-->
-                         <div class="row">
-                            <div class="col-sm-7 text-start">
-                                <h4 class="text-uppercase position-relative top-50 fw-bolder"><?php echo $child_fullname ; ?></h4>
-                            </div>
-                            <div class="col-sm-4 p-0 m-0" style="height:120px; background:url('./images/Childs Data.png') no-repeat; object-fit: contain;"></div>
-                            <div class="col-sm-1"></div>
-                        </div>                                              
-                         <div class="row mt-5">
-                            <div class="col-sm-12 text-end">
-                                <a class="fs-1x text-decoration-none fw-bold text-uppercase" style="cursor:pointer;" id="update_modal">Edit</a>
-                            </div>
-                        </div>                                            
-                        <div class="row">
-                            <div class="col-sm-12 px-2 p-2 bg-violet">
-                                <text class="fs-5 fw-bold text-uppercase">Personal Information</text>
-                            </div>
-                        </div>
-                    <!--End Header of Content-->                                           
-                    <!--Start row-->
-                        <div class="row mt-2">
-                            <div class="col-sm-2"><text class="fs-7 fw-bold">Age</text></div>
-                            <div class="col-sm-10 text-end"><text class="fs-7 fw-bold"><?php echo $age ; ?></text></div>  
-                        </div>
-                    <!--End row-->
-                    <!--Start row-->
-                        <div class="row">
-                            <div class="col-sm-2"><text class="fs-7 fw-bold">Gender</text></div>
-                            <div class="col-sm-10 text-end"><text class="fs-7 fw-bold">wala sa db</text></div>  
-                        </div>
-                    <!--End row-->
-                    <!--Start row-->
-                        <div class="row">
-                            <div class="col-sm-2"><text class="fs-7 fw-bold">Birthdate</text></div>
-                            <div class="col-sm-10 text-end"><text class="fs-7 fw-bold"><?php echo $birthdate ; ?></text></div>  
-                        </div>
-                    <!--End row-->
-                    <!--Start row-->
-                        <div class="row">
-                            <div class="col-sm-2"><text class="fs-7 fw-bold">Birthplace</text></div>
-                            <div class="col-sm-10 text-end"><text class="fs-7 fw-bold">wala sa table</text></div>  
-                        </div>
-                    <!--End row-->
-                    <!--Start row-->
-                        <div class="row">
-                            <div class="col-sm-2"><text class="fs-7 fw-bold">Address</text></div>
-                            <div class="col-sm-10 text-end"><text class="fs-7 fw-bold">wala sa table</text></div>  
-                        </div>
-                    <!--End row--> 
-                    <!--Start row-->
-                        <div class="row">
-                            <div class="col-sm-4"><text class="fs-7 fw-bold">Mother's Name</text></div>
-                            <div class="col-sm-8 text-end"><text class="fs-7 fw-bold"><?php echo $mothername ;?></text></div>  
-                        </div>
-                    <!--End row-->
-                    <!--Start row-->
-                        <div class="row">
-                            <div class="col-sm-4"><text class="fs-7 fw-bold">Father's Name</text></div>
-                            <div class="col-sm-8 text-end"><text class="fs-7 fw-bold"><?php echo $fathername ;?></text></div>  
-                        </div>
-                    <!--End row--> 
-                    <!--Start row Note contact ng nasa usertable yung nandito-->
-                        <div class="row">
-                            <div class="col-sm-4"><text class="fs-7 fw-bold">Contact Number</text></div>
-                            <div class="col-sm-8 text-end"><text class="fs-7 fw-bold"><?php echo $contact; ?></text></div>  
-                        </div>
-                    <!--End row-->
-                    <!--Start row Note contact ng nasa usertable yung nandito-->
-                        <div class="row">
-                            <div class="col-sm-4"><text class="fs-7 fw-bold">Emergency Contact</text></div>
-                            <div class="col-sm-8 text-end"><text class="fs-7 fw-bold"><?php echo $contact; ?></text></div>  
-                        </div>
-                    <!--End row-->
-                    <!--Start row-->
-                        <div class="row">
-                            <div class="col-sm-2"><text class="fs-7 fw-bold">Email</text></div>
-                            <div class="col-sm-10 text-end"><text class="fs-7 fw-bold"><?php echo $user_email; ?></text></div>  
-                        </div>
-                    <!--End row-->     
-
-
-                    <!--Start row Close-->
-                        <div class="row mt-5">
-                            <div class="col-sm-12 text-end">
-                                <button type="button" id="close" class="btn btn-lg ps-5 pe-5 rounded-5 border" style="background-color:violet;">Back</button>
-                            </div>  
-                        </div>
-                    <!--End row Close-->     
-
-
+                   <div class="content" style="overflow-x: scroll; height:500px;">
+                    <div class="header">
+                        <h2><?php echo $child_fullname; ?></h2>
+                    </div>
+                    <div class="title">
+                        <h2>PERSONAL INFORMATION</h2>
+                    </div>
+                    <p><span class="label">Age</span> <?php echo $age; ?></p>
+                    <p><span class="label">Birth Date</span> <?php echo $birthdate; ?></p>
+                    <p><span class="label">Mother's Name</span> <?php echo $mothername; ?></p>
+                    <p><span class="label">Father's Name</span> <?php echo $fathername; ?></p>
+                    <p><span class="label">Contact Number</span> <?php echo $contact; ?></p>
+                    <div class="title">
+                        <h2>VACCINE INFORMATION</h2>
+                    </div>
+                    <?php 
+                    foreach($vaccine_record as $info){
+                        $vac_name = $info['vac_name'];
+                        $vaccine_status = $info['vaccine_status'];
+                    ?>
+                        <p><span class="label"><?php echo $vac_name; ?></span> <?php echo $vaccine_status; ?></p>
+                    <?php } ?>
+                    <button class="button close-button" id="close">Close</button>
+                </div>  
                 </div>
             </div>
         </div>

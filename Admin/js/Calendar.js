@@ -10,12 +10,12 @@ const calendar = document.querySelector(".calendar"),
   eventDate = document.querySelector(".event-date"),
   eventsContainer = document.querySelector(".events"),
   addEventBtn = document.querySelector(".add-event"),
-  addEventWrapper = document.querySelector(".add-event-wrapper "),
-  addEventCloseBtn = document.querySelector(".close "),
+  addEventWrapper = document.querySelector(".add-event-wrapper"),
+  addEventCloseBtn = document.querySelector(".close"),
   addEventTitle = document.querySelector(".event-name "),
-  addEventFrom = document.querySelector(".event-time-from "),
-  addEventTo = document.querySelector(".event-time-to "),
-  addEventSubmit = document.querySelector(".add-event-btn ");
+  addEventFrom = document.querySelector(".event-time-from"),
+  addEventTo = document.querySelector(".event-time-to"),
+  addEventSubmit = document.querySelector(".add-event-btn");
 
 let today = new Date();
 let activeDay;
@@ -314,6 +314,9 @@ addEventSubmit.addEventListener("click", () => {
   const eventTitle = addEventTitle.value;
   const eventTimeFrom = addEventFrom.value;
   const eventTimeTo = addEventTo.value;
+
+  console.log(eventTitle);
+
   if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
     alert("Please fill all the fields");
     return;
@@ -385,7 +388,30 @@ addEventSubmit.addEventListener("click", () => {
     });
   }
 
-  console.log(eventsArr);
+  activeMonth =  month + 1;
+  activeYear = year;
+
+  $.ajax({
+    url:'../Admin_appointment/insert_calendar_date.php',
+    type:'POST',
+    data:{
+      activeDay:activeDay,
+      activeMonth:activeMonth,
+      activeYear:activeYear,
+      timeFrom:timeFrom,
+      timeTo:timeTo,
+      eventTitle:eventTitle
+    },
+    success:function(data){
+      if(data == 1){
+        alert("Appointment Saved!");
+      }else{
+        alert("error");
+      }
+    }
+  });
+
+  //console.log(eventsArr);
   addEventWrapper.classList.remove("active");
   addEventTitle.value = "";
   addEventFrom.value = "";
@@ -403,6 +429,14 @@ eventsContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("event")) {
     if (confirm("Are you sure you want to delete this event?")) {
       const eventTitle = e.target.children[0].children[1].innerHTML;
+      const eventTime  = e.target.children[1].children[0].innerHTML;
+      var times = eventTime.split('-');
+
+      // Trim any leading or trailing whitespace from each time
+      var timeFrom = times[0].trim();
+      var timeTo = times[1].trim();
+
+
       eventsArr.forEach((event) => {
         if (
           event.day === activeDay &&
@@ -414,6 +448,32 @@ eventsContainer.addEventListener("click", (e) => {
               event.events.splice(index, 1);
             }
           });
+
+          //Delete data from database
+          activeMonth =  month + 1;
+          activeYear = year;
+
+          $.ajax({
+            url:'../Admin_appointment/delete_calendar_date.php',
+            type:'POST',
+            data:{
+              activeDay:activeDay,
+              activeMonth:activeMonth,
+              activeYear:activeYear,
+              timeFrom:timeFrom,
+              timeTo:timeTo,
+              eventTitle:eventTitle
+            },
+            success:function(data){
+              if(data == 1){
+                alert("Successfully Removed!");
+              }else{
+                alert("error");
+              }
+            }
+          });
+
+
           //if no events left in a day then remove that day from eventsArr
           if (event.events.length === 0) {
             eventsArr.splice(eventsArr.indexOf(event), 1);

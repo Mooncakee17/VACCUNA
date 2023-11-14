@@ -1,7 +1,7 @@
 <?php
 
-include '../Homepage/config.php';
-include'../templates/Header.php';
+
+include('../templates/Header.php'); 
 
 // update profile for both users
 if(isset($_POST['update_profile'])){   

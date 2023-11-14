@@ -2,7 +2,7 @@
 include '../Homepage/config.php';
 $userid = $_POST['userid'];
 $cid = $_POST['cid'];
-$appointment_date = $_POST['appointment_date'];
+$appointment_date = date("Y-m-d",strtotime($_POST['appointment_date']));
 $appointment_time = $_POST['appointment_time'];
 $vaccine_name = $_POST['vaccine_administer'];
 $dose = $_POST['dose'];

@@ -1,11 +1,9 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
 rel="stylesheet">
 <link rel="stylesheet" href="./css/style3.css">
+
  <?php include('../include/include.php'); ?>
 <?php include('../templates/Header.php'); ?>
 <?php 
@@ -16,6 +14,7 @@ rel="stylesheet">
     //for set appointment
     include("fetch_child_list.php");
     include('../Parent_appointment/user_personal_details.php');
+    include('../Parent_appointment/fetch_business_days.php');
 ?>
 <body>
     <div class="dash-container">
@@ -118,7 +117,7 @@ rel="stylesheet">
 
                                             <!--Edit Appointment-->
                                             <div class="modal fade" id="update_appointment" >
-                                                <div class="modal-dialog" role="docoment">
+                                                <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
                                                             <div class="container-fluid">
@@ -163,7 +162,7 @@ rel="stylesheet">
                                                                     </div>
                                                                     <div class="col-lg-6">
                                                                         Appointment Date
-                                                                        <input type="date" id="appointment_date" class="form-control" name="appointment_date">
+                                                                        <input type="text" id="appointment_date" class="form-control date" name="appointment_date">
                                                                     </div>
                                                                 </div> 
 
@@ -173,6 +172,8 @@ rel="stylesheet">
                                                                         Appointment Time
                                                                         <input type="time" id="appointment_time" class="form-control" name="appointment_time">
                                                                     </div>
+
+
                                                                     <div class="col-lg-6">
                                                                         Vaccine Name
                                                                          <input type="text" id="vaccine_administer" class="form-control" readonly>
@@ -362,7 +363,7 @@ rel="stylesheet">
 
     <!--Set Appointment-->
     <div class="modal fade" id="set_appointment" >
-        <div class="modal-dialog" role="docoment">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="container-fluid">
@@ -409,7 +410,7 @@ rel="stylesheet">
                             </div>
                             <div class="col-lg-6">
                                 Appointment Date
-                                <input type="date" id="set_appointment_date" class="form-control" required>
+                                <input type="text" id="set_appointment_date" class="form-control date" required>
                             </div>
                         </div> 
 
@@ -442,11 +443,11 @@ rel="stylesheet">
                         <div class="row mt-5">
                             <div class="col-sm-3"></div>
                             <div class="col-sm-auto text-end">
-                             <button type="button" id="appointment_submit_1" class="btn btn-md rounded-5 border bg-violet text-white">Submit Appointment</button>
+                             <button type="button" id="appointment_submit_1" class="btn btn-md rounded-5 border text-white" style="background-color: violet;">Submit Appointment</button>
                             </div>  
 
                             <div class="col-sm-auto text-end">
-                                <button type="button" id="cancel_set_appointment" class="btn btn-md ps-5 pe-5 rounded-5 border bg-violet  text-white">Cancel</button>
+                                <button type="button" id="cancel_set_appointment" class="btn btn-md rounded-5 border text-white" style="background-color: violet;">Cancel</button>
                             </div>  
                         </div>
 
@@ -496,5 +497,99 @@ rel="stylesheet">
     </div>
     <script src="./js/index.js"></script>
 
+      <!-- jQuery library -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <!-- jQuery UI CSS -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+      <!-- jQuery UI Datepicker JS -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+
+
+    <script>
+//Update Appointment
+document.addEventListener("DOMContentLoaded", function () {
+  var input = document.getElementById("appointment_date");
+  var allowedDates = <?php echo $allowedDatesJSON; ?>; // Populate allowedDates with PHP JSON data
+
+  // Function to check if a date is allowed
+  function isDateAllowed(date) {
+    return allowedDates.indexOf(date) !== -1;
+  }
+
+  // Initialize the datepicker without a value
+  $(input).datepicker({
+    beforeShow: function (input, inst) {
+      var currentDate = $(input).val();
+      if (!isDateAllowed(currentDate)) {
+        $(input).val(allowedDates[0]);
+      }
+    },
+    beforeShowDay: function (date) {
+      var dateString = $.datepicker.formatDate("yy-mm-dd", date);
+      if (isDateAllowed(dateString)) {
+        return [true];
+      }
+      return [false, "custom-disabled-date"];
+    },
+    onClose: function () {
+      // Ensure that the datepicker is closed
+      input.blur();
+    }
+  });
+
+  // Set the input to the first allowed date if the current date is not in the allowedDates array
+  if (!isDateAllowed(input.value)) {
+    input.value = allowedDates[0];
+  }
+});
+</script>
+
+<script>
+//SET Appointment
+document.addEventListener("DOMContentLoaded", function () {
+  var input = document.getElementById("set_appointment_date");
+  var allowedDates = <?php echo $allowedDatesJSON; ?>; // Populate allowedDates with PHP JSON data
+
+  // Function to check if a date is allowed
+  function isDateAllowed(date) {
+    return allowedDates.indexOf(date) !== -1;
+  }
+
+  // Initialize the datepicker without a value
+  $(input).datepicker({
+    beforeShow: function (input, inst) {
+      var currentDate = $(input).val();
+      if (!isDateAllowed(currentDate)) {
+        $(input).val(allowedDates[0]);
+      }
+    },
+    beforeShowDay: function (date) {
+      var dateString = $.datepicker.formatDate("yy-mm-dd", date);
+      if (isDateAllowed(dateString)) {
+        return [true];
+      }
+      return [false, "custom-disabled-date"];
+    },
+    onClose: function () {
+      // Ensure that the datepicker is closed
+      input.blur();
+    }
+  });
+
+  // Set the input to the first allowed date if the current date is not in the allowedDates array
+  if (!isDateAllowed(input.value)) {
+    input.value = allowedDates[0];
+  }
+});
+</script>
+
+<style>
+  .custom-disabled-date {
+    color: #999; /* Change text color for disabled dates */
+    cursor: not-allowed; /* Change cursor for disabled dates */
+  }
+</style>
 </body>
 </html>

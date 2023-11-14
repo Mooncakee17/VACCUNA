@@ -6,8 +6,11 @@ $contact = $_POST['contact'];
 $child_age = $_POST['child_age'];
 $email = $_POST['email'];
 $mother_name = $_POST['mother_name'];
-$appointment_date = $_POST['appointment_date'];
+$appointment_date = date("Y-m-d",strtotime($_POST['appointment_date'])); 
 $appointment_time = $_POST['appointment_time'];
+
+
+
 
 $sql = "UPDATE appointmenttable 
 SET 

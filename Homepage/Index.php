@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaccuna</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/index1.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/index1.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Poppins&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -24,7 +24,7 @@
 
             </label>
 
-            <a href="Index.php"><img src="/assets/images/VACUNNA logo.png" class="logo"></a>
+            <a href="Index.php"><img src="../assets/images/VACUNNA logo.png" class="logo"></a>
 
                 <ul>
                     <li><a href="#home">HOME</a></li>
@@ -53,7 +53,7 @@
         <button>CHATBOT VACS</button>
      </div>
         <div class="column2">
-            <img src="/assets/images/vacs.png" >
+            <img src="../assets/images/vacs.png" >
         </div>
    </div>
 </section>

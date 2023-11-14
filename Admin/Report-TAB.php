@@ -2,9 +2,14 @@
 <?php 
 include('../templates/Header.php'); 
 
+<<<<<<< HEAD
  
 ?>
 <link rel="stylesheet" href="./css/style5.css">
+=======
+<?php include('../templates/Header.php'); ?>
+<link rel="stylesheet" href="./css/style6.css">
+>>>>>>> cbec0876fda7c1f979f3e543ff2e45d26ac331d9
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
 <body>
