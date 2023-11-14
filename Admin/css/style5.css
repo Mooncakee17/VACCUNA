@@ -63,7 +63,6 @@
 
 .table2_section {
     height: 370px;
-    overflow: auto;
 }
 
 table {
@@ -295,7 +294,7 @@ form .user-details .date {
 
 .table3_section {
     height: 370px;
-    overflow: auto;
+    width: 100%;
 }
 
 table {
@@ -310,6 +309,7 @@ table {
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
     
 }
+
 
 .table3 button {
     border: none;
@@ -341,7 +341,7 @@ table {
 
 .table3_section thead th {
     position: sticky;
-    top: 0;
+    width: 100%;
     background-color: #5AB9EA;
     color: #ffffff;
     font-size: 14px;
@@ -352,10 +352,10 @@ table {
 .table3_section thead th:nth-child(1) {
     border-radius: 10px 0 0 0;
 }
-
-.table3_section thead th:nth-child(8) {
+.table3_section thead th:nth-child(6) {
     border-radius: 0 10px 0 0;
 }
+
 
 .table3_section th, td {
     border-bottom: 1px solid #dddddd;
@@ -516,6 +516,15 @@ table {
 @media screen and (max-width: 2560px) {
   .dashboard img{
     width: 110%;
+    margin-right: 20px;
   }
+  table {
+    max-width: 1500px;
+    font-size: 15px;
+    margin: 0 10px 0 20px;
+    
+    
+}
 
+  
 }
