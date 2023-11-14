@@ -43,7 +43,6 @@
 /* Profile Style */
 
 
-<<<<<<< HEAD
 /*========================== VACCINE INVENTORY PAGE ======================*/
 .table2 {
     width: 100%;
@@ -53,6 +52,7 @@
 
 .table2_section {
     height: 370px;
+    width: 100%;
 }
 
 table {
@@ -65,6 +65,7 @@ table {
     border: none;
     border-radius: 10px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+    
 }
 
 .table2 button {
@@ -501,22 +502,21 @@ table {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(transparent, #5AB9EA);
 }
-=======
->>>>>>> cbec0876fda7c1f979f3e543ff2e45d26ac331d9
 
 /*========================== RESPONSIVENESS ======================*/
 @media screen and (max-width: 2560px) {
   .dashboard img{
     width: 110%;
-    margin-right: 20px;
+    
+    padding-left: 90px;
   }
   table {
-    max-width: 1500px;
+    max-width: 2000px;
     font-size: 15px;
     margin: 0 10px 0 20px;
     
     
 }
-
+ 
   
 }

@@ -65,7 +65,7 @@
 
 .table2_section {
     height: 370px;
-    overflow: auto;
+  
 }
 
 table {
@@ -519,5 +519,11 @@ table {
   .dashboard img{
     width: 110%;
   }
-
+  table {
+    max-width: 2000px;
+    font-size: 15px;
+    margin: 0 10px 0 20px;
+    
+    
+}
 }
