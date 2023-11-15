@@ -279,8 +279,46 @@ form .user-details .date {
 /*========================== IMMUNIZATION RECORD PAGE ======================*/
 .table3 {
     width: 100%;
-    padding: 50px 30px;
+    padding: 20px 30px;
     margin-left: 50px;
+}
+.search{
+    margin-left: 105px;
+    width: 95%;
+}
+.search input{
+    width: 40%;
+    height: 80%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid #8860D0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #8860D0;
+    padding: 10px 20px;
+    transition: color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+.search button {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 11px;
+    background-color: #8860D0;
+    color: #ffffff;
+    transition: .3s ease;
+}
+.search button:hover {
+    background-color: #C1C8E4;
+    transition: .3s ease;
+}
+.search button:nth-child(4) {
+   float: right;
+   padding-left: 20px;
+   padding-right: 20px;
+   margin-right: 10px;
 }
 
 .table3_section {
@@ -302,7 +340,7 @@ table {
 }
 
 
-.table3 button {
+.table3 a {
     border: none;
     outline: none;
     border-radius: 6px;
@@ -312,7 +350,7 @@ table {
     transition: .3s ease;
 }
 
-.table3_section td button:nth-child(1) {
+.table3_section td a:nth-child(1) {
     background-color: #5680E9;
 }
 

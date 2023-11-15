@@ -21,7 +21,17 @@ include('../templates/Header.php');
                
             </div>
             </div>
+            <div class="search">
+                    <form action="" method="GET">
+                    <input type="text" name="search" value="" placeholder="Search ">
+                    <button type="submit" style=""><i class="fa fa-search"></i></button>
+                    <button onclick="location.reload()" style="">Refresh</button>  
+                    <button onclick="location.reload()" style=""><i class="fa fa-user-plus"></i> Register Child </button>  
+                    </form>
+                    
+            </div>
             <div class="table3">
+            
             <div class="table3_section">
                 <table>
                     <thead>
@@ -38,22 +48,26 @@ include('../templates/Header.php');
                         <?php
                           
                             $record =  "SELECT * FROM `childtable`";
+                            if(isset($_GET['search'])){
+                                $row = $_GET['search'];
+                                $record =  "SELECT * FROM `childtable` WHERE CONCAT(child_firstname, child_lastname, mothername) LIKE '%$row%'";
+                              
+                        }
                             $record_run = mysqli_query($conn, $record);
                      
                             if(mysqli_num_rows($record_run) > 0 ){
                             foreach($record_run as $row){
+                              
                                 ?>
                             
                             <tr>
                             <td><?= $row['cid']; ?></td>
-                            <td><?= $row['child_firstname']; ?><?= $row['child_lastname']; ?></td>
+                            <td><?= $row['child_firstname']; ?>  <?= $row['child_lastname']; ?></td>
                             <td><?= $row['gender']; ?></td>
                             <td><?= $row['birthdate']; ?></td>
                             <td><?= $row['mothername']; ?></td>
                             <td>
-                                <button id = "<?= $row['cid']; ?>" onclick="openModal('eye')"><i class="fas fa-eye"></i></button>
-                                <button id = "<?= $row['cid']; ?>" onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                        
+                                <a href="Report-Details.php?id=<?= $row['cid']; ?>"><i class="fas fa-eye"></i></a>
                         
 
                             </td>
