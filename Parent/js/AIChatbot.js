@@ -5,7 +5,7 @@ const themeButton = document.querySelector("#theme-btn");
 const deleteButton = document.querySelector("#delete-btn");
 
 let userText = null;
-const API_KEY = "PASTE-YOUR-API-KEY-HERE"; // Paste your API key here
+const API_KEY = "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"; // Paste your API key here
 
 const loadDataFromLocalstorage = () => {
     // Load saved chats and theme from local storage and apply/add on the page
@@ -62,21 +62,29 @@ const getChatResponse = async (incomingChatDiv) => {
         })
     }
 
-    // Send POST request to API, get response and set the reponse as paragraph element text
+    // Send POST request to API, get response
     try {
         const response = await (await fetch(API_URL, requestOptions)).json();
-        pElement.textContent = response.choices[0].text.trim();
+
+        // Validate response before displaying it
+        const generatedText = response.choices[0].text.trim();
+        if (generatedText.length > 0) {
+            pElement.textContent = generatedText;
+        } else {
+            throw new Error("Empty or invalid response.");
+        }
     } catch (error) { // Add error class to the paragraph element and set error text
         pElement.classList.add("error");
         pElement.textContent = "Oops! Something went wrong while retrieving the response. Please try again.";
     }
 
-    // Remove the typing animation, append the paragraph element and save the chats to local storage
+    // Remove the typing animation, append the paragraph element, and save the chats to local storage
     incomingChatDiv.querySelector(".typing-animation").remove();
     incomingChatDiv.querySelector(".chat-details").appendChild(pElement);
     localStorage.setItem("all-chats", chatContainer.innerHTML);
     chatContainer.scrollTo(0, chatContainer.scrollHeight);
 }
+
 
 const copyResponse = (copyBtn) => {
     // Copy the text content of the response to the clipboard
@@ -190,6 +198,7 @@ const createSuggestedQuestions = () => {
 
 const handleSuggestedQuestion = (question) => {
     // Handle the selection of suggested questions
+    userText = question; // Set userText to the selected question
     const html = `<div class="chat-content">
                     <div class="chat-details">
                         <img src="images/user.jpg" alt="user-img">
@@ -208,3 +217,4 @@ const handleSuggestedQuestion = (question) => {
 
 // Call createSuggestedQuestions function to display suggested questions
 createSuggestedQuestions();
+console.log("AIChatbot.js loaded");

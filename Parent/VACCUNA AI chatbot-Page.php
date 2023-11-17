@@ -28,7 +28,7 @@
         </div>
 </div>
     <script src="./js/index.js"></script>
-    <script src="./js/VACCUNA AI Chatbot.js"></script>
+    <script src="./js/AIChatbot.js"></script>
 
 </body>
 </html>
