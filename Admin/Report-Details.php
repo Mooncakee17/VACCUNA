@@ -1,7 +1,16 @@
 
 <?php 
 include('../templates/Header.php'); 
+if(isset($_GET['cid'])){
+  $cid = mysqli_real_escape_string($conn, $_GET['cid']);
+  $record =  "SELECT * FROM `childtable` WHERE cid = $cid";
+  $record_run = mysqli_query($conn, $record);
+  $row = mysqli_fetch_all($record_run);
+   
+  print_r($row);
+}
 
+   
  
 ?>
 <link rel="stylesheet" href="./css/style5.css">

@@ -17,16 +17,18 @@ include('../templates/Header.php');
                 <img src="./images/Immunization Record.png">
             <div class="dashboard-text">
                     
-                <h1>IMMUNIZATION RECORDS</h1>
+                <h1>REGISTER CHILD</h1>
                
             </div>
             </div>
-            <div class="search">
+           
+            <div class="search1">
+            <p>*Select the user or guardian who wishes to sign up their child</p>
                     <form action="" method="GET">
-                    <input type="text" name="search" value="" placeholder="Search ">
-                    <button type="submit" style=""><i class="fa fa-search"></i></button>
                     <button onclick="location.reload()" style="">Refresh</button>  
-                    <button onclick="location.reload()" style=""><i class="fa fa-user-plus"></i> Register Child </button>  
+                    <button type="submit" style=""><i class="fa fa-search"></i></button>
+                    <input type="text" name="search" value="" placeholder="Search ">
+                    
                     </form>
                     
             </div>
@@ -37,20 +39,20 @@ include('../templates/Header.php');
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>CHILD NAME</th>
-                            <th>SEX</th>
-                            <th>BIRTHDATE</th>
-                            <th>PARENT/GUARDIAN</th>
+                            <th>USERNAME</th>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>PHONENUMBER</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                           
-                            $record =  "SELECT * FROM `childtable`";
+                            $record =  "SELECT * FROM `usertable`";
                             if(isset($_GET['search'])){
                                 $row = $_GET['search'];
-                                $record =  "SELECT * FROM `childtable` WHERE CONCAT(child_firstname, child_lastname, mothername) LIKE '%$row%'";
+                                $record =  "SELECT * FROM `usertable` WHERE CONCAT(firstname, lastname, user_email) LIKE '%$row%'";
                               
                         }
                             $record_run = mysqli_query($conn, $record);
@@ -61,13 +63,14 @@ include('../templates/Header.php');
                                 ?>
                             
                             <tr>
-                            <td><?= $row['cid']; ?></td>
-                            <td><?= $row['child_firstname']; ?>  <?= $row['child_lastname']; ?></td>
-                            <td><?= $row['sex']; ?></td>
-                            <td><?= $row['birthdate']; ?></td>
-                            <td><?= $row['mothername']; ?></td>
+                            <td><?= $row['userid']; ?></td>
+                            <td><?= $row['username']; ?></td>
+                            <td><?= $row['firstname']; ?>  <?= $row['lastname']; ?></td>
+                            <td><?= $row['user_email']; ?></td>
+                            <td><?= $row['phonenumber']; ?></td>
+                            
                             <td>
-                                <a href="Report-Details.php?id=<?= $row['cid']; ?>"><i class="fas fa-eye"></i></a>
+                                <a style=""href="Report-Details.php?id=<?= $row['userid']; ?>">Select User</i></a>
                         
 
                             </td>
@@ -86,13 +89,24 @@ include('../templates/Header.php');
                                 <?php
                             }
                             ?>
+                      
                     
                    
                     </tbody>
                 </table>
             </div>
         </div>
-           
+        <div style="margin-top: 15px;"><a href="Report-TAB.php" style="border: none;
+                                            
+                                            margin-left:100px;
+                                            outline: none;
+                                            border-radius: 6px;
+                                            cursor: pointer;
+                                            padding: 11px 15px 11px 15px;
+                                            background-color: #8860D0;
+                                            color: #ffffff;
+                                            transition: .3s ease"><i class="fa fa-step-backward	"></i> Back </a>  </div>
+        
                     
         </div>
 </div>
