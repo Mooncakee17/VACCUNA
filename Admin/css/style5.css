@@ -688,6 +688,160 @@ table {
    padding-right: 20px;
    margin-right: 10px;
 }
+
+/*========================== REPORT DETAILS PAGE ======================*/
+.ReportDetails-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin: 2% auto;
+    margin-left: 90px;
+    padding: 1em;
+    width: 950px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+}
+
+.ReportDetails-content .header {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    height: 75px;
+}
+
+.ReportDetails-content .title {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    background: #C1C8E4;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .2);
+    margin-top: 20px;
+}
+
+.ReportDetails-content .header h2 {
+    color: black;
+    padding-top: 15px;
+    padding-left: 10px;
+    font-size: 30px;
+    margin: 0;
+}
+
+.ReportDetails-content .header img {
+    width: 121px; /* Adjust the width of the image as needed */
+    height: auto; /* Maintain the aspect ratio */
+    margin-left: 430px; /* Add some space between the image and the text */
+}
+
+.ReportDetails-content .title h2 {
+    color: black;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.ReportDetails-content span {
+    font-weight: bold;
+}
+
+.ReportDetails-content p {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    font-size: 14px;
+    text-align: justify;
+    color: black;
+}
+
+.ReportDetails-content .modal-table {
+    width: 100%;
+    padding: 50px 30px;
+}
+
+.ReportDetails-content .modal-table table {
+    width: 100%;
+    table-layout: fixed;
+    max-width: 800px;
+    min-width: 700px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+    margin-bottom: -60px;
+}
+
+.ReportDetails-content .modal-table_section thead th {
+    position: sticky;
+    top: 0;
+    background-color: #8860D0;
+    color: #ffffff;
+    font-size: 14px;
+    border: none;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+}
+
+.modal-table_section thead th:nth-child(1) {
+    border-radius: 10px 0 0 0;
+}
+
+.modal-table_section thead th:nth-child(4) {
+    border-radius: 0 10px 0 0;
+}
+
+.ReportDetails-content .modal-table_section th, td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 5px;
+    word-break: break-all;
+    text-align: center;
+}
+
+.ReportDetails-content .modal-table_section tr:hover td {
+    color: #5AB9EA;
+    cursor: pointer;
+    background-color: #F6F9FC;
+}
+
+.editable {
+    border-bottom: 1px solid black; /* You can customize the underline style */
+    cursor: text; /* Change the cursor to indicate text input */
+}
+
+#Report-Details .editable-info span {
+    font-weight: 400;
+}
+
+#Report-Details .editable-info .label {
+    font-weight: bold;
+}
+
+#editButton, #saveButton, #editVaccineButton, #saveVaccineButton {
+    padding: 5px 10px;
+    margin-left: 800px;
+    font-size: 16px;
+    background-color: #8860D0;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#saveButton, #saveVaccineButton {
+    background-color: #84CEEB;
+}
+
+#editButton:hover, #editVaccineButton:hover {
+    background-color: #84CEEB;
+}
+
+#saveButton:hover, #saveVaccineButton:hover {
+    background-color: #8860D0;
+}
+
+
+
 /*========================== RESPONSIVENESS ======================*/
 @media screen and (max-width: 2560px) {
   .dashboard img{
