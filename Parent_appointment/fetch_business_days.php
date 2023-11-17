@@ -14,3 +14,4 @@ foreach ($business_day as $row) {
 // Serialize the PHP array to JSON
 $allowedDatesJSON = json_encode($allowedDates);
 ?>
+<!--merge -->

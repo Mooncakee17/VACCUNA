@@ -18,3 +18,4 @@ WHERE appt_id = $appt_id";
 mysqli_query($conn, $sql);
 header('location: ../Parent/Appointment-Page.php');
 ?>
+<!--merge -->

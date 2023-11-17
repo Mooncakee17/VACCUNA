@@ -11,4 +11,4 @@ for(i = 0; i < len; i++) {
             panel.style.maxHeight = panel.scrollHeight + 'px'
         }
     })
-}
+} /*merge*/

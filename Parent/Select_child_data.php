@@ -77,13 +77,18 @@ include('../Parent_appointment/fetch_business_days.php');
                       </div>
                       <div class="info-block">
                         <p><span class="label">Middle name: </span> <?php echo $child_mname; ?></p>
-                      </div>
+                      </div> </div>
+                      <div class="info-line">
                       <div class="info-block">
                         <p><span class="label">Age: </span> <?php echo $child_age; ?></p>
                       </div>
                       <div class="info-block">
                         <p><span class="label">Birth Date: </span> <?php echo $birthdate; ?></p>
                       </div>
+                      <div class="info-block">
+                        <p><span class="label">Gender: </span> <?php echo "wala sa db"; ?></p>
+                      </div>
+                      
                     </div>
 
                     <div class="center-container">
@@ -191,6 +196,10 @@ include('../Parent_appointment/fetch_business_days.php');
                                                                         Email
                                                                         <input type="text" id="email" class="form-control" value="<?php echo $email; ?>" readonly> 
                                                                     </div>
+                                                                    <div class="col-lg-6">
+                                                                        Gender
+                                                                        <input type="text" id="gender" class="form-control" value="<?php echo $gender; ?>" readonly> 
+                                                                    </div>
                                                                 </div> 
 
 
@@ -284,7 +293,6 @@ include('../Parent_appointment/fetch_business_days.php');
                                             });
                                         });
 
-                                        // ... (the rest of your existing code)
                                     </script>
 
 

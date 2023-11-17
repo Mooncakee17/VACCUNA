@@ -7,3 +7,4 @@ $session_cid = $_POST['cid'];
 $_SESSION['cid'] = $session_cid;
 
 ?>
+<!--merge -->

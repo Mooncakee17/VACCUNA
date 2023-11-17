@@ -71,7 +71,7 @@ function missed_appointment(){
 
         }
     });  
-}
+} /*merge*/
 
 
 

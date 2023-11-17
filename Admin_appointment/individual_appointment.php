@@ -49,3 +49,4 @@ $appt_id = $_POST['appt_id'];
 	header('Content-Type: application/json');
 	echo json_encode($response);
 ?>
+<!--merge -->

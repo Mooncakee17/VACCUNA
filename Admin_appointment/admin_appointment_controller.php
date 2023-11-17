@@ -6,3 +6,4 @@ $appointmenttable = mysqli_fetch_all($select, MYSQLI_ASSOC);
 
 
 ?>
+<!--merge -->

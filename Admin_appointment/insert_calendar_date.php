@@ -18,3 +18,4 @@ if($sql){
 	echo 1;
 }
 ?>
+<!--merge -->

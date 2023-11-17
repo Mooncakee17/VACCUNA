@@ -420,6 +420,17 @@ rel="stylesheet">
                                 Appointment Time
                                 <input type="time" id="set_appointment_time" class="form-control" required>
                             </div>
+                            
+                                                            <!--       <div class="row mt-3">
+                                                                    <div class="col-lg-12">
+                                                                        <select id="dosereason" class="form-select">
+                                                                            <option value="-1" disabled>-- Select Reason for appointment --</option>
+                                                                            <option value="1" >For Vaccination</option>
+                                                                            <option value="2" >For Consultation</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                    -->
                             <div class="col-lg-6">
                                 Select Vaccine
                                 <select class="form-select" id="select_vaccine">
@@ -428,7 +439,6 @@ rel="stylesheet">
                                 </div>
                             </div>
                         </div>
-
 
                          <div class="row mt-3">
                             <div class="col-lg-12">
