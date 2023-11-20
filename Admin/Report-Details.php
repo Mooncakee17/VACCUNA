@@ -1,17 +1,23 @@
 
 <?php 
 include('../templates/Header.php'); 
-if(isset($_GET['cid'])){
-  $cid = mysqli_real_escape_string($conn, $_GET['cid']);
+if(isset($_GET['id'])){
+  $cid = mysqli_real_escape_string($conn, $_GET['id']);
   $record =  "SELECT * FROM `childtable` WHERE cid = $cid";
   $record_run = mysqli_query($conn, $record);
-  $row = mysqli_fetch_all($record_run);
-   
-  print_r($row);
+  if ($record_run) {
+    // Fetch all rows from the result set
+    while ($row = mysqli_fetch_assoc($record_run)) {
+        $rows[] = $row; // Append each row to the $rows array
+    }
+} else {
+    // Handle query execution error
+    $error_message = "Error fetching data: " . mysqli_error($conn);
 }
-
-   
- 
+} else {
+// Handle the case when 'cid' is not set
+$error_message = "No CID provided";
+}
 ?>
 <link rel="stylesheet" href="./css/style5.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
@@ -34,8 +40,13 @@ if(isset($_GET['cid'])){
            
            <div id="Report-Details">
               <div class="ReportDetails-content">
+              <?php if(isset($error_message)) { ?>
+                        <p><?php echo $error_message; ?></p>
+                    <?php } else { ?>
+                        <?php if(!empty($rows)) { ?>
+                            <?php foreach($rows as $row) { ?>
                     <div class="header">
-                        <h2>DAN XAVIER A. COLOMA</h2>
+                        <h2><?php echo $row['child_firstname'] . " " . $row['child_lastname']; ?></h2>
                         <img src="./images/Baby Profile.png" alt="">
                     </div>
                     <button id="editButton" onclick="enableEdit()">Edit</button>
@@ -43,17 +54,20 @@ if(isset($_GET['cid'])){
                     <div class="title">
                         <h2>PERSONAL INFORMATION</h2>
                     </div>
+                    <?php } ?>
+                        <?php } else { ?>
+                            <p>No records found</p>
+                        <?php } ?>
+                    <?php } ?>
                     <div class="editable-info">
-                      <p><span class="label">Age</span> <span id="age" contenteditable="false">2</span></p>
-                      <p><span class="label">Gender</span> <span id="gender" contenteditable="false">Male</span></p>
-                      <p><span class="label">Birth Date</span> <span id="birthDate" contenteditable="false">November 24, 2022</span></p>
-                      <p><span class="label">Birth Place</span> <span id="birthPlace" contenteditable="false">St Luke's Medical Center</span></p>
+                      <p><span class="label">Age</span> <span id="age" contenteditable="false">0</span></p>
+                      <p><span class="label">Gender</span> <span id="gender" contenteditable="false"><?php echo $row['sex'] ?></span></p>
+                      <p><span class="label">Birth Date</span> <span id="birthDate" contenteditable="false"><?php echo $row['birthdate'] ?></span></p>
                       <p><span class="label">Address</span> <span id="address" contenteditable="false">Santa Mesa, Manila</span></p>
-                      <p><span class="label">Mother's Name</span> <span id="mother'sName" contenteditable="false">Mary Rose A. Coloma</span></p>
-                      <p><span class="label">Father's Name</span> <span id="father'sName" contenteditable="false">Mark G. Coloma</span></p>
-                      <p><span class="label">Contact Number</span> <span id="contactNumber" contenteditable="false">09132567445</span></p>
+                      <p><span class="label">Mother's Name</span> <span id="mother'sName" contenteditable="false"><?php echo $row['mothername'] ?></span></p>
+                      <p><span class="label">Father's Name</span> <span id="father'sName" contenteditable="false"><?php echo $row['fathername'] ?></span></p>
                     </div>
-                    <button id="editVaccineButton" onclick="enableVaccineEdit()">Edit</button>
+                    <button style="margin-top: 10px;" id="editVaccineButton" onclick="enableVaccineEdit()">Edit</button>
                     <button id="saveVaccineButton" onclick="saveVaccineChanges()" style="display: none;">Save</button>
                     <div class="title">
                         <h2>VACCINE INFORMATION</h2>
@@ -426,7 +440,7 @@ if(isset($_GET['cid'])){
                           </table>
                       </div>
                     </div>
-                    <button onclick="closeModal('eye')">Close</button>
+                    
               </div>
           </div>                 
 </div>
