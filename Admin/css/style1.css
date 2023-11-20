@@ -14,7 +14,7 @@
     height: 100%;
     font-family: Poppins, sans-serif;
     font-size: 13px;
-    background: #e5e7eb;
+    background: white;
     background-size: cover; /* Adjust the background size */
     background-repeat: no-repeat;
     background-position: center center;
@@ -887,4 +887,4 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-    } /*merge*/
+    }

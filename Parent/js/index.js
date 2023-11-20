@@ -66,12 +66,12 @@ $(document).ready(function(){
                 vaccine_administer: vaccine_administer,
                 userid: userid,
                 cid: cid,
-                dose: dose
+                dose: dose,
+                appointment_type:'Vaccination'
             },
             success:function(result){
-                if(result == 1){
-                    alert("Your appointment is save");                  
-                }
+                alert("Your appointment is save");  
+                window.location.href="Select_child_data.php" ;                   
             },
             error:function(error){
 
@@ -173,7 +173,15 @@ $(document).ready(function(){
         var userid = $("#set_userid").val();
         var cid = $("#select_children").val();
         var dose = $("#set_dose").val();
-        console.log(vaccine_administer);
+        var appointment_type = $("#appointment_type").val();
+
+        if(appointment_type == "Consultation"){
+            var surl = '../Parent_appointment/submit_consultation_appointment.php'; 
+        }
+        else{
+            var surl = '../Parent_appointment/submit_appointment.php'; 
+        }
+
         if(appointment_date == ''){
             console.log("date is required");
             return false;
@@ -183,7 +191,7 @@ $(document).ready(function(){
             return false;
         } 
         $.ajax({
-            url: '../Parent_appointment/submit_appointment.php',
+            url: surl,
             type: 'POST',
             data: {
                 child_name: child_name,
@@ -196,11 +204,13 @@ $(document).ready(function(){
                 vaccine_administer: vaccine_administer,
                 userid: userid,
                 cid: cid,
-                dose: dose
+                dose: dose,
+                appointment_type :appointment_type 
             },
             success:function(result){
                 if(result == 1){
-                    alert("Your appointment is save");                  
+                    alert("Your appointment is save");    
+                    window.location.href="Appointment-Page.php" ;            
                 }
             },
             error:function(error){
@@ -208,7 +218,6 @@ $(document).ready(function(){
             }
         });
     });
-
 
 
 });

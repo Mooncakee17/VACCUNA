@@ -41,7 +41,8 @@ $appt_id = $_POST['appt_id'];
 		 	'email' => $value['email'],
 		 	'vac_name' => $value['vac_name'],
 		 	'cid' => $value['cid'],
-		 	'doctor' => $doctor_administer 
+		 	'doctor' => $doctor_administer,
+		 	'for_reason' => $value['for_reason']
 		 );
 	}
 	
@@ -49,4 +50,3 @@ $appt_id = $_POST['appt_id'];
 	header('Content-Type: application/json');
 	echo json_encode($response);
 ?>
-<!--merge -->

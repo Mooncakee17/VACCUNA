@@ -26,12 +26,23 @@
             //get child vaccine record
             $select1 = mysqli_query($conn, "SELECT      
             CASE
-            WHEN a.status = 2 THEN 'YES'
-            WHEN a.status = 0 THEN 'NO'
-            WHEN a.status = 1 THEN 'NO'
+            WHEN a.status = 2 AND c.appt_date is not null THEN 'YES'
+            WHEN a.status = 0 AND c.appt_date is null THEN 'NO'
+            WHEN a.status = 1 AND c.appt_date is null THEN 'NO'
             END AS vaccine_status,
-            a.vac_name
-            FROM child_vaccine_status a WHERE a.cid = '$cid'") or die('query failed');
+            a.vac_name,
+            c.vaccine_administer,
+            c.appt_date
+            FROM child_vaccine_status a 
+            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name AND b.active = 1
+            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date is not null
+            WHERE a.cid = '$cid' 
+            ORDER BY 
+            CASE
+            WHEN a.status = 2 AND c.appt_date is not null AND c.vaccine_administer is not null THEN 0
+            WHEN a.status = 0 AND c.appt_date is not null AND c.vaccine_administer is not null THEN 2
+            WHEN a.status = 1 AND c.appt_date is not null AND c.vaccine_administer is not null THEN 1
+            END DESC") or die('query failed');
             $vaccine_record = mysqli_fetch_all($select1, MYSQLI_ASSOC);  
         ?>
 
@@ -40,7 +51,7 @@
                 <div class="detail_container w-100">
                    <div class="content" style="overflow-x: scroll; height:500px;">
                     <div class="header">
-                        <h2><?php echo $child_fullname; ?></h2>
+                        <h2><?php echo $child_fullname;?></h2>
                     </div>
                     <div class="title">
                         <h2>PERSONAL INFORMATION</h2>
@@ -53,12 +64,39 @@
                     <div class="title">
                         <h2>VACCINE INFORMATION</h2>
                     </div>
+
+
+                    <div class="row">
+                        <div class="col-3">Vaccine Name</div>
+                        <div class="col-3">Status</div>
+                        <div class="col-3">Vaccine Administrator</div>
+                        <div class="col-3">Vaccination Date</div>
+                    </div>
                     <?php 
                     foreach($vaccine_record as $info){
                         $vac_name = $info['vac_name'];
                         $vaccine_status = $info['vaccine_status'];
+                        $vaccine_administer = $info["vaccine_administer"];
+                        $appt_date = $info["appt_date"];
                     ?>
-                        <p><span class="label"><?php echo $vac_name; ?></span> <?php echo $vaccine_status; ?></p>
+                        <div class="row">
+                            <div class="col-3"><?php echo $vac_name; ?></div>
+                            <div class="col-3"><?php if($vaccine_status == ""){echo"NO";}else{echo $vaccine_status;} ?></div>
+                            <div class="col-3"><?php if($vaccine_administer == ""){echo"No Vaccine Administrator";}else{echo $vaccine_administer;} ?></div>
+                            <div class="col-3">
+                            <?php 
+                            if($appt_date == ""){
+                                echo"No Appointment Date";
+                            }else{
+                                if($vaccine_status == "YES"){
+                                    echo date("F j,Y",strtotime($appt_date));
+                                }
+                                else{
+                                    echo"No Appointment Date";
+                                }
+                            } ?>
+                            </div>
+                        </div>
                     <?php } ?>
                     <button class="button close-button" id="close">Close</button>
                 </div>  

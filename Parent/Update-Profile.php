@@ -33,7 +33,7 @@ if(isset($_POST['update_profile'])){
    $update_image = $_FILES['update_image']['name'];
    $update_image_size = $_FILES['update_image']['size'];
    $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-   $update_image_folder = '../Homepage/uploaded_img/'.$update_image;
+   $update_image_folder = '../Homepage/uploaded_img'.$update_image;
 
    if(!empty($update_image)){
       if($update_image_size > 2000000){

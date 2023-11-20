@@ -12,28 +12,60 @@ if (isset($_POST['submit'])) {
     $bday = $conn->real_escape_string($_POST['Child_bdate']);
     $mothername = $conn->real_escape_string($_POST['Child_fthrname']);
     $fathername = $conn->real_escape_string($_POST['Child_mthrname']);
+    $gender = $conn->real_escape_string($_POST['gender']);
 
-    $sql = "INSERT INTO `childtable`(`userid`, `child_firstname`, `child_lastname`, `child_middlename`, `birthdate`, `mothername`, `fathername`) 
-            VALUES ('$user_id', '$fname', '$lname', '$mdname', '$bday', '$mothername', '$fathername')";
-
+    $sql = "INSERT INTO `childtable`(`userid`, `child_firstname`, `child_lastname`, `child_middlename`, `birthdate`, `mothername`, `fathername`,`gender`) 
+            VALUES ('$user_id', '$fname', '$lname', '$mdname', '$bday', '$mothername', '$fathername', '$gender')";
     if ($conn->query($sql) === TRUE) {
+        $lastid = $conn->insert_id; // ito yung pag kuha ng id nung bagong insert . ito na pangkuha ng id         
         $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname'");
         if ($cid_query) {
             $row = $cid_query->fetch_assoc();
             $cid = $row['cid'];
 
-            $sql = "INSERT INTO `vac_bcg_table`(`cid`) VALUES ('$cid');
-                    INSERT INTO `vac_hepa_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_hepB_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_dtop_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_hib_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_ipv_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_influenza_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_measles_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_rota_table`(`cid`) VALUES ('$cid')
-                    INSERT INTO `vac_polio_table`(`cid`) VALUES ('$cid')";
 
-            if ($conn->multi_query($sql) === TRUE) {
+            $rec_age = array(
+                "BCG vaccine should be given shortly after birth",
+                "First vaccine Hepatitis B should be given after birth",
+                "Second vaccine Hepatitis B should be given 1 month after the first dose was taken",
+                "Third vaccine Hepatitis B should be given 6 months after the second dose was taken",
+                "First DTaP vaccine should be given 6 weeks after birth",
+                "Second DTaP vaccine should be given 10 weeks after the first dose was taken",
+                "First HiB vaccine should be given 6 weeks after birth",
+                "Second HiB vaccine should be given 10 weeks after the first dose was taken",
+                "First IPV vaccine should be given 6 weeks after birth",
+                "Second IPV vaccine should be given 10 weeks after the first dose was taken",
+                "Third IPV vaccine should be 14 weeks after the second dose was taken",
+                "First PCV vaccine should be given 6 weeks after birth",
+                "Second PCV vaccine should be given 10 weeks after the first dose was taken",
+                "First  Rotavirus vaccine should be given 6 weeks after birth",
+                "Second Rotavirus vaccine should be given 10 weeks after the first dose was taken",
+                "First MMR vaccine should be given 9 months after birth",
+                "First Influenza vaccine should be given 6 months after birth",
+                "First Hepa vaccine should be given 12 months after birth",
+                "Second Hepa vaccine should be given 6 weeks after the first dose was taken",
+                "Third DTaP vaccine should be 14 weeks after the second dose was taken",
+                "Third  Rotavirus vaccine should be 14 weeks after the second dose was taken",
+                "Third HiB vaccine should be 14 weeks after the second dose was taken",
+                "Third PCV vaccine should be 14 weeks after the second dose was taken",
+                "Second MMR vaccine should be given 2 years after the first dose was taken",
+                "Second Influenza vaccine should be given 4 weeks after the first dose was taken"
+            );
+
+             // Get the vaccinelist for child_vaccine_status
+             $get_vaccine = mysqli_query($conn, "SELECT vac_name FROM vaccineinventory") or die('query failed');
+             $get_vaccine_list = mysqli_fetch_all($get_vaccine, MYSQLI_ASSOC);
+             $i = 0; 
+             foreach($get_vaccine_list as $value){
+                $vaccinename = $value['vac_name'];
+                $insert_status = "INSERT INTO child_vaccine_status(cid,vac_name,reco_age) VALUES($lastid,'$vaccinename','$rec_age[$i]')";
+                mysqli_query($conn,$insert_status);
+                $i++;
+             }
+
+
+
+            if (mysqli_query($conn,$insert_status)) {
                 $message[] = 'Registered Successfully!';
             } else {
                 $message[] = 'Registration failed!';
@@ -56,13 +88,14 @@ if (isset($_POST['submit'])) {
     $bday = $_POST['Child_bdate'];
     $mothername = $_POST['Child_mthrname']; 
     $fathername = $_POST['Child_fthrname']; 
+    $gender = $_POST['gender']; 
  
     $child_name = $fname.' '.$mdname.' '.$lname;
  
     
 
-    $sql = "INSERT INTO `childtable`(`userid`, `child_firstname`, `child_lastname`, `child_middlename`, `birthdate`, `mothername`, `fathername`) 
-    VALUES ('$user_id','$fname','$lname','$mdname','$bday','$mothername','$fathername')";
+    $sql = "INSERT INTO `childtable`(`userid`, `child_firstname`, `child_lastname`, `child_middlename`, `birthdate`, `mothername`, `fathername`, `gender`) 
+    VALUES ('$user_id','$fname','$lname','$mdname','$bday','$mothername','$fathername','$gender')";
     $conn->query($sql) or die ($conn->error);
     $lastid = $conn->insert_id; // ito yung pag kuha ng id nung bagong insert . ito na pangkuha ng id 
     //bcg
@@ -127,20 +160,16 @@ if (isset($_POST['submit'])) {
             
             if ($bcg == 0) {
                 $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_bcg' WHERE cid = $lastid AND vac_name = 'BCG'";
-                mysqli_query($conn,$update_child_vaccine_status1);  
-                $sql = "INSERT INTO `vac_bcg_table`(`cid`, `dose1`) VALUES ('$cid', '$bcg')";
-                            
+                mysqli_query($conn,$update_child_vaccine_status1);                            
             } else { 
                 $bcg_dose1_date = $_POST['BCG-dose1-date'];
 
                 if(!empty($bcg_dose1_date)){
-                    $sql = "INSERT INTO `vac_bcg_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$bcg', '$bcg_dose1_date')"; 
                     $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2 , reco_age = '$reco_bcg' WHERE cid = $lastid AND vac_name = 'BCG'";
                     mysqli_query($conn,$update_child_vaccine_status);
                     //Insert BCG Details to Appointment - for checking of last vaccine date - note appointment status = 2 meaning na take na
                     add_last_vaccine_details($userid, $lastid , 'BCG', $bcg_dose1_date , 1, $child_name  , 2);
                 }
-                $result = $conn->query($sql);
             }
 
             $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname'");
@@ -156,51 +185,39 @@ if (isset($_POST['submit'])) {
                 if ($HEPB1 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Hepb1' WHERE cid = $lastid AND vac_name = 'HepB1'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql1 = "INSERT INTO `vac_hepb_table`(`cid`, `dose1`) VALUES ('$cid', '$HEPB1')";
-                    $conn->query($sql1);
                 } else { 
                     $HEPB_dose1_date = $_POST['HepB-dose1-date'];
                     if (!empty($HEPB_dose1_date)) {
-                        $sql1 = "INSERT INTO `vac_hepb_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$HEPB1', '$HEPB_dose1_date')";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2 , reco_age = '$reco_Hepb1'
                         WHERE cid = $lastid AND vac_name = 'HepB1'";
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'HepB1', $HEPB_dose1_date , 1, $child_name  , 2);
                         
                     } 
-                    $conn->query($sql1);
                 }
                
                 if ($HEPB2 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Hepb2' WHERE cid = $lastid AND vac_name = 'HepB2'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql2 = "INSERT INTO `vac_hepb_table`(`cid`, `dose2`) VALUES ('$cid', '$HEPB2')";
-                    $conn->query($sql2);
                 } else {
                     $HEPB_dose2_date = $_POST['HepB-dose2-date'];
                     if (!empty($HEPB_dose1_date)) {
-                        $sql2 = "INSERT INTO `vac_hepb_table`(`cid`, `dose2`, `dose2_date`) VALUES ('$cid', '$HEPB2', '$HEPB_dose2_date')";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2 , reco_age = '$reco_Hepb2' WHERE cid = $lastid AND vac_name = 'HepB2'";
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'HepB2', $HEPB_dose2_date , 2, $child_name  , 2);
                     } 
-                    $conn->query($sql2);
                 }
 
                 if ($HEPB3 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Hepb3' WHERE cid = $lastid AND vac_name = 'HepB3'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql3 = "INSERT INTO `vac_hepb_table`(`cid`, `dose3`) VALUES ('$cid', '$HEPB3')";
-                    $conn->query($sql3);
                 } else {
                     $HEPB_dose3_date = $_POST['HepB-dose3-date'];
                     if (!empty($HEPB_dose3_date)) {
-                        $sql3 = "UPDATE vac_hepb_table SET `dose3` = '$HEPB3', `dose3_date` = '$HEPB_dose3_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 3 , status = 2 , reco_age = '$reco_Hepb3'  WHERE cid = $lastid AND vac_name = 'HepB3'";
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'HepB3', $HEPB_dose3_date , 3, $child_name  , 2);
                     } 
-                    $conn->query($sql3);
                 }
 
         
@@ -217,53 +234,41 @@ if (isset($_POST['submit'])) {
                 if ($DTAP1 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_DTaP1' WHERE cid = $lastid AND vac_name = 'DTaP1'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql1 = "INSERT INTO `vac_dtop_table`(`cid`, `dose1`) VALUES ('$cid', '$DTAP1')";
-                    $conn->query($sql1);
                 } else {
                     $DTAP_dose1_date = $_POST['DTaP-dose1-date'];
                     if (!empty($DTAP_dose1_date)) {
-                        $sql1  = "INSERT INTO `vac_dtop_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$DTAP1', '$DTAP_dose1_date')";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2 , reco_age = '$reco_DTaP1'  WHERE cid = $lastid AND vac_name = 'DTaP1'";
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'DTaP1', $DTAP_dose1_date , 1, $child_name  , 2);
                     }
-                    $conn->query($sql1);
                 }
                
 
                 if ($DTAP2 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_DTaP2' WHERE cid = $lastid AND vac_name = 'DTaP2'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql2 = "INSERT INTO `vac_dtop_table`(`cid`, `dose2`) VALUES ('$cid', '$DTAP2')";
-                    $conn->query($sql2);
                 } else {
                     $DTAP_dose2_date = $_POST['DTaP-dose2-date'];
                     if (!empty($DTAP_dose2_date)) {
-                        $sql2 = "UPDATE `vac_dtop_table` SET `dose2` = '$DTAP2', `dose2_date` = '$DTAP_dose2_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2 , reco_age = '$reco_DTaP2' WHERE cid = $lastid AND vac_name = 'DTaP2'";
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'DTaP2', $DTAP_dose2_date , 2, $child_name  , 2);
                     }
-                    $conn->query($sql2);
                 }
 
                 if ($DTAP3 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_DTaP3' WHERE cid = $lastid AND vac_name = 'DTaP3'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql3 = "INSERT INTO `vac_dtop_table`(`cid`, `dose3`) VALUES ('$cid', '$DTAP3')";
-                    $conn->query($sql3);
                 } else {
 
                     $DTAP_dose3_date = $_POST['DTaP-dose3-date'];
 
                     if (!empty($DTAP_dose3_date)) {
-                        $sql3 = "UPDATE 'vac_dtop_table' SET `dose3` = '$DTAP3', `dose3_date` = '$DTAP_dose3_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 3 , status = 2, reco_age = '$reco_DTaP3' WHERE cid = $lastid AND vac_name = 'DTaP3'"; //Wala sa table
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'DTaP2', $DTAP_dose2_date , 2, $child_name  , 2);
                     
                     }
-                    $conn->query($sql3);
                 }
             }
             
@@ -278,51 +283,39 @@ if (isset($_POST['submit'])) {
              
                 if ($HIB1 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_HiB1' WHERE cid = $lastid AND vac_name = 'HiB1'";
-                    mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql1 = "INSERT INTO `vac_hib_table`(`cid`, `dose1`) VALUES ('$cid', '$HIB1')";
-                    $conn->query($sql1);
+                    mysqli_query($conn,$update_child_vaccine_status1);
                 } else {
                     $HIB_dose1_date = $_POST['Hib-dose1-date'];
                     if (!empty($HIB_dose1_date)) {
-                        $sql1 = "INSERT INTO `vac_hib_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$HIB1', '$HIB_dose1_date')";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2 , reco_age = '$reco_HiB1'WHERE cid = $lastid AND vac_name = 'HiB1'"; //Wala sa table
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'HiB1', $HIB_dose1_date , 1, $child_name  , 2);
                     } 
-                    $conn->query($sql1);
                 }
                 if ($HIB2 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_HiB2' WHERE cid = $lastid AND vac_name = 'HiB2'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql2 = "INSERT INTO `vac_hib_table`(`cid`, `dose2`) VALUES ('$cid', '$HIB2')";
-                    $conn->query($sql2);
                 } else {
                     $HIB_dose2_date = $_POST['Hib-dose2-date'];
                     if (!empty($HIB_dose2_date)) {
-                        $sql2 = "UPDATE `vac_hib_table` SET `dose2` = '$HIB2', `dose2_date` = '$HIB_dose2_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2 , reco_age = '$reco_HiB2' WHERE cid = $lastid AND vac_name = 'HiB2'"; 
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'HiB2', $HIB_dose2_date , 2, $child_name  , 2);
                     }
-                    $conn->query($sql2);
                 }
 
                 if ($HIB3 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_HiB3' WHERE cid = $lastid AND vac_name = 'HiB3'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql3 = "INSERT INTO `vac_hib_table`(`cid`, `dose3`) VALUES ('$cid', '$HIB3')";
-                    $conn->query($sql3);
                 } else {
 
                     $HIB_dose3_date = $_POST['Hib-dose3-date'];
 
                     if (!empty($HIB_dose3_date)) {
-                        $sql3 = "UPDATE 'vac_hib_table' SET `dose3` = '$HIB3', `dose3_date` = '$HIB_dose3_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 3 , status = 2 , reco_age = '$reco_HiB3'WHERE cid = $lastid AND vac_name = 'HiB3'"; //Wala sa table
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'HiB3', $HIB_dose3_date , 3, $child_name  , 2);
                     } 
-                    $conn->query($sql3);
                 }
             }
 
@@ -338,17 +331,13 @@ if (isset($_POST['submit'])) {
                 if ($IPV1 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_IPV1' WHERE cid = $lastid AND vac_name = 'IPV1'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql1 = "INSERT INTO `vac_polio_table`(`cid`, `dose1`) VALUES ('$cid', '$IPV1')";
-                    $conn->query($sql1);
                 } else {
                     $IPV_dose1_date = $_POST['iPV-dose1-date'];
                     if (!empty($IPV_dose1_date)) {
-                        $sql1 = "INSERT INTO `vac_polio_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$IPV1', '$IPV_dose1_date')";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2 , reco_age = '$reco_IPV1' WHERE cid = $lastid AND vac_name = 'IPV1'"; //Wala sa table
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'IPV1', $IPV_dose1_date , 1, $child_name  , 2);
                     } 
-                    $conn->query($sql1);
 
                 }
                
@@ -356,35 +345,25 @@ if (isset($_POST['submit'])) {
                 if ($IPV2 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_IPV2' WHERE cid = $lastid AND vac_name = 'IPV2'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql2 = "INSERT INTO `vac_polio_table`(`cid`, `dose2`) VALUES ('$cid', '$IPV2')";
-                    $conn->query($sql2);
                 } else {
                     $IPV_dose2_date = $_POST['iPV-dose2-date'];
                     if (!empty($IPV_dose2_date)) {
-                        $sql2 = "UPDATE `vac_polio_table` SET `dose2` = '$IPV2', `dose2_date` = '$IPV_dose2_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2  reco_age = '$reco_IPV2' WHERE cid = $lastid AND vac_name = 'IPV2'"; 
                         mysqli_query($conn,$update_child_vaccine_status); 
                         add_last_vaccine_details($userid, $lastid , 'IPV2', $IPV_dose2_date , 2, $child_name  , 2); 
                     } 
-                    $conn->query($sql2);
                 }
 
                 if ($IPV3 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_IPV3' WHERE cid = $lastid AND vac_name = 'IPV3'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql3 = "INSERT INTO `vac_polio_table`(`cid`, `dose3`) VALUES ('$cid', '$IPV3')";
-                    $conn->query($sql3); 
                 } else {
                     $IPV_dose3_date = $_POST['iPV-dose3-date'];
                     if (!empty($IPV_dose3_date)) {
-                        $sql3 = "UPDATE vac_polio_table SET `dose3` = '$IPV3', `dose3_date` = '$IPV_dose3_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 3 , status = 2  reco_age = '$reco_IPV3'WHERE cid = $lastid AND vac_name = 'IPV3'"; 
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'IPV3', $IPV_dose3_date , 3, $child_name  , 2);
-                    } else {
-                        $ip3 = "UPDATE `vac_polio_table` SET `dose3` = '$IPV3' WHERE `cid` = '$cid'";
                     }
-                    $conn->query($sql3);
                 }
             }
 
@@ -400,52 +379,40 @@ if (isset($_POST['submit'])) {
                 if ($PCV1 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_PCV1' WHERE cid = $lastid AND vac_name = 'PCV1'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql1 = "INSERT INTO `vac_pcv_table`(`cid`, `dose1`) VALUES ('$cid', '$PCV1')";
-                    $conn->query($sql1);
                 } else {
                     $PCV_dose1_date = $_POST['PCV-dose1-date'];
                     if (!empty($PCV_dose1_date)) {
-                        $sql1 = "INSERT INTO `vac_pcv_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$PCV1', '$PCV_dose1_date')";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2, reco_age = '$reco_PCV1' WHERE cid = $lastid AND vac_name = 'PCV1'"; 
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'PCV1', $PCV_dose1_date , 1, $child_name  , 2);
                     }
-                    $conn->query($sql1);
                 }
                
 
                 if ($PCV2 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_PCV2' WHERE cid = $lastid AND vac_name = 'PCV2'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql2 = "INSERT INTO `vac_pcv_table`(`cid`, `dose2`) VALUES ('$cid', '$PCV2')";
-                    $conn->query($sql2);
                 } else {
                     $PCV_dose2_date = $_POST['PCV-dose2-date'];
                     if (!empty($PCV_dose2_date)) {
-                        $sql2 = "UPDATE `vac_ipv_table` SET `dose2` = '$PCV2', `dose2_date` = '$PCV_dose2_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2,  reco_age = '$reco_PCV2' WHERE cid = $lastid AND vac_name = 'PCV2'";
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'PCV2', $PCV_dose2_date , 2, $child_name  , 2);
                     }
-                    $conn->query($sql2);
                 }
 
                 if ($PCV3 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_PCV3' WHERE cid = $lastid AND vac_name = 'PCV3'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql3 = "INSERT INTO `vac_pcv_table`(`cid`, `dose3`) VALUES ('$cid', '$PCV3')";
-                    $conn->query($sql3);
                 } else {
 
                     $PCV_dose3_date = $_POST['PCV-dose3-date'];
 
                     if (!empty($PCV_dose3_date)) {
-                        $sql3 = "UPDATE 'vac_pcv_table' SET `dose3` = '$PCV3', `dose3_date` = '$PCV_dose3_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 3 , status = 2,  reco_age = '$reco_PCV3' WHERE cid = $lastid AND vac_name = 'PCV3'"; 
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'PCV3', $PCV_dose3_date , 3, $child_name  , 2);
                     }
-                    $conn->query($sql3);
                 }
             }
 
@@ -462,56 +429,44 @@ if (isset($_POST['submit'])) {
                 if ($RTAV1 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Rota1' WHERE cid = $lastid AND vac_name = 'Rotavirus1'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql1 = "INSERT INTO `vac_rota_table`(`cid`, `dose1`) VALUES ('$cid', '$RTAV1')";
-                    $conn->query($sql1); 
                 } else {
                     $RTAV_dose1_date = $_POST['Rota-dose1-date'];
                     if (!empty($RTAV_dose1_date)) {
-                        $sql1 = "INSERT INTO `vac_rota_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$RTAV1', '$RTAV_dose1_date')";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2, reco_age = '$reco_Rota1' WHERE cid = $lastid AND vac_name = 'Rotavirus1'"; //Wala sa table
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'Rotavirus1', $RTAV_dose1_date , 1, $child_name  , 2);
                     } 
-                    $conn->query($sql1);
                 }
                
 
                 if ($RTAV2 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Rota2' WHERE cid = $lastid AND vac_name = 'Rotavirus2'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql2 = "INSERT INTO `vac_rota_table`(`cid`, `dose2`) VALUES ('$cid', '$RTAV2')";
-                    $conn->query($sql2); 
                 } else {
                     $RTAV_dose2_date = $_POST['Rota-dose2-date'];
                     if (!empty($RTAV_dose2_date)) {
-                        $sql2 = "UPDATE `vac_rota_table` SET `dose2` = '$RTAV2', `dose2_date` = '$RTAV_dose2_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2, reco_age = '$reco_Rota2' WHERE cid = $lastid AND vac_name = 'Rotavirus2'"; //Wala sa table
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'Rotavirus2', $RTAV_dose2_date , 2, $child_name  , 2);
                     } 
-                    $conn->query($sql2);
                 }
 
                 if ($RTAV3 == 0) {
                     $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Rota3' WHERE cid = $lastid AND vac_name = 'Rotavirus3'";
                     mysqli_query($conn,$update_child_vaccine_status1);  
-                    $sql3 = "INSERT INTO `vac_rota_table`(`cid`, `dose3`) VALUES ('$cid', '$RTAV3')";
-                    $conn->query($sql3); 
                 } else {
 
                     $RTAV_dose3_date = $_POST['Rota-dose3-date'];
 
                     if (!empty($RTAV_dose3_date)) {
-                        $sql3 = "UPDATE 'vac_rota_table' SET `dose3` = '$RTAV3', `dose3_date` = '$RTAV_dose3_date' WHERE cid = '$cid'";
                         $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 3 , status = 2, reco_age = '$reco_Rota3' WHERE cid = $lastid AND vac_name = 'Rotavirus3'"; 
                         mysqli_query($conn,$update_child_vaccine_status);  
                         add_last_vaccine_details($userid, $lastid , 'Rotavirus3', $RTAV_dose3_date , 3, $child_name  , 2);
                     } 
-                    $conn->query($sql3);
                 }
             }
             
-            $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname");
+            $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname'");
             if ($cid_query) {
             $row = $cid_query->fetch_assoc();
             $cid = $row['cid'];
@@ -522,41 +477,31 @@ if (isset($_POST['submit'])) {
             if ($MM1 == 0) {
                 $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_MMR1' WHERE cid = $lastid AND vac_name = 'MMR'";
                 mysqli_query($conn,$update_child_vaccine_status1);  
-                $sql1 = "INSERT INTO `vac_measles_table`(`cid`, `dose1`) VALUES ('$cid', '$MM1')";
-                $conn->query($sql1); 
             } else {
                 $MMR_dose1_date = $_POST['MMR-dose1-date'];
                 if (!empty($MMR_dose1_date)) {
-                    $sql1 = "INSERT INTO `vac_measles_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$MM1', '$MMR_dose1_date')";
                     $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2, reco_age = '$reco_MMR1' WHERE cid = $lastid AND vac_name = 'MMR'"; 
                     mysqli_query($conn,$update_child_vaccine_status);  
                     add_last_vaccine_details($userid, $lastid , 'MMR', $MMR_dose1_date , 1, $child_name  , 2);
-                
                 }
-                $conn->query($sql1);
             }
 
             if ($MM2 == 0) {
                 $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_MMR2' WHERE cid = $lastid AND vac_name = 'MMR2'";
-                mysqli_query($conn,$update_child_vaccine_status1);  
-                $sql2 = "INSERT INTO `vac_measles_table`(`cid`, `dose2`) VALUES ('$cid', '$MM2')";
-                $conn->query($sql2); 
-
+                mysqli_query($conn,$update_child_vaccine_status1);
             } else {
                 $MMR_dose2_date = $_POST['MMR-dose2-date'];
                 if (!empty($MMR_dose2_date)) {
-                    $sql2 = "UPDATE `vac_measles_table` SET `dose2` = '$MM2', `dose2_date` = '$MMR_dose2_date' WHERE cid = '$cid'";
                     $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2,  reco_age = '$reco_MMR2' WHERE cid = $lastid AND vac_name = 'MMR2'"; 
                     mysqli_query($conn,$update_child_vaccine_status);  
                     add_last_vaccine_details($userid, $lastid , 'MMR2', $MMR_dose2_date , 2, $child_name  , 2);
                 } 
-                $conn->query($sql2);
             }
 
 
         }
 
-        $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname");
+        $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname'");
         if ($cid_query) {
             $row = $cid_query->fetch_assoc();
             $cid = $row['cid'];
@@ -568,40 +513,32 @@ if (isset($_POST['submit'])) {
             if ($FLU1 == 0) {
                 $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Flu1' WHERE cid = $lastid AND vac_name = 'Influenza'";
                 mysqli_query($conn,$update_child_vaccine_status1);  
-                $sql1 = "INSERT INTO `vac_influenza_table`(`cid`, `dose1`) VALUES ('$cid', '$FLU1')";
-                $conn->query($sql1); 
             } else {
                 $FLU_dose1_date = $_POST['flu-dose1-date'];
                 if (!empty($FLU_dose1_date)) {
-                    $sql1 = "INSERT INTO `vac_influenza_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$FLU1', '$FLU_dose1_date')";
                     $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2, reco_age = '$reco_Flu1' WHERE cid = $lastid AND vac_name = 'Influenza'"; //Wala sa table
                     mysqli_query($conn,$update_child_vaccine_status);  
                     add_last_vaccine_details($userid, $lastid , 'Influenza', $FLU_dose1_date , 1, $child_name  , 2);
                 
                 }
-                $conn->query($sql1);
             }
 
             if ($FLU2 == 0) {
                 $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Flu2' WHERE cid = $lastid AND vac_name = 'Influenza2'";
                 mysqli_query($conn,$update_child_vaccine_status1);  
-                $sql2 = "INSERT INTO `vac_influenza_table`(`cid`, `dose2`) VALUES ('$cid', '$FLU2')";
-                $conn->query($sql2); 
             } else {
                 $FLU_dose2_date = $_POST['flu-dose2-date'];
                 if (!empty($FLU_dose2_date)) {
-                    $sql2 = "UPDATE `vac_influenza_table` SET `dose2` = '$FLU2', `dose2_date` = '$FLU_dose2_date' WHERE cid = '$cid'";
                     $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2,  reco_age = '$reco_Flu2' WHERE cid = $lastid AND vac_name = 'Influenza2'"; //Wala sa table
                     mysqli_query($conn,$update_child_vaccine_status);  
                     add_last_vaccine_details($userid, $lastid , 'Influenza2', $FLU_dose2_date , 2, $child_name  , 2);
            
                 }
-                $conn->query($sql2);
             }
 
         }
 
-        $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname");
+        $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname'");
         if ($cid_query) {
             $row = $cid_query->fetch_assoc();
             $cid = $row['cid'];
@@ -611,35 +548,27 @@ if (isset($_POST['submit'])) {
 
             if ($HEPA1 == 0) {
                 $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Hepa1' WHERE cid = $lastid AND vac_name = 'HepA1'";
-                mysqli_query($conn,$update_child_vaccine_status1);  
-                $sql1 = "INSERT INTO `vac_hepa_table`(`cid`, `dose1`) VALUES ('$cid', '$HEPA1')";
-                $conn->query($sql1); 
+                mysqli_query($conn,$update_child_vaccine_status1);
             } else {
                 $HEPA_dose1_date = $_POST['HepA-dose1-date'];
                 if (!empty($HEPA_dose1_date)) {
-                    $sql1 = "INSERT INTO `vac_hepa_table`(`cid`, `dose1`, `dose1_date`) VALUES ('$cid', '$HEPA1', '$HEPA_dose1_date')";
                     $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 1 , status = 2, reco_age = '$reco_Hepa1' WHERE cid = $lastid AND vac_name = 'HepA1'"; //Wala sa table
                     mysqli_query($conn,$update_child_vaccine_status);  
                     add_last_vaccine_details($userid, $lastid , 'HepA1', $HEPA_dose1_date , 1, $child_name  , 2);
                 }
-                $conn->query($sql1);
             }
 
             if ($HEPA2 == 0) {
                 $update_child_vaccine_status1 = "UPDATE child_vaccine_status SET reco_age = '$reco_Hepa2' WHERE cid = $lastid AND vac_name = 'HepA2'";
                 mysqli_query($conn,$update_child_vaccine_status1);  
-                $sql2 = "INSERT INTO `vac_hepa_table`(`cid`, `dose2`) VALUES ('$cid', '$HEPA2')";
-                $conn->query($sql2); 
             } else {
                 $HEPA_dose2_date = $_POST['HepA-dose2-date'];
                 if (!empty($HEPA_dose2_date)) {
-                    $sql2 = "UPDATE `vac_hepa_table` SET `dose2` = '$HEPA2', `dose2_date` = '$HEPA_dose2_date' WHERE `cid` = '$cid'";
                     $update_child_vaccine_status = "UPDATE child_vaccine_status SET dosage_status = 2 , status = 2,  reco_age = '$reco_Hepa2' WHERE cid = $lastid AND vac_name = 'HepA2'"; //Wala sa table
                     mysqli_query($conn,$update_child_vaccine_status);  
                     add_last_vaccine_details($userid, $lastid , 'HepA2', $HEPA_dose2_date , 2, $child_name  , 2);
      
                 }
-                $conn->query($sql2);
             }
 
         }
@@ -734,6 +663,13 @@ if (isset($_POST['submit'])) {
                         <span class="details">Child's Middle Name</span>
                         <input type="text" name="Childmname" placeholder="Enter your child's middle name" required>
                     </div>
+                    <div class="input-box">
+                        <span class="details">Sex</span>
+                        <select name="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>                   
                     <div class="date">
                         <span class="details">Child's Birthdate</span>
                         <input type="date" name="Child_bdate" placeholder="Enter your child's birthdate" required>
@@ -1194,4 +1130,3 @@ if (isset($_POST['submit'])) {
 </form>
 </body>
 </html>
-<!--merge -->

@@ -1,4 +1,5 @@
 <?php include('../templates/Header.php'); ?>
+<?php include('../Admin_appointment/vaccine_details.php'); ?> 
 <link rel="stylesheet" href="./css/style6.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
@@ -27,673 +28,131 @@
                             <th>STOCKS</th>
                             <th>ADMINISTERED VACCINE</th>
                             <th>DESCRIPTION</th>
+                            <th>Active Status</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                            foreach($vaccine_list as $value){
+                                $vacid = $value['vacid'];
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>BCG</td>
-                            <td>200</td>
-                            <td>72</td>
-                            <td>Protects against Tuberculosis</td>
+                            <td><?php echo $value['vacid']; ?></td>
+                            <td><?php echo $value['vac_name']; ?></td>
+                            <td><?php echo $value['stocks']; ?></td>
+                            <td><?php echo $value['administered']; ?></td>
+                            <td><?php echo $value['vac_desc']; ?></td>
+                            <td><?php if($value['active'] == 1){ echo "Active"; }else{ echo "Inactive"; } ?></td>
                             <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
+                                <button id="update_vaccine-<?php echo $vacid ; ?>"><i class="fas fa-edit"></i></button>
+                                <button id="delete_vaccine-<?php echo $vacid ; ?>"><i class="fas fa-trash"></i></button>
 
                                 <div id="editModal" class="modal">
                                     <div class="editModal2-content">
-                                        <form action="#" method="POST">
+                                 
                                             <div class="user-details">
                                                 <div class="input-box">
                                                     <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="1" required>
+                                                    <input type="text" name="vaccine_id" id="vaccine_id" placeholder="Vaccine ID" value="<?php echo $value['vacid']; ?>" required>
                                                 </div>
                                                 <div class="input-box">
                                                     <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="BCG" required>
+                                                    <input type="text" name="vaccine_name"  id="vaccine_name"  placeholder="Vaccine type" value="<?php echo $value['vac_name']; ?>" required>
                                                 </div>
                                                 <div class="input-box">
                                                     <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
+                                                    <input type="text" name="vaccine_stock" id="vaccine_stock" placeholder="Total vaccine stocks" value="<?php echo $value['stocks']; ?>" required>
                                                 </div>
                                                 <div class="input-box">
                                                     <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="72" required>
+                                                    <input type="text" name="vaccine_administered" id="vaccine_administered" placeholder="Total of administered vaccine" value="<?php echo $value['administered']; ?>" required>
                                                 </div>
                                                 <div class="input-box">
                                                     <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Tuberculosis" required>
+                                                    <input type="text" name="vaccine_description" id="vaccine_description" placeholder="Description of vaccine" value="" required>
                                                 </div>
+
+                                                <div class="input-box">
+                                                    <span class="details">Status</span>
+                                                    <select class="selectedstatus">
+                                                          <option value="1" >Active</option>
+                                                          <option value="0" >Inactive</option>
+                                                    </select>
+                                                </div>
+
+
                                             </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
+                                            <button id="close_update">Close</button>
+                                            <button id="update_modal" onclick="update_vaccine();">Update</button>
+                                      
                                     </div>
                                   </div>
 
                                 <div id="trashModal" class="modal">
                                     <div class="trashModal-content">
                                       <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
+                                      <input type="hidden" id="trashid"/ >
+                                      <button id="delete_vaccine" onclick="delete_vaccine();">Delete</button>
+                                      <button id="close_trash_modal">Close</button>
                                     </div>
                                   </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Hep B</td>
-                            <td>200</td>
-                            <td>50</td>
-                            <td>Protects against Hepatitis B</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
+                        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                        <!-- Include Bootstrap JavaScript and Popper.js from a CDN -->
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
+                        <script type="text/javascript">
+                        // JavaScript to open the modal Wag alisin sa loob ng loop para makuha yung vacid!
+                        document.getElementById('delete_vaccine-<?php echo $vacid ; ?>').addEventListener('click', function() {
+                            var trash_vacid = this.id; 
+                            trash_vacid = trash_vacid.split('-')[1];
+                            $("#trashid").val(trash_vacid);
+                            var modal = document.getElementById('trashModal');
+                            modal.style.display = "block";
+                        });
 
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>DTaP</td>
-                            <td>300</td>
-                            <td>60</td>
-                            <td>Protects against Diphtheria, Tetanus, Pertussis</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
 
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
 
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>HiB</td>
-                            <td>150</td>
-                            <td>64</td>
-                            <td>Protects against HiB desease</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
+                        // JavaScript to open the modal Wag alisin sa loob ng loop para makuha yung vacid!
+                        document.getElementById('update_vaccine-<?php echo $vacid ; ?>').addEventListener('click', function() {
+                            var update_vaccine = this.id; 
+                            update_vaccine = update_vaccine.split('-')[1];
+                             $.ajax({
+                                url:'../Admin_appointment/get_vaccine_details.php',
+                                type:'POST',
+                                data:{update_vaccine:update_vaccine},
+                                success:function(response){
+                                    if(response.status == "success"){
+                                        $("#vaccine_id").val(response.vacid);
+                                        $("#vaccine_name").val(response.vac_name);
+                                        $("#vaccine_stock").val(response.stocks);
+                                        $("#vaccine_administered").val(response.administered);
+                                        $("#vaccine_description").val(response.vac_desc);
+                                        if (response.active == 1) {
+                                            $(".selectedstatus").val('1'); // Set "Active" as selected
+                                        } else {
+                                        
+                                            $(".selectedstatus").val('0'); // Set "Inactive" as selected
+                                        }
+                                        var modal = document.getElementById('editModal');
+                                        modal.style.display = "block";
+                                    }
+                                    else{
+                                        alert(response);
+                                    }
+                                }
+                            });                           
+                        });
 
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
 
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>IPV</td>
-                            <td>320</td>
-                            <td>82</td>
-                            <td>Protects against Poliovirus</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
 
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
+                        </script>
 
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>PCV</td>
-                            <td>370</td>
-                            <td>63</td>
-                            <td>Protects against Pneumonia and Meningitis</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
 
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
 
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>RV</td>
-                            <td>185</td>
-                            <td>87</td>
-                            <td>Protects against Rotavirus</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
-
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
-
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Influenza</td>
-                            <td>320</td>
-                            <td>56</td>
-                            <td>Protects against Influenza Virus</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
-
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
-
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>MMR</td>
-                            <td>200</td>
-                            <td>45</td>
-                            <td>Protects against Measles, Mumps, and Rubella</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
-
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
-
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>MenACWY, MenB</td>
-                            <td>430</td>
-                            <td>45</td>
-                            <td>Protects against Meningococcal Disease</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
-
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
-
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Vericelia</td>
-                            <td>330</td>
-                            <td>54</td>
-                            <td>Protects against Chickenpox</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
-
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
-
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Hep A</td>
-                            <td>410</td>
-                            <td>50</td>
-                            <td>Protects against Hep A</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
-
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
-
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>13</td>
-                            <td>HPV</td>
-                            <td>342</td>
-                            <td>63</td>
-                            <td>Protects against Human Papilliomavirus</td>
-                            <td>
-                                <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
-                                <button onclick="openModal('trash')"><i class="fas fa-trash"></i></button>
-
-                                <div id="editModal" class="modal">
-                                    <div class="editModal2-content">
-                                        <form action="#" method="POST">
-                                            <div class="user-details">
-                                                <div class="input-box">
-                                                    <span class="details">ID</span>
-                                                    <input type="text" name="vaccine_id" placeholder="Vaccine ID" value="2" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Vaccine</span>
-                                                    <input type="text" name="vaccine_name" placeholder="Vaccine type" value="Hep B" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Stocks</span>
-                                                    <input type="text" name="vaccine_stock" placeholder="Total vaccine stocks" value="200" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Administered Vaccine</span>
-                                                    <input type="text" name="vaccine_administered" placeholder="Total of administered vaccine" value="50" required>
-                                                </div>
-                                                <div class="input-box">
-                                                    <span class="details">Description</span>
-                                                    <input type="text" name="vaccine_description" placeholder="Description of vaccine" value="Protects against Hepatitis" required>
-                                                </div>
-                                            </div>
-                                            <button onclick="closeModal('edit')">Close</button>
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                  </div>
-
-                                <div id="trashModal" class="modal">
-                                    <div class="trashModal-content">
-                                      <h2>This action cannot be undone. Are you sure you want to delete this record?</h2>
-                                      
-                                      <button onclick="deleteRecord('trash')">Delete</button>
-                                      <button onclick="closeModal('trash')">Close</button>
-                                    </div>
-                                  </div>
-                            </td>
-                        </tr>
+                        <?php }?>
                     </tbody>
                 </table>
             </div>
@@ -701,8 +160,75 @@
 </div>
 
     <script src="./js/index.js"></script>
-    <script src="./js/Vaccine Inventory.js"></script>
+    <!--modal-->
+    <script type="text/javascript">
+            document.getElementById('close_trash_modal').addEventListener('click', function() {
+                console.log("test4")
+                var modal = document.getElementById('trashModal');
+                modal.style.display = "none";
+            });   
 
+
+            document.getElementById('close_update').addEventListener('click', function() {
+                console.log("test4")
+                var modal = document.getElementById('editModal');
+                modal.style.display = "none";
+            });                    
+    </script>
+    <!--Process-->
+    <script type="text/javascript">
+    function delete_vaccine(){
+                const vac_trashid = $("#trashid").val();
+                $.ajax({
+                    url:'../Admin_appointment/delete_vaccine.php',
+                    type:'POST',
+                    data:{vac_trashid:vac_trashid},
+                    success:function(response){
+                        if(response == 1){
+                            alert("Vaccine Successfully Remove to active list");
+                            window.location.href="VaccineInventory-TAB.php"
+                        }
+                        else{
+                            alert(response);
+                        }
+                    }
+                });
+    }
+
+
+    function update_vaccine(){
+                const vaccine_id = $("#vaccine_id").val();
+                const vaccine_name = $("#vaccine_name").val();
+                const vaccine_stock = $("#vaccine_stock").val();
+                const vaccine_administered = $("#vaccine_administered").val();
+                const vaccine_description = $("#vaccine_description").val();
+                const vaccine_status = $(".selectedstatus").val();
+      
+                $.ajax({
+                    url:'../Admin_appointment/update_vaccine.php',
+                    type:'POST',
+                    data:{
+                        vaccine_id:vaccine_id,
+                        vaccine_name:vaccine_name,
+                        vaccine_stock:vaccine_stock,
+                        vaccine_administered:vaccine_administered,
+                        vaccine_description:vaccine_description,
+                        vaccine_status:vaccine_status
+                    },
+                    success:function(response){
+                        if(response == 1){
+                            alert("Vaccine Successfully Update Vaccine");
+                            window.location.href="VaccineInventory-TAB.php"
+                        }
+                        else{
+                            alert(response);
+                        }
+                    }
+                });
+       
+    }
+
+ 
+    </script>
 </body>
 </html>
-<!--merge -->
