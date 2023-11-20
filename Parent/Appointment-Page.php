@@ -431,7 +431,7 @@ rel="stylesheet">
                                                                     </div>
                                                                 </div>
                                                     -->
-                            <div class="col-lg-6">
+                        <div class="col-lg-6" id="vaccine_list">
                                 Select Vaccine
                                 <select class="form-select" id="select_vaccine">
                                     <option class="option_list">-- Select Vaccine --</option>
@@ -446,6 +446,17 @@ rel="stylesheet">
                                  <input type="text" id="set_dose_display" class="form-control" readonly>
                             </div>
                         </div>
+
+                         <div class="row mt-3">
+                            <div class="col-lg-12">
+                                 <select class="form-select" id="appointment_type">
+                                    <option value="Vaccination">Vaccination</option>
+                                    <option value="Consultation">Consultation</option>
+                                </select>                                 
+                            </div>
+                        </div>
+
+
 
 
 
@@ -511,10 +522,10 @@ rel="stylesheet">
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
       <!-- jQuery UI CSS -->
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
       <!-- jQuery UI Datepicker JS -->
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 
 
     <script>
@@ -594,7 +605,47 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+<script type="text/javascript">
+        $("#appointment_type").on('change',function(){
+        if($("#appointment_type").val() == "Consultation"){
+            $("#select_vaccine").val("");
+            $("#vaccine_list").css("display","none");
+        }
+        else{
+            $("#vaccine_list").css("display","block");
+            var childid = $("#select_children").val();
+            $.ajax({
+                url:'../Parent_appointment/appointment_page_fetch_vac_name.php',
+                type:'POST',
+                data:{ childid: childid },
+                success: function(result){
+                    $("#select_vaccine").html(result);
+                  
+                    var vaccine_name = $("#select_vaccine").val();
+                    const dose1 = ['BCG', 'HepB1', 'DTaP1', 'HiB1', 'IPV1', 'PCV1', 'Rotavirus1','MMR','Influenza','HepA1'];
 
+                    const dose2 = ['HepB2', 'DTaP2', 'HiB2', 'IPV2', 'PCV2', 'Rotavirus2','MMR2','Influenza2','HepA2']; 
+                    const dose3 = ['HepB3', 'DTaP3', 'HiB3','IPV3','Rotavirus3','PCV3'];
+                    if (dose1.includes(vaccine_name)) {
+                       $("#set_dose_display").val("1st Dose");
+                       $("#set_dose").val(1);
+                    } 
+                    else if (dose2.includes(vaccine_name)) {
+                       $("#set_dose_display").val("2nd Dose");
+                       $("#set_dose").val(2);
+                    }
+                    else if (dose3.includes(vaccine_name)) {
+                       $("#set_dose_display").val("3rd Dose");
+                       $("#set_dose").val(3);
+                    } else {
+                      console.log(`vaccine does not exist in the array.`);
+                    }
+                }
+            }); 
+        }
+    });
+
+</script>
 <style>
   .custom-disabled-date {
     color: #999; /* Change text color for disabled dates */

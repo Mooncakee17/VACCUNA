@@ -46,7 +46,7 @@ rel="stylesheet">
                                                 </th>
                                                 <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
                                                     <text>time</text>
-                                                </th>
+                                                </th>                                             
                                                 <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
                                                     <text>action</text>
                                                 </th>
@@ -157,13 +157,13 @@ rel="stylesheet">
                                                                     <div class="col-lg-6">
                                                                         <input type="time" id="appointment_time" class="form-control" >
                                                                     </div>
-                                                                    <div class="col-lg-6">
+                                                                    <div class="col-lg-6" id="vaccine_name">
                                                                          <input type="text" id="vaccine_administer" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
 
 
-                                                                 <div class="row mt-3">
+                                                                 <div class="row mt-3" id="vaccine_dose">
                                                                     <div class="col-lg-12">
                                                                         <select id="dose" class="form-select">
                                                                             <option value="-1" disabled>-- Select --</option>
@@ -180,6 +180,15 @@ rel="stylesheet">
                                                                          <input type="text" id="doctor" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
+
+
+                                                                <div class="row mt-3">
+                                                                    <div class="col-lg-12">
+                                                                         <input type="text" id="for_reason" class="form-control" readonly>
+                                                                    </div>
+                                                                </div>
+
+
 
 
 
@@ -265,6 +274,11 @@ rel="stylesheet">
                                                             $("#dosage").val(response.dose);
                                                             $("#dose").val(response.dose);
                                                             $("#doctor").val(response.doctor);
+                                                            $("#for_reason").val(response.for_reason);
+                                                            if(response.for_reason == "Consultation"){
+                                                                $("#vaccine_name").css("display","none");
+                                                                $("#vaccine_dose").css("display","none");
+                                                            }
                                                             $('#update_appointment').modal('show');
                                                          }
                                                     }
@@ -307,6 +321,7 @@ rel="stylesheet">
                                                 var close = document.getElementById("close");
                                                 view_details_btn.onclick = function() {
                                                     // Extract the value from the element's ID
+
                                                     var id = view_details_btn.id; 
                                                     var appt_id = id.split('-')[1];
                                                     //using the appt_id get the cid of the appt
@@ -316,11 +331,8 @@ rel="stylesheet">
                                                         type:'POST',
                                                         data:{ appt_id: appt_id },
                                                         success:function(response){
-                                                            //console.log(response.cid);
-                                                            //console.log(response.vac_name);
-                                                                //Set the hiddenid of child to textbox will use for where statement in fetching data
-                                                                cid_hidden.value = cid;
-                                                                //display block the container
+                                                                console.log($("#cid_hidden").val());
+                                                                cid_hidden.value = response.cid;
                                                                 more_details_container.style.display = "block";
                                                         }
                                                     });
@@ -362,4 +374,3 @@ rel="stylesheet">
 
 </body>
 </html>
-<!--merge -->

@@ -77,18 +77,13 @@ include('../Parent_appointment/fetch_business_days.php');
                       </div>
                       <div class="info-block">
                         <p><span class="label">Middle name: </span> <?php echo $child_mname; ?></p>
-                      </div> </div>
-                      <div class="info-line">
+                      </div>
                       <div class="info-block">
                         <p><span class="label">Age: </span> <?php echo $child_age; ?></p>
                       </div>
                       <div class="info-block">
                         <p><span class="label">Birth Date: </span> <?php echo $birthdate; ?></p>
                       </div>
-                      <div class="info-block">
-                        <p><span class="label">Gender: </span> <?php echo "wala sa db"; ?></p>
-                      </div>
-                      
                     </div>
 
                     <div class="center-container">
@@ -139,7 +134,7 @@ include('../Parent_appointment/fetch_business_days.php');
                                                     <text></text>
                                                     <?php } ?>
 
-                                                    <?php if($value['status'] == 1 || $value['status'] == 2 ){?>
+                                                    <?php if($value['dosage_status'] == 1){?>
                                                     <i class='fa fa-check fs-3 text-success'></i>
                                                     <?php } ?>   
 
@@ -196,10 +191,6 @@ include('../Parent_appointment/fetch_business_days.php');
                                                                         Email
                                                                         <input type="text" id="email" class="form-control" value="<?php echo $email; ?>" readonly> 
                                                                     </div>
-                                                                    <div class="col-lg-6">
-                                                                        Gender
-                                                                        <input type="text" id="gender" class="form-control" value="<?php echo $gender; ?>" readonly> 
-                                                                    </div>
                                                                 </div> 
 
 
@@ -220,32 +211,18 @@ include('../Parent_appointment/fetch_business_days.php');
                                                                         Appointment Time
                                                                         <input type="time" id="appointment_time" class="form-control" >
                                                                     </div>
-                                                                    <div class="col-lg-6">
+                                                                    <div class="col-lg-6" id="vaccine_list">
                                                                         Vaccine Name
                                                                          <input type="text" id="vaccine_administer" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
-
-
-                                                                    
-                                                          <!--       <div class="row mt-3">
-                                                                    <div class="col-lg-12">
-                                                                        <select id="dosereason" class="form-select">
-                                                                            <option value="-1" disabled>-- Select Reason for appointment --</option>
-                                                                            <option value="1" >For Vaccination</option>
-                                                                            <option value="2" >For Consultation</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                    -->
+                                                            
                                                                  <div class="row mt-3">
                                                                     <div class="col-lg-12">
                                                                         <input type="hidden" id="dose" class="form-control">
                                                                          <input type="text" id="dose_display" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
-
-
 
 
                                                                 <div class="row mt-5">

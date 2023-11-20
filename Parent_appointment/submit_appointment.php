@@ -11,12 +11,12 @@ $contact = $_POST['contact'];
 $child_age = $_POST['child_age'];
 $email = $_POST['email'];
 $mother_name = $_POST['mother_name'];
-
+$appointment_type = $_POST['appointment_type'];
 
 	//Get the id of vaccine administer
 	$vaccines = mysqli_query($conn, "
 		SELECT * from vaccineinventory a
-		WHERE a.vac_name = '$vaccine_name' ") or die('query failed');
+		WHERE a.vac_name = '$vaccine_name' AND a.active = 1 ") or die('query failed');
 	$vaccine_list = mysqli_fetch_all($vaccines, MYSQLI_ASSOC);
 	foreach($vaccine_list as $value){
 		$vacid = $value['vacid'];
@@ -37,7 +37,7 @@ $mother_name = $_POST['mother_name'];
 
 
 	$createAppointment = [
-    "INSERT INTO appointmenttable (userid, cid, vacid, appt_time, appt_date, dose, child_name, guardian_name, contact_number, age, email,appointment_status) VALUES ($userid, $cid, $vacid, '$appointment_time', '$appointment_date', $dose, '$child_name', '$mother_name', '$contact', '$child_age', '$email',1)",
+    "INSERT INTO appointmenttable (userid, cid, vacid, appt_time, appt_date, dose, child_name, guardian_name, contact_number, age, email,appointment_status,for_reason) VALUES ($userid, $cid, $vacid, '$appointment_time', '$appointment_date', $dose, '$child_name', '$mother_name', '$contact', '$child_age', '$email',1,'$appointment_type')",
     "UPDATE child_vaccine_status SET status = 1, dosage_status = $new_dosage_status  WHERE cid = $cid and vac_name = '$vaccine_name' ",
 	];
 
@@ -52,4 +52,3 @@ $mother_name = $_POST['mother_name'];
 	echo 1;
 
 ?>
-<!--merge -->

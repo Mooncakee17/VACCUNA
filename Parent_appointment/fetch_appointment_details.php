@@ -3,7 +3,7 @@ include '../Homepage/config.php';
 $appt_id = $_POST['appt_id'];
 
 $select = mysqli_query($conn, "SELECT a.*,b.vac_name FROM appointmenttable a 
-	LEFT JOIN vaccineinventory b ON b.vacid = a.vacid WHERE a.appt_id = $appt_id ") or die('query failed');
+	LEFT JOIN vaccineinventory b ON b.vacid = a.vacid AND b.active = 1 WHERE a.appt_id = $appt_id ") or die('query failed');
 $fetch_appointment_details = mysqli_fetch_all($select, MYSQLI_ASSOC);
 foreach($fetch_appointment_details as $value){
 	 $response = array(
@@ -30,4 +30,3 @@ echo json_encode($response);
 
 
 ?>
-<!--merge -->

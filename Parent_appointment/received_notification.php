@@ -7,4 +7,3 @@ mysqli_query($conn, $sql);
 header('location: ../Parent/Appointment-Page.php');
 
 ?>
-<!--merge -->
