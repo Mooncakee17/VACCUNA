@@ -10,16 +10,25 @@ rel="stylesheet">
 
 <body>
     <div class="dash-container">
-        <!--------------------------------Start OF SIDE BAR-------------------------------->
-         <?php include('../include/admin_sidebar.php'); ?>
-         <!--------------------------------END OF SIDE BAR-------------------------------->
+      
+        <!------------------------------Start OF SIDE BAR-------------------------------->
+        <?php include('../include/admin_sidebar.php'); ?>
+            <!--------------------------------END OF SIDE BAR-------------------------------->
+     
+   
         <main>
             <div class="dashboard">
                 <img class="appt" src="./images/Appointment.png">
             <div class="dashboard-text">
                 <h1 class="text-white">APPOINTMENT</h1>
             </div>
-
+            <div class="search">
+                    <input  type="text" name="search" id="search_data" value="" placeholder="Search ">
+                    <button type="button" id="search_btn" style=""><i class="fa fa-search"></i></button>
+                    <button onclick="location.reload()" style="">Refresh</button>  
+                    
+                    
+            </div>
         <div class="table">
             <div class="table_section">                            
                     <!--Table Data Start-->

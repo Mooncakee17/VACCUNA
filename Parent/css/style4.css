@@ -27,12 +27,14 @@ body{
     width: 96%;
     gap: 1.8rem;
     grid-template-columns: 14rem auto 23rem;
+    
 }
 .dash-container1{
     position: fixed;
     height: 100%;
     display: flex; 
 }
+
 
 main{
     position: absolute;
