@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2023 at 11:32 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Nov 22, 2023 at 03:37 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `vaccunnadb`
+-- Database: `vaccunadb_v1`
 --
 
 -- --------------------------------------------------------
@@ -41,10 +40,10 @@ CREATE TABLE `appointmenttable` (
   `contact_number` varchar(50) DEFAULT NULL,
   `age` varchar(50) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
-  `appointment_status` int(11) DEFAULT '0',
+  `appointment_status` int(11) DEFAULT 0,
   `vaccine_administer` varchar(100) DEFAULT NULL,
   `for_reason` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointmenttable`
@@ -67,22 +66,32 @@ INSERT INTO `appointmenttable` (`appt_id`, `userid`, `cid`, `vacid`, `appt_time`
 (105, 35, 14, 9, '04:46:00', '2023-11-23', 1, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
 (107, 35, 87, 1, '17:54:00', '2023-11-23', 1, 'dfd fdgd', 'fgf', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
 (108, 35, 14, 14, '08:03:00', '2023-11-23', 1, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(113, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(114, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(115, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(116, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(117, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(118, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(119, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(120, 35, 32, 14, '06:36:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
+(113, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
+(114, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
+(115, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
+(116, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
+(117, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
+(118, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
+(119, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
+(120, 35, 32, 14, '06:36:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
 (121, 35, 12, 0, '06:37:00', '2023-11-23', 0, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 4, 'JABAR', 'Consultation'),
-(122, 35, 12, 7, '06:39:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
+(122, 35, 12, 7, '06:39:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination'),
 (123, 35, 12, 9, '06:40:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(124, 35, 20, 0, '06:52:00', '2023-11-23', 0, 'input lastname', 'fathersname', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Consultation'),
+(124, 35, 20, 0, '06:52:00', '2023-11-23', 0, 'input lastname', 'fathersname', '09987414131', '0', 'jw@gmail.com', 4, 'harry styles', 'Consultation'),
 (128, 0, 0, 1, NULL, '2023-11-18', 1, 'sad', 'ewqeqwe', '213123', '12', 'jjsanchez1829@gmail.com', 5, NULL, 'Vaccination'),
 (129, 0, 0, 7, NULL, '2023-11-18', 1, 'Sana', 'Im Nayeon', '098823212', '37', 'jjsanchez1829@gmail.com', 5, NULL, 'Vaccination'),
 (130, 0, 0, 0, NULL, '2023-11-18', 0, '3123123123', 'ewqeqwe2312', '23123', '2131', '22313', 5, NULL, 'Consultation'),
-(131, 0, 0, 0, NULL, '2023-11-19', 0, '', 'Masashi Kishimoto', '2321321', 'Ichiro Oda', '', 5, NULL, 'Consultation');
+(131, 0, 0, 0, NULL, '2023-11-19', 0, '', 'Masashi Kishimoto', '2321321', 'Ichiro Oda', '', 5, NULL, 'Consultation'),
+(132, 35, 16, 1, '09:46:00', '2023-11-23', 1, 'final na test final na test', 'final na test', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination'),
+(133, 35, 104, 1, '11:40:00', '2023-11-23', 1, 'SKT Faker', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination'),
+(134, 35, 104, 0, '14:19:00', '2023-11-23', 0, 'Faker SKT', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 4, 'harry styles', 'Consultation'),
+(135, 35, 106, 1, NULL, '2023-10-02', 1, 'labisna sa nasaktanako', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, NULL),
+(136, 35, 106, 2, NULL, '2023-10-02', 1, 'labisna sa nasaktanako', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, NULL),
+(137, 35, 105, 0, '18:03:00', '2023-11-23', 0, 'pusong nasasaktan', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'wqewqe', 'Consultation'),
+(138, 35, 105, 1, '18:16:00', '2023-11-23', 1, 'nasasaktan pusong', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'wqewqe', 'Vaccination'),
+(139, 35, 105, 2, '07:25:00', '2023-11-26', 1, 'pusong nasasaktan', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'PM time', 'Vaccination'),
+(140, 35, 3, 1, '18:05:00', '2023-11-23', 1, 'Mori Harris', 'odette samano', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
+(141, 35, 104, 2, '21:46:00', '2023-11-23', 1, 'SKT Faker', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination');
 
 -- --------------------------------------------------------
 
@@ -96,7 +105,7 @@ CREATE TABLE `business_day` (
   `time_from` time DEFAULT NULL,
   `time_to` time DEFAULT NULL,
   `description` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `business_day`
@@ -105,7 +114,13 @@ CREATE TABLE `business_day` (
 INSERT INTO `business_day` (`business_day_id`, `available_date`, `time_from`, `time_to`, `description`) VALUES
 ('170069400017003022601700302260', '2023-11-23', '11:11:00', '11:11:00', 'JABAR'),
 ('170086680017003058601700305920', '2023-11-25', '12:11:00', '12:12:00', 'Stephen Speaks'),
-('170069400017003071201700307120', '2023-11-23', '12:32:00', '12:32:00', 'wqewqe');
+('170069400017003071201700307120', '2023-11-23', '12:32:00', '12:32:00', 'wqewqe'),
+('170095320017004582001700478000', '2023-11-26', '06:30:00', '12:00:00', 'AM time'),
+('170095320017004780601700495940', '2023-11-26', '12:01:00', '04:59:00', 'PM time'),
+('170043480017004360001700521140', '2023-11-20', '12:20:00', '11:59:00', 'Doctor 1'),
+('170043480017004471001700460300', '2023-11-20', '03:25:00', '07:05:00', '2'),
+('170069400017006150401700652600', '2023-11-23', '02:04:00', '12:30:00', 'harry styles'),
+('170060760017006160001700672400', '2023-11-22', '02:20:00', '06:00:00', 'HHUHUHUHUH');
 
 -- --------------------------------------------------------
 
@@ -124,14 +139,14 @@ CREATE TABLE `childtable` (
   `fathername` varchar(60) NOT NULL,
   `child_age` int(11) NOT NULL,
   `gender` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `childtable`
 --
 
 INSERT INTO `childtable` (`cid`, `userid`, `child_firstname`, `child_lastname`, `child_middlename`, `birthdate`, `mothername`, `fathername`, `child_age`, `gender`) VALUES
-(1, 34, 'test', 'test2', 'n', '2009-10-01', 'yyyy', 'xxxx', 34, 'Male'),
+(1, 34, 'test', 'test2', 'n', '2009-10-01', 'yyyy', 'xxxx', 34, 'Female'),
 (2, 34, 'jj', 'adsad', 'm', '2022-10-06', 'Testing mother', 'testiing father', 2, 'Male'),
 (3, 35, 'Mori', 'Harris', 'John', '2023-07-07', 'odette samano', 'france samano', 0, 'Male'),
 (5, 35, 'ewqewq', 'ewqe', 'qwewe', '2023-10-14', 'ewqe', 'ew', 0, 'Male'),
@@ -230,7 +245,11 @@ INSERT INTO `childtable` (`cid`, `userid`, `child_firstname`, `child_lastname`, 
 (100, 35, 'ewqe2', '13123', '123123', '2023-11-03', '21eqw', 'eq', 0, 'Male'),
 (101, 35, 'wqewq2132', 'wqewq2132', 'wqewq2132', '2023-11-03', 'wqewq2132', 'wqewq2132', 0, 'Male'),
 (102, 35, 'wqewq', 'eqwe', 'qweqwe', '2023-11-09', 'qwe', 'qweq', 0, 'Male'),
-(103, 35, '3123', '342', '313', '2023-11-02', '2342', 'eqweqe', 0, 'Female');
+(103, 35, '3123', '342', '313', '2023-11-02', '2342', 'eqweqe', 0, 'Female'),
+(104, 35, 'Faker', 'SKT', 'T1', '2023-11-01', 'Lee Sang-Hyeok', 'Lee Sang-Hyeok girl', 0, 'Male'),
+(105, 35, 'pusong', 'nasasaktan', 'sa', '2023-11-14', 'iyong', 'pinaggagawa', 0, 'Female'),
+(106, 35, 'labisna', 'nasaktanako', 'sa', '2023-10-01', 'alaala', 'mga', 0, 'Male'),
+(107, 31, 'aJIN', 'aJin', 'Ajin', '2023-11-09', 'aJIN', 'Ajin', 0, 'Male');
 
 -- --------------------------------------------------------
 
@@ -242,11 +261,11 @@ CREATE TABLE `child_vaccine_status` (
   `cvax_status_id` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
   `vac_name` varchar(50) NOT NULL,
-  `dosage_status` int(11) NOT NULL DEFAULT '0' COMMENT '0 - none \r\n1 = 1st dose \r\n2 = 2nd dose',
-  `status` int(11) NOT NULL DEFAULT '0',
+  `dosage_status` int(11) NOT NULL DEFAULT 0 COMMENT '0 - none \r\n1 = 1st dose \r\n2 = 2nd dose',
+  `status` int(11) NOT NULL DEFAULT 0,
   `recommended_age` varchar(100) NOT NULL DEFAULT 'No',
   `reco_age` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `child_vaccine_status`
@@ -273,7 +292,7 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (18, 1, 'HepA1', 0, 0, '1st dose', ''),
 (19, 1, 'HepA2', 0, 0, 'No', ''),
 (20, 0, 'DTaP3', 0, 0, '', ''),
-(21, 3, 'BCG', 0, 0, '1st dose', ''),
+(21, 3, 'BCG', 1, 1, '1st dose', ''),
 (22, 5, 'test vaccine', 0, 0, 'No', ''),
 (23, 11, 'BCG', 0, 0, '1st dose', ''),
 (24, 11, 'HepB1', 0, 0, '1st dose', ''),
@@ -301,7 +320,7 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (46, 12, 'HepB3', 0, 0, 'No', ''),
 (47, 12, 'DTaP1', 0, 0, '1st dose', ''),
 (48, 12, 'DTaP2', 0, 0, 'No', ''),
-(49, 12, 'HiB1', 1, 1, '1st dose', ''),
+(49, 12, 'HiB1', 1, 2, '1st dose', ''),
 (50, 12, 'HiB2', 0, 0, 'No', ''),
 (51, 12, 'IPV1', 1, 2, '1st dose', ''),
 (52, 12, 'IPV2', 0, 0, 'No', ''),
@@ -355,7 +374,7 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (100, 14, 'HepA1', 0, 0, 'No', ''),
 (101, 14, 'HepA2', 0, 0, 'No', ''),
 (102, 14, 'DTaP3', 0, 0, 'No', ''),
-(123, 16, 'BCG', 0, 0, '1st dose', ''),
+(123, 16, 'BCG', 1, 2, '1st dose', ''),
 (124, 16, 'HepB1', 0, 0, '1st dose', ''),
 (125, 16, 'HepB2', 0, 0, '2nd dose', ''),
 (126, 16, 'HepB3', 0, 0, 'No', ''),
@@ -595,20 +614,20 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (360, 31, 'HepA1', 0, 0, 'No', ''),
 (361, 31, 'HepA2', 0, 0, 'No', ''),
 (362, 31, 'DTaP3', 0, 0, 'No', ''),
-(363, 32, 'BCG', 1, 1, '1st dose', ''),
+(363, 32, 'BCG', 0, 3, '1st dose', ''),
 (364, 32, 'HepB1', 0, 0, '1st dose', ''),
 (365, 32, 'HepB2', 0, 0, 'No', ''),
 (366, 32, 'HepB3', 0, 0, 'No', ''),
 (367, 32, 'DTaP1', 0, 0, '1st dose', ''),
 (368, 32, 'DTaP2', 0, 0, 'No', ''),
-(369, 32, 'HiB1', 1, 1, '1st dose', ''),
+(369, 32, 'HiB1', 0, 3, '1st dose', ''),
 (370, 32, 'HiB2', 0, 0, 'No', ''),
-(371, 32, 'IPV1', 1, 1, '1st dose', ''),
+(371, 32, 'IPV1', 0, 3, '1st dose', ''),
 (372, 32, 'IPV2', 0, 0, 'No', ''),
 (373, 32, 'IPV3', 0, 0, 'No', ''),
 (374, 32, 'PCV1', 0, 0, '1st dose', ''),
 (375, 32, 'PCV2', 0, 0, 'No', ''),
-(376, 32, 'Rotavirus1', 1, 1, '1st dose', ''),
+(376, 32, 'Rotavirus1', 0, 3, '1st dose', ''),
 (377, 32, 'Rotavirus2', 0, 0, 'No', ''),
 (378, 32, 'MMR', 0, 0, 'No', ''),
 (379, 32, 'Influenza', 0, 0, 'No', ''),
@@ -1876,8 +1895,8 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (0, 94, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
 (0, 94, 'MMR2', 0, 0, 'No', ''),
 (0, 94, 'Influenza2', 0, 0, 'No', ''),
-(0, 95, 'BCG', 1, 2, 'No', 'BCG vaccine should be given shortly after birth'),
-(0, 95, 'HepB1', 0, 0, 'No', 'First vaccine Hepatitis B should be given after birth'),
+(0, 95, 'BCG', 1, 2, '1st dose', 'BCG vaccine should be given shortly after birth'),
+(0, 95, 'HepB1', 0, 0, '1st dose', 'First vaccine Hepatitis B should be given after birth'),
 (0, 95, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
 (0, 95, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
 (0, 95, 'DTaP1', 0, 0, 'No', 'First DTaP vaccine should be given 6 weeks after birth'),
@@ -1901,8 +1920,8 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (0, 95, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
 (0, 95, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
 (0, 95, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
-(0, 96, 'BCG', 1, 1, 'No', 'BCG vaccine should be given shortly after birth'),
-(0, 96, 'HepB1', 1, 1, 'No', 'First vaccine Hepatitis B should be given after birth'),
+(0, 96, 'BCG', 1, 1, '1st dose', 'BCG vaccine should be given shortly after birth'),
+(0, 96, 'HepB1', 1, 1, '1st dose', 'First vaccine Hepatitis B should be given after birth'),
 (0, 96, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
 (0, 96, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
 (0, 96, 'DTaP1', 0, 0, 'No', 'First DTaP vaccine should be given 6 weeks after birth'),
@@ -2055,8 +2074,8 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (0, 102, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
 (0, 102, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
 (0, 102, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
-(0, 103, 'BCG', 0, 0, 'No', 'BCG vaccine should be given shortly after birth'),
-(0, 103, 'HepB1', 0, 0, 'No', 'First vaccine Hepatitis B should be given after birth'),
+(0, 103, 'BCG', 0, 0, '1st dose', 'BCG vaccine should be given shortly after birth'),
+(0, 103, 'HepB1', 0, 0, '1st dose', 'First vaccine Hepatitis B should be given after birth'),
 (0, 103, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
 (0, 103, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
 (0, 103, 'DTaP1', 0, 0, 'No', 'First DTaP vaccine should be given 6 weeks after birth'),
@@ -2080,7 +2099,133 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (0, 103, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
 (0, 103, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
 (0, 103, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
-(0, 103, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken');
+(0, 103, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 104, 'BCG', 1, 2, '1st dose', 'BCG vaccine should be given shortly after birth'),
+(0, 104, 'HepB1', 1, 1, '1st dose', 'First vaccine Hepatitis B should be given after birth'),
+(0, 104, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
+(0, 104, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
+(0, 104, 'DTaP1', 0, 0, 'No', 'First DTaP vaccine should be given 6 weeks after birth'),
+(0, 104, 'DTaP2', 0, 0, 'No', 'Second DTaP vaccine should be given 10 weeks after the first dose was taken'),
+(0, 104, 'HiB1', 0, 0, 'No', 'First HiB vaccine should be given 6 weeks after birth'),
+(0, 104, 'HiB2', 0, 0, 'No', 'Second HiB vaccine should be given 10 weeks after the first dose was taken'),
+(0, 104, 'IPV1', 0, 0, 'No', 'First IPV vaccine should be given 6 weeks after birth'),
+(0, 104, 'IPV2', 0, 0, 'No', 'Second IPV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 104, 'IPV3', 0, 0, 'No', 'Third IPV vaccine should be 14 weeks after the second dose was taken'),
+(0, 104, 'PCV1', 0, 0, 'No', 'First PCV vaccine should be given 6 weeks after birth'),
+(0, 104, 'PCV2', 0, 0, 'No', 'Second PCV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 104, 'Rotavirus1', 0, 0, 'No', 'First  Rotavirus vaccine should be given 6 weeks after birth'),
+(0, 104, 'Rotavirus2', 0, 0, 'No', 'Second Rotavirus vaccine should be given 10 weeks after the first dose was taken'),
+(0, 104, 'MMR', 0, 0, 'No', 'First MMR vaccine should be given 9 months after birth'),
+(0, 104, 'Influenza', 0, 0, 'No', 'First Influenza vaccine should be given 6 months after birth'),
+(0, 104, 'HepA1', 0, 0, 'No', 'First Hepa vaccine should be given 12 months after birth'),
+(0, 104, 'HepA2', 0, 0, 'No', 'Second Hepa vaccine should be given 6 weeks after the first dose was taken'),
+(0, 104, 'DTaP3', 0, 0, 'No', 'Third DTaP vaccine should be 14 weeks after the second dose was taken'),
+(0, 104, 'Rotavirus3', 0, 0, 'No', 'Third  Rotavirus vaccine should be 14 weeks after the second dose was taken'),
+(0, 104, 'HiB3', 0, 0, 'No', 'Third HiB vaccine should be 14 weeks after the second dose was taken'),
+(0, 104, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
+(0, 104, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
+(0, 104, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 104, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 105, 'BCG', 1, 2, '1st dose', 'BCG vaccine should be given shortly after birth'),
+(0, 105, 'HepB1', 1, 2, '1st dose', 'First vaccine Hepatitis B should be given after birth'),
+(0, 105, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
+(0, 105, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
+(0, 105, 'DTaP1', 0, 0, 'No', 'First DTaP vaccine should be given 6 weeks after birth'),
+(0, 105, 'DTaP2', 0, 0, 'No', 'Second DTaP vaccine should be given 10 weeks after the first dose was taken'),
+(0, 105, 'HiB1', 0, 0, 'No', 'First HiB vaccine should be given 6 weeks after birth');
+INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage_status`, `status`, `recommended_age`, `reco_age`) VALUES
+(0, 105, 'HiB2', 0, 0, 'No', 'Second HiB vaccine should be given 10 weeks after the first dose was taken'),
+(0, 105, 'IPV1', 0, 0, 'No', 'First IPV vaccine should be given 6 weeks after birth'),
+(0, 105, 'IPV2', 0, 0, 'No', 'Second IPV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 105, 'IPV3', 0, 0, 'No', 'Third IPV vaccine should be 14 weeks after the second dose was taken'),
+(0, 105, 'PCV1', 0, 0, 'No', 'First PCV vaccine should be given 6 weeks after birth'),
+(0, 105, 'PCV2', 0, 0, 'No', 'Second PCV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 105, 'Rotavirus1', 0, 0, 'No', 'First  Rotavirus vaccine should be given 6 weeks after birth'),
+(0, 105, 'Rotavirus2', 0, 0, 'No', 'Second Rotavirus vaccine should be given 10 weeks after the first dose was taken'),
+(0, 105, 'MMR', 0, 0, 'No', 'First MMR vaccine should be given 9 months after birth'),
+(0, 105, 'Influenza', 0, 0, 'No', 'First Influenza vaccine should be given 6 months after birth'),
+(0, 105, 'HepA1', 0, 0, 'No', 'First Hepa vaccine should be given 12 months after birth'),
+(0, 105, 'HepA2', 0, 0, 'No', 'Second Hepa vaccine should be given 6 weeks after the first dose was taken'),
+(0, 105, 'DTaP3', 0, 0, 'No', 'Third DTaP vaccine should be 14 weeks after the second dose was taken'),
+(0, 105, 'Rotavirus3', 0, 0, 'No', 'Third  Rotavirus vaccine should be 14 weeks after the second dose was taken'),
+(0, 105, 'HiB3', 0, 0, 'No', 'Third HiB vaccine should be 14 weeks after the second dose was taken'),
+(0, 105, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
+(0, 105, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
+(0, 105, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 105, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 106, 'BCG', 1, 2, '1st dose', 'BCG vaccine should be given shortly after birth'),
+(0, 106, 'HepB1', 1, 2, '1st dose', 'First vaccine Hepatitis B should be given after birth'),
+(0, 106, 'HepB2', 0, 0, '2nd dose', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
+(0, 106, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
+(0, 106, 'DTaP1', 0, 0, '1st dose', 'First DTaP vaccine should be given 6 weeks after birth'),
+(0, 106, 'DTaP2', 0, 0, 'No', 'Second DTaP vaccine should be given 10 weeks after the first dose was taken'),
+(0, 106, 'HiB1', 0, 0, '1st dose', 'First HiB vaccine should be given 6 weeks after birth'),
+(0, 106, 'HiB2', 0, 0, 'No', 'Second HiB vaccine should be given 10 weeks after the first dose was taken'),
+(0, 106, 'IPV1', 0, 0, '1st dose', 'First IPV vaccine should be given 6 weeks after birth'),
+(0, 106, 'IPV2', 0, 0, 'No', 'Second IPV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 106, 'IPV3', 0, 0, 'No', 'Third IPV vaccine should be 14 weeks after the second dose was taken'),
+(0, 106, 'PCV1', 0, 0, '1st dose', 'First PCV vaccine should be given 6 weeks after birth'),
+(0, 106, 'PCV2', 0, 0, 'No', 'Second PCV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 106, 'Rotavirus1', 0, 0, '1st dose', 'First  Rotavirus vaccine should be given 6 weeks after birth'),
+(0, 106, 'Rotavirus2', 0, 0, 'No', 'Second Rotavirus vaccine should be given 10 weeks after the first dose was taken'),
+(0, 106, 'MMR', 0, 0, 'No', 'First MMR vaccine should be given 9 months after birth'),
+(0, 106, 'Influenza', 0, 0, 'No', 'First Influenza vaccine should be given 6 months after birth'),
+(0, 106, 'HepA1', 0, 0, 'No', 'First Hepa vaccine should be given 12 months after birth'),
+(0, 106, 'HepA2', 0, 0, 'No', 'Second Hepa vaccine should be given 6 weeks after the first dose was taken'),
+(0, 106, 'DTaP3', 0, 0, 'No', 'Third DTaP vaccine should be 14 weeks after the second dose was taken'),
+(0, 106, 'Rotavirus3', 0, 0, 'No', 'Third  Rotavirus vaccine should be 14 weeks after the second dose was taken'),
+(0, 106, 'HiB3', 0, 0, 'No', 'Third HiB vaccine should be 14 weeks after the second dose was taken'),
+(0, 106, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
+(0, 106, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
+(0, 106, 'Influenza2', 0, 0, '2nd dose', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 107, 'BCG', 0, 0, 'No', 'BCG vaccine should be given shortly after birth'),
+(0, 107, 'HepB1', 0, 0, 'No', 'First vaccine Hepatitis B should be given after birth'),
+(0, 107, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
+(0, 107, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
+(0, 107, 'DTaP1', 0, 0, 'No', 'First DTaP vaccine should be given 6 weeks after birth'),
+(0, 107, 'DTaP2', 0, 0, 'No', 'Second DTaP vaccine should be given 10 weeks after the first dose was taken'),
+(0, 107, 'HiB1', 0, 0, 'No', 'First HiB vaccine should be given 6 weeks after birth'),
+(0, 107, 'HiB2', 0, 0, 'No', 'Second HiB vaccine should be given 10 weeks after the first dose was taken'),
+(0, 107, 'IPV1', 0, 0, 'No', 'First IPV vaccine should be given 6 weeks after birth'),
+(0, 107, 'IPV2', 0, 0, 'No', 'Second IPV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 107, 'IPV3', 0, 0, 'No', 'Third IPV vaccine should be 14 weeks after the second dose was taken'),
+(0, 107, 'PCV1', 0, 0, 'No', 'First PCV vaccine should be given 6 weeks after birth'),
+(0, 107, 'PCV2', 0, 0, 'No', 'Second PCV vaccine should be given 10 weeks after the first dose was taken'),
+(0, 107, 'Rotavirus1', 0, 0, 'No', 'First  Rotavirus vaccine should be given 6 weeks after birth'),
+(0, 107, 'Rotavirus2', 0, 0, 'No', 'Second Rotavirus vaccine should be given 10 weeks after the first dose was taken'),
+(0, 107, 'MMR', 0, 0, 'No', 'First MMR vaccine should be given 9 months after birth'),
+(0, 107, 'Influenza', 0, 0, 'No', 'First Influenza vaccine should be given 6 months after birth'),
+(0, 107, 'HepA1', 0, 0, 'No', 'First Hepa vaccine should be given 12 months after birth'),
+(0, 107, 'HepA2', 0, 0, 'No', 'Second Hepa vaccine should be given 6 weeks after the first dose was taken'),
+(0, 107, 'DTaP3', 0, 0, 'No', 'Third DTaP vaccine should be 14 weeks after the second dose was taken'),
+(0, 107, 'Rotavirus3', 0, 0, 'No', 'Third  Rotavirus vaccine should be 14 weeks after the second dose was taken'),
+(0, 107, 'HiB3', 0, 0, 'No', 'Third HiB vaccine should be 14 weeks after the second dose was taken'),
+(0, 107, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
+(0, 107, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
+(0, 107, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 107, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reset_pass`
+--
+
+CREATE TABLE `reset_pass` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `rpass` varchar(60) NOT NULL,
+  `code` mediumint(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reset_pass`
+--
+
+INSERT INTO `reset_pass` (`id`, `email`, `rpass`, `code`) VALUES
+(38, 'percii6027@gmail.com', '', 339356),
+(39, 'danncoloma123@gmail.com', '', 969306),
+(40, 'daxxcoloma123@gmail.com', '', 198183);
 
 -- --------------------------------------------------------
 
@@ -2096,26 +2241,26 @@ CREATE TABLE `usertable` (
   `username` varchar(60) NOT NULL,
   `phonenumber` varchar(60) NOT NULL,
   `token_verified` varchar(100) NOT NULL,
-  `status_verified` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0- not verified 1-verified',
+  `status_verified` tinyint(2) NOT NULL DEFAULT 0 COMMENT '0- not verified 1-verified',
   `password` varchar(60) NOT NULL,
   `image` longblob NOT NULL,
   `usertype` varchar(6) NOT NULL,
-  `datecreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_notified` int(11) DEFAULT '0' COMMENT '0 - not notified\r\n1 - notified',
+  `datecreated` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_notified` int(11) DEFAULT 0 COMMENT '0 - not notified\r\n1 - notified',
   `code` mediumint(50) NOT NULL,
   `status` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `usertable`
 --
 
 INSERT INTO `usertable` (`userid`, `firstname`, `lastname`, `user_email`, `username`, `phonenumber`, `token_verified`, `status_verified`, `password`, `image`, `usertype`, `datecreated`, `is_notified`, `code`, `status`) VALUES
-(31, 'HAROLD ANGELO', 'TALAGTAG', 'hatalagtag@gmail.com', 'Harold Angelo', '09984143408', '9550cd7d09b0dde7d17b931ea88c14f8', 1, 'e10adc3949ba59abbe56e057f20f883e', 0x6c616e642e706e67, 'admin', '2023-09-25 07:00:00', 0, 0, ''),
+(31, 'HAROLD ANGELO', 'TALAGTAG', 'hatalagtag@gmail.com', 'Harold Angelo', '09984143408', '9550cd7d09b0dde7d17b931ea88c14f8', 1, 'e10adc3949ba59abbe56e057f20f883e', 0x3334383236393434345f3236343230313631363132303432325f383531343232303136363730313638333236365f6e2e6a7067, 'admin', '2023-09-25 07:00:00', 0, 0, ''),
 (32, 'test', 'test', 'parenttest@gmail.com', 'parent test user', '23323232', '47524683e34a537fe0a43134065fe286', 1, '5f4dcc3b5aa765d61d8327deb882cf99', 0x6b6579732e706e67, 'parent', '2023-10-07 07:00:00', 0, 0, ''),
 (33, 'test1', 'test1', 'test1yahoo.com', 'test1', 'test1', '9d48aafa2b3216dae74ba9b9acd502aa', 1, '5a105e8b9d40e1329780d62ea2265d8a', 0x6b6579732e706e67, 'admin', '2023-10-07 07:00:00', 0, 0, ''),
 (34, 'test12', 'test12', 'hehesanchez1829@gmail.com', 'test12', 'test12', '66afed62691a28135e2f0cfb8d18cd91', 1, '60474c9c10d7142b7508ce7a50acf414', 0x6b6579732e706e67, 'parent', '2023-10-07 07:00:00', 0, 0, ''),
-(35, 'John', 'Wilson', 'jw@gmail.com', 'jwbush', '09987414131', '47234f4683e34a537fe0a43134065fe286', 1, 'e10adc3949ba59abbe56e057f20f883e', 0x61646d696e2e706e67, 'parent', '2023-10-13 07:00:00', 0, 0, ''),
+(35, 'Jonny', 'Wilson', 'jw@gmail.com', 'jwbushbush', '09987414131', '47234f4683e34a537fe0a43134065fe286', 1, '827ccb0eea8a706c4c34a16891f84e7b', 0x53637265656e73686f7420323032332d30372d3239203133323031382e706e67, 'parent', '2023-10-13 07:00:00', 0, 0, ''),
 (36, 'Gelo', 'Samano', 'haroldtalagtag123@gmail.com', 'jejeharold', '09984143408', '2ac8c444243c19e7d6632791bdb91729', 1, '827ccb0eea8a706c4c34a16891f84e7b', 0x47726f75702033332e706e67, 'parent', '2023-10-14 07:00:00', 0, 0, ''),
 (37, 'VAC', 'CUNA', 'vaccuna0@gmail.com', 'vaccune', '09984143477', 'c933711de8c70c2480381b37794ae417', 1, '827ccb0eea8a706c4c34a16891f84e7b', 0x53637265656e73686f7420323032332d31302d3330203133343230372e706e67, 'parent', '2023-11-03 07:00:00', 0, 0, ''),
 (38, 'adsad', 'asdad', 'angelostalagtag@gmail.com', 'dsadas', '1232313123', 'c2b264b22eba6fc3558d55ade035684a', 1, '827ccb0eea8a706c4c34a16891f84e7b', '', 'parent', '2023-11-06 08:00:00', 0, 0, '');
@@ -2136,26 +2281,26 @@ CREATE TABLE `vaccineinventory` (
   `lower_limit` varchar(11) NOT NULL,
   `upper_limit` varchar(11) NOT NULL,
   `exp_date` date NOT NULL,
-  `active` int(11) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `active` int(11) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vaccineinventory`
 --
 
 INSERT INTO `vaccineinventory` (`vacid`, `vac_name`, `vac_desc`, `stocks`, `administered`, `req_dose`, `lower_limit`, `upper_limit`, `exp_date`, `active`) VALUES
-(1, 'BCG', 'P Tubercolosis', 188, 0, 1, '0 weeks', '8 weeks', '0000-00-00', 1),
-(2, 'HepB1', 'P Hepatitis B', 189, 0, 1, '0 weeks', '4 weeks', '0000-00-00', 0),
+(1, 'BCG', 'P Tubercolosis', 185, 3, 1, '0 weeks', '8 weeks', '0000-00-00', 1),
+(2, 'HepB1', 'P Hepatitis B', 188, 1, 1, '0 weeks', '4 weeks', '0000-00-00', 1),
 (3, 'HepB2', 'P Hepatitis B', 195, 0, 1, '8 weeks', '12 weeks', '0000-00-00', 1),
 (4, 'HepB3', 'P Hepatitis B', 200, 0, 1, '24 weeks', '32 weeks', '0000-00-00', 1),
-(5, 'DTaP1', 'Diphtheria,Tetanus, Pertussis', 192, 0, 1, '6 weeks', '10 weeks', '0000-00-00', 0),
-(6, 'DTaP2', 'Diphtheria,Tetanus, Pertussis', 200, 0, 1, '10 weeks ', '14 weeks', '0000-00-00', 0),
-(7, 'HiB1', 'P Haemophilus Influenza', 194, 1, 1, '6 weeks', '10 weeks', '0000-00-00', 1),
+(5, 'DTaP1', 'Diphtheria,Tetanus, Pertussis', 192, 0, 1, '6 weeks', '10 weeks', '0000-00-00', 1),
+(6, 'DTaP2', 'Diphtheria,Tetanus, Pertussis', 200, 0, 1, '10 weeks ', '14 weeks', '0000-00-00', 1),
+(7, 'HiB1', 'P Haemophilus Influenza', 193, 2, 1, '6 weeks', '10 weeks', '0000-00-00', 1),
 (8, 'HiB2', 'P Haemophilus Influenza', 200, 0, 1, '10 weeks', '16 weeks', '0000-00-00', 1),
 (9, 'IPV1', 'P Polio', 196, 1, 1, '6 weeks', '12 weeks', '0000-00-00', 1),
 (10, 'IPV2', 'P Polio', 200, 0, 1, '12 weeks', '24 weeks', '0000-00-00', 1),
 (11, 'IPV3', 'P Polio', 200, 0, 1, '24 weeks', '36 weeks', '0000-00-00', 1),
-(12, 'PCV1', 'P Pneumonia, Meningitis', 190, 0, 1, '6 weeks', '12 weeks', '0000-00-00', 0),
+(12, 'PCV1', 'P Pneumonia, Meningitis', 190, 0, 1, '6 weeks', '12 weeks', '0000-00-00', 1),
 (13, 'PCV2', 'P Pneumonia, Meningitis', 200, 0, 1, '16 weeks', '24 weeks', '0000-00-00', 1),
 (14, 'Rotavirus1', 'P Diarrhea', 189, 1, 1, '6 weeks', '12 weeks', '0000-00-00', 1),
 (15, 'Rotavirus2', 'P Diarrhea', 200, 0, 1, '12 weeks', '24 weeks', '0000-00-00', 1),
@@ -2182,13 +2327,13 @@ CREATE TABLE `vac_bcg_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_bcg_table`
@@ -2254,13 +2399,13 @@ CREATE TABLE `vac_dtop_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_dtop_table`
@@ -2364,13 +2509,13 @@ CREATE TABLE `vac_hepa_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_hepa_table`
@@ -2398,7 +2543,7 @@ CREATE TABLE `vac_hepb_table` (
   `dose3` tinyint(1) NOT NULL,
   `dose3_date` date NOT NULL,
   `dose3_administrator` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_hepb_table`
@@ -2504,13 +2649,13 @@ CREATE TABLE `vac_hib_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_hib_table`
@@ -2616,13 +2761,13 @@ CREATE TABLE `vac_influenza_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_influenza_table`
@@ -2644,13 +2789,13 @@ CREATE TABLE `vac_measles_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_measles_table`
@@ -2673,13 +2818,13 @@ CREATE TABLE `vac_pcv_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_pcv_table`
@@ -2786,13 +2931,13 @@ CREATE TABLE `vac_polio_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_polio_table`
@@ -2896,13 +3041,13 @@ CREATE TABLE `vac_rota_table` (
   `dose1` tinyint(1) NOT NULL,
   `dose1_date` date NOT NULL,
   `dose1_administrator` varchar(60) NOT NULL,
-  `dose2` tinytext,
+  `dose2` tinytext DEFAULT NULL,
   `dose2_date` date DEFAULT NULL,
   `dose2_administrator` varchar(60) DEFAULT NULL,
   `dose3` tinyint(4) DEFAULT NULL,
   `dose3_date` date DEFAULT NULL,
   `dose3_administrator` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vac_rota_table`
@@ -3016,6 +3161,12 @@ ALTER TABLE `childtable`
   ADD KEY `userid` (`userid`);
 
 --
+-- Indexes for table `reset_pass`
+--
+ALTER TABLE `reset_pass`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `vaccineinventory`
 --
 ALTER TABLE `vaccineinventory`
@@ -3099,13 +3250,19 @@ ALTER TABLE `vac_rota_table`
 -- AUTO_INCREMENT for table `appointmenttable`
 --
 ALTER TABLE `appointmenttable`
-  MODIFY `appt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `appt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `childtable`
 --
 ALTER TABLE `childtable`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+
+--
+-- AUTO_INCREMENT for table `reset_pass`
+--
+ALTER TABLE `reset_pass`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
