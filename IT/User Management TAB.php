@@ -53,12 +53,51 @@ include('../templates/Header.php');
                             <td>PARENT</td>
                             <td>
                             <a href="User Management-Details.php"><i class="fas fa-eye"></i></a>
-
+                            <button onclick="openModal('edit')"><i class="fas fa-edit"></i></button>
                             </td>
                         </tr>
-                    
                     </tbody>
                 </table>
+            </div>
+            <div id="editModal" class="modal">
+                <div class="editModal-content">
+                    <form action="#" method="POST">
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span class="details">First Name</span>
+                                <input type="text" name="first_name" placeholder="User's first name" value="Marijo" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Last Name</span>
+                                <input type="text" name="last_name" placeholder="User's last name" value="Pedian" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Email</span>
+                                <input type="text" name="user's_email" placeholder="User's email" value="marijo@gmail.com" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Usertype</span>
+                                <input type="text" name="User_type" placeholder="Usertype" value="Parent" required>
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Contact Number</span>
+                                <input type="text" name="contact_number" placeholder="Contact number" value="09453845638" required>
+                            </div>
+                            <div class="input-box">
+                            <span class="details">Status</span>
+                            <div class="styled-select">
+                                <select required>
+                                    <option value="" disabled selected>Select Status</option>
+                                    <option value="parent">Active</option>
+                                    <option value="admin">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                        <button onclick="closeModal('edit')">Close</button>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -68,6 +107,7 @@ include('../templates/Header.php');
         </div>
 </div>
 
+    <script src="./js/User Management Edit Button Modal.js"></script>
 
 </body>
 </html>
