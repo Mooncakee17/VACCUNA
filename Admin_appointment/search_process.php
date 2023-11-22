@@ -2,7 +2,7 @@
 include '../Homepage/config.php';
 	$search_data = $_POST['search_data'];
     $select = mysqli_query($conn, "SELECT * FROM `childtable` 
-    	WHERE CONCAT(child_firstname, child_lastname, mothername,cid,gender) LIKE '%$search_data%'") or die('query failed');
+    	WHERE CONCAT(child_firstname, child_lastname, mothername, birthdate, cid, gender) LIKE '%$search_data%'") or die('query failed');
     $search_record = mysqli_fetch_all($select, MYSQLI_ASSOC);
 
     	$html = "";
@@ -21,7 +21,7 @@ include '../Homepage/config.php';
 	    foreach($search_record as $value){
 	    	$html.= "<tr>";
 	    			$html .= "<td>".$value['cid']."</td>";
-	    			$html .= "<td>".$value['child_firstname']." ".$value['child_firstname']."</td>";
+	    			$html .= "<td>".$value['child_firstname']." ".$value['child_lastname']."</td>";
 	    			$html .= "<td>".$value['gender']."</td>";
 	    			$html .= "<td>".$value['birthdate']."</td>";
 	    			$html .= "<td>".$value['mothername']."</td>";

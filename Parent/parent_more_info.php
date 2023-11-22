@@ -24,7 +24,7 @@ if(isset($_GET['id'])){
 <body>
 <div class="container1">
         <div class="column1">
-          <?php include('../templates/Admin-Dash.php'); ?> <!------------call side bar template------------>
+         <?php include('../templates/Select-Child-Dash.php'); ?>
         </div>
 
         <div class="column">           
@@ -43,8 +43,6 @@ if(isset($_GET['id'])){
                       <p><span class="label">Age</span> <span id="age" contenteditable="false"><?php echo  $child_age ; ?></span></p>
                       <p><span class="label">Gender</span> <span id="gender" contenteditable="false"><?php echo  $gender ; ?></span></p>
                       <p><span class="label">Birth Date</span> <span id="birthDate" contenteditable="false"><?php echo  $birthdate ; ?></span></p>
-                      <p><span class="label">Birth Place</span> <span id="birthPlace" contenteditable="false">wala sa db to. kayo na magdagdag.</span></p>
-                      <p><span class="label">Address</span> <span id="address" contenteditable="false">wala sa db to dagdag niyo nalang</span></p>
                       <p><span class="label">Mother's Name</span> <span id="mother'sName" contenteditable="false"><?php echo  $mothername ; ?></span></p>
                       <p><span class="label">Father's Name</span> <span id="father'sName" contenteditable="false"><?php echo  $fathername ; ?></span></p>
                       <p><span class="label">Contact Number</span> <span id="contactNumber" contenteditable="false"><?= $phonenumber; ?></span></p>

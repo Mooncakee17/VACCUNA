@@ -87,7 +87,7 @@ include('../Parent_appointment/fetch_business_days.php');
                     </div>
 
                     <div class="center-container">
-                            <button class="button open-button" id="more_details-<?php echo $cid; ?>">View Child's Data</button>
+                            <button class="button open-button" id="more_details">View Child's Data</button>
                     </div>
             </div>
                     <!--Table Data Start-->
@@ -327,9 +327,6 @@ include('../Parent_appointment/fetch_business_days.php');
                                     </table>                                    
                              
                             <!--End table-->   
-                            <!--More Details-->
-                            <?php include('../include/more_child_info.php'); ?>
-                            <!--More Details End-->
                         </div>
                         <div class="col-lg-2"></div>
                     </div>
@@ -353,18 +350,12 @@ include('../Parent_appointment/fetch_business_days.php');
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Get the element by its ID
-        var more_detail_btn = document.getElementById("more_details-<?php echo $cid; ?>");
+        var more_detail_btn = document.getElementById("more_details");
         var more_details_container = document.getElementById("more_details_container");
         var cid_hidden = document.getElementById("cid-hidden");
         var close = document.getElementById("close");
         more_detail_btn.onclick = function() {
-            // Extract the value from the element's ID
-            var id = more_detail_btn.id; 
-            var cid = id.split('-')[1];
-            //Set the hiddenid of child to textbox will use for where statement in fetching data
-            cid_hidden.value = cid;
-            //display block the container
-            more_details_container.style.display = "block";
+            window.location.href="../Parent/parent_more_info.php?id=<?= $cid; ?>"
         };
 
 

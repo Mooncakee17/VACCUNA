@@ -53,7 +53,7 @@ include('../templates/Header.php');
                             $record =  "SELECT * FROM `usertable`";
                             if(isset($_GET['search'])){
                                 $row = $_GET['search'];
-                                $record =  "SELECT * FROM `usertable` WHERE CONCAT(firstname, lastname, user_email) LIKE '%$row%'";
+                                $record =  "SELECT * FROM `usertable` WHERE CONCAT(userid, firstname, lastname, user_email, phonenumber) LIKE '%$row%'";
                               
                         }
                             $record_run = mysqli_query($conn, $record);
@@ -71,7 +71,7 @@ include('../templates/Header.php');
                             <td><?= $row['phonenumber']; ?></td>
                             
                             <td>
-                                <a style=""href="Report-Details.php?id=<?= $row['userid']; ?>">Select User</i></a>
+                                <a style=""href="Child-Reg-TAB.php?id=<?= $row['userid']; ?>">Select User</i></a>
                         
 
                             </td>

@@ -513,4 +513,4 @@ function convertTime(time) {
   timeHour = timeHour % 12 || 12;
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
-} /*merge*/
+}

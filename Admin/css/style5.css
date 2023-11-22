@@ -866,6 +866,7 @@ table {
     border-bottom: 1px solid #000; 
     width: 100px;
 }
+/* Main cause
 .box{
     text-align: left;
     font-size: 35px;
@@ -874,6 +875,7 @@ table {
     width: 110px;
    
 }
+/*
 
 /*========================== RESPONSIVENESS ======================*/
 @media screen and (max-width: 2560px) {
