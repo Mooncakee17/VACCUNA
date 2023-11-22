@@ -28,8 +28,6 @@ include('../Admin_appointment/vaccine_details.php');
                     <input  type="text" name="search" id="search_data" value="" placeholder="Search ">
                     <button type="button" id="search_btn" style=""><i class="fa fa-search"></i></button>
                     <button onclick="location.reload()" style="">Refresh</button>  
-                    <button id="open_appointment_form" onclick="openModal('set_appointment')" style=""><i class="fa fa-user-plus"></i> Register Child </button>  
-                    
             </div>
             <div class="table3">
             
@@ -39,7 +37,7 @@ include('../Admin_appointment/vaccine_details.php');
                         <tr>
                             <th>ID</th>
                             <th>CHILD NAME</th>
-                            <th>SEX</th>
+                            <th>GENDER</th>
                             <th>BIRTHDATE</th>
                             <th>PARENT/GUARDIAN</th>
                             <th>ACTION</th>
@@ -93,59 +91,6 @@ include('../Admin_appointment/vaccine_details.php');
                     
         </div>
 </div> 
-<div id="set_appointmentModal" class="modal" style="display:none; z-index:1;">
-    <div class="editModal2-content">
-            <h3 class="details">Walkin Registration</h3>
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Guardian Name</span>
-                    <input type="text" name="guardian_name" id="guardian_name" placeholder="Guardian Name" value="" required>
-                </div>
-
-                <div class="input-box">
-                    <span class="details">Contact Number</span>
-                    <input type="text" name="contact" id="contact" placeholder="Contact Number" value="" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Children Age</span>
-                    <input type="text" name="child_age" id="child_age" placeholder="Children Age" value="" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Email</span>
-                    <input type="text" name="email" id="email" placeholder="Email - Walkin (Optional)" value="">
-                </div>
-
-                <div class="input-box" id="dose_container">
-                    <span class="details">DOSE</span>
-                    <input type="text" name="set_dose_display" id="set_dose_display" placeholder="Email - Walkin (Optional)" value="1st Dose">
-                    <input type="hidden" name="hidden_dose" id="hidden_dose"  value="1"/>
-                </div>
-
-
-
-                <div class="input-box" id="vaccine_container">
-                      <span class="details" style="">Vaccine Name</span>
-                      <select class="form-select" name="select_vaccine" id="select_vaccine">
-                            <?php foreach($vaccine_list as $value){?>
-                                <option value="<?php echo $value['vacid']; ?>"><?php echo $value['vac_name']; ?></option>
-                            <?php }?>
-                      </select>  
-                </div>
-
-
-                <div class="input-box">
-                      <span class="details" style="">Appointment Type</span>
-                      <select name="appointment_type" id="appointment_type">
-                            <option value="Vaccination">Vaccination</option>
-                            <option value="Consultation">Consultation</option>
-                      </select>  
-                </div>
-            </div>
-                <button onclick="closeModal('set_appointment')">Close</button>
-                <button id="register">Register</button>
-    </div>
-  </div>
-
 </body>
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

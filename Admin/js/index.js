@@ -20,6 +20,7 @@ function update_appointment(){
     var appointment_date = $("#appointment_date").val();
     var userid = $("#userid").val();
     var doctor = $("#doctor").val();
+    var for_reason = $("#for_reason").val();
 
     $.ajax({
         url: '../Admin_appointment/update_appointment.php',
@@ -32,7 +33,8 @@ function update_appointment(){
             userid: userid,
             appt_id: appt_id,
             vacid: vacid,
-            doctor:doctor
+            doctor:doctor,
+            for_reason:for_reason
         },
         success:function(result){
                 window.location.href="../Admin/Appointment-TAB.php";
@@ -71,7 +73,7 @@ function missed_appointment(){
 
         }
     });  
-} /*merge*/
+}
 
 
 
