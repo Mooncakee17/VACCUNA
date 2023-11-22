@@ -71,7 +71,7 @@ include('../templates/Header.php');
                             <td><?= $row['phonenumber']; ?></td>
                             
                             <td>
-                                <a style=""href="Report-Details.php?id=<?= $row['userid']; ?>">Select User</i></a>
+                                <a style=""href="Child-Reg-TAB.php?id=<?= $row['userid']; ?>">Select User</i></a>
                         
 
                             </td>

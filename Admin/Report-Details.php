@@ -37,7 +37,7 @@ $error_message = "No CID provided";
                
             </div>
             </div>
-           
+        
            <div id="Report-Details">
               <div class="ReportDetails-content">
               <?php if(isset($error_message)) { ?>
@@ -446,7 +446,7 @@ $error_message = "No CID provided";
 </div>
 </div>
            
-             
+      
   
     
    

@@ -248,6 +248,7 @@ include('../Parent_appointment/fetch_business_days.php');
                                                     </div>
                                                 </div>
                                             </div>
+                                           
                                             <!--End Appointment-->
                                             <!-- Inside your existing JavaScript code -->
                                         <script>
@@ -325,7 +326,7 @@ include('../Parent_appointment/fetch_business_days.php');
                                         <?php } ?>   
                                         </tbody>                                
                                     </table>                                    
-                             
+                                    
                             <!--End table-->   
                             <!--More Details-->
                             <?php include('../include/more_child_info.php'); ?>
@@ -338,7 +339,7 @@ include('../Parent_appointment/fetch_business_days.php');
             </div>
             </div>           
         </main>
-        
+       
         <!--------------------------------END OF MAIN-------------------------------->
         <div class="right">
             <div class="top">
@@ -396,7 +397,7 @@ include('../Parent_appointment/fetch_business_days.php');
         });
     });
 
-
+ 
     </script>
     <script src="./js/index.js"></script>
   
