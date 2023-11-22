@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "vaccunadb";
+$database = "vaccunadb_v1";
 
 // MySQLi connection
 $con = new mysqli($host, $username, $password, $database);

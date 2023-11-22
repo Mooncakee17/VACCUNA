@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <title>Forgot Password</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style3.css">
 </head>
 <body>
     <div class="container">
         <div class="row">
+        <img src="../assets/images/VACUNNA logo.png" class="logo"></a>
             <div class="col-md-4 offset-md-4 form">
                 <form action="forgot-password.php" method="POST" autocomplete="">
                     <h2 class="text-center">Forgot Password</h2>
-                    <p class="text-center">Enter your email address</p>
                     <?php
                         if(count($errors) > 0){
                             ?>
