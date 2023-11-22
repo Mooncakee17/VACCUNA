@@ -212,6 +212,7 @@ if(isset($_POST['submit'])){
    $pass = md5($_POST['password']);
    $cpass = md5($_POST['cpassword']);
    $usertype = $_POST ['usertype'];
+   $status = $_POST ['status'];
    $image = $_FILES['image']['name'];
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
@@ -230,7 +231,7 @@ if(isset($_POST['submit'])){
         }
    else{
     $insert = mysqli_query($conn,"INSERT INTO reset_pass(email) VALUES('$email')") or die('query failed');
-         $insert = mysqli_query($conn,"INSERT INTO usertable(firstname, lastname, user_email, username, phonenumber, password, usertype,token_verified, image) VALUES('$firstname','$lastname', '$email', '$username','$phonenumber','$pass', '$usertype','$token_verified', '$image')") or die('query failed');
+         $insert = mysqli_query($conn,"INSERT INTO usertable(firstname, lastname, user_email, username, phonenumber, password, usertype,token_verified, image, status) VALUES('$firstname','$lastname', '$email', '$username','$phonenumber','$pass', '$usertype','$token_verified', '$image', $status)") or die('query failed');
          if($insert){
             move_uploaded_file($image_tmp_name, $image_folder);
             sendemail_verify("$username","$email","$token_verified");
@@ -314,7 +315,7 @@ if(isset($_POST['submit'])){
                     <input type="password" name="cpassword" placeholder="Confirm your password" required>
                 </div>
                 
-                  
+                <input type="hidden" name="status" value="1">  
                 <input type="hidden" name="usertype" value="parent">
                 <input type="hidden" name="userverify" value="2">
 
