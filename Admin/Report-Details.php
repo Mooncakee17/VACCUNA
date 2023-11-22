@@ -36,7 +36,7 @@ if(isset($_GET['id'])){
                
             </div>
             </div>
-           
+        
            <div id="Report-Details">
               <div class="ReportDetails-content">
                     <div class="header">
@@ -533,6 +533,7 @@ if(isset($_GET['id'])){
 </div>
 </div>
            
+<<<<<<< HEAD
 <script>
     function enableEdit() {
         var editableFields = document.querySelectorAll('.editable-info span');
@@ -580,6 +581,9 @@ if(isset($_GET['id'])){
         document.getElementById('saveVaccineButton').style.display = 'none';
     }
 </script>                   
+=======
+      
+>>>>>>> 163209bfc3345e3900c453ea0a9190b5b09d64b2
   
     
    
