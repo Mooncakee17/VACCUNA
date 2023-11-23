@@ -4,7 +4,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "vaccunadb";
+$database = "vaccunadb_v1";
 
 // Create connection
 $conn = mysqli_connect($host, $username, $password, $database);
