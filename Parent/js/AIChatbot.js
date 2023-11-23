@@ -5,7 +5,7 @@ const themeButton = document.querySelector("#theme-btn");
 const deleteButton = document.querySelector("#delete-btn");
 
 let userText = null;
-const API_KEY = "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"; // Paste your API key here
+const API_KEY = "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"; // Paste your API key here
 
 const loadDataFromLocalstorage = () => {
     // Load saved chats and theme from local storage and apply/add on the page
@@ -177,7 +177,7 @@ const suggestedQuestions = [
     "What vaccines should my 2 month old child take?",
     "How is the Rotavirus vaccine administered, and at what age does my child need it?",
     "When should my child receive the DTaP vaccine, and what diseases does it protect against?",
-    "Do you have any concerns or questions about vaccine safety?",
+    "How many doses required for BCG vaccine?",
     // Add more suggested questions as needed
 ];
 

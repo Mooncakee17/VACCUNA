@@ -23,10 +23,6 @@
                 <h3>User Management</h3>
                 </a>
 
-                <a href="#">
-                <span class="material-icons-sharp">person</span>
-                <h3>Profile</h3>
-                </a>
 
                 <a href="Register Account TAB.php">
                 <span class="material-icons-sharp">how_to_reg</span>
