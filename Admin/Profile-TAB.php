@@ -90,4 +90,3 @@ if(isset($_POST['update_image'])){
 
 </body>
 </html>
-<!--merge -->

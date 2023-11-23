@@ -14,5 +14,4 @@ function closeModal(modal) {
       event.target.style.display = 'none';
     }
   }
-  /*merge*/
   

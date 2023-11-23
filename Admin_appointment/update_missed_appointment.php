@@ -26,4 +26,3 @@ echo $vaccine_name;
 
 
 ?>
-<!--merge -->

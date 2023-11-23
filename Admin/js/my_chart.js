@@ -57,4 +57,3 @@ var myChart = new Chart(administered, {
         responsive: true,
     }
 });
-/*merge*/

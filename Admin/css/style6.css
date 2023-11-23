@@ -47,13 +47,14 @@
 /*========================== MODAL ======================*/
 .modal {
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    margin-left: 66px;
 }
 
 /*========================== VACCINE INVENTORY PAGE ======================*/
@@ -161,19 +162,18 @@ table {
     margin-top: 20px;
 }
 
-.editModal2-content form .user-details {
+.editModal2-content .user-details {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; 
 }
 
-form .user-details .input-box {
+ .user-details .input-box {
     width: 100%;
     max-width: 294px;
     margin: 20px auto; 
 }
-
-form .user-details .date {
+.user-details .date {
     width: 100%;
     max-width: 294px;
     margin: 20px auto; 
@@ -189,7 +189,7 @@ form .user-details .date {
     color: #8860D0;
 }
 
-.user-details .input-box input {
+.user-details .input-box input,.user-details .input-box select {
     width: 100%;
     height: 80%;
     background: transparent;
@@ -203,7 +203,7 @@ form .user-details .date {
     transition: color 0.3s, border-color 0.3s;
 }
 
-.user-details .date input {
+.user-details .date input,.user-details .input-box select {
     width: 100%;
     height: 80%;
     background: transparent;
@@ -218,20 +218,20 @@ form .user-details .date {
     cursor: pointer;
 }
 
-.user-details .input-box input::placeholder {
+.user-details .input-box input::placeholder, select::placeholder {
     color: #8860D0;
 }
 
-.user-details .date input::placeholder {
+.user-details .date input::placeholder, select::placeholder {
     color: #8860D0;
 }
 
-.user-details .input-box input:focus {
+.user-details .input-box input:focus, select:focus {
     color: #84CEEB;
     border-color: #84CEEB; 
 }
 
-.user-details .date input:focus {
+.user-details .date input:focus, select:focus {
     color: #84CEEB;
     border-color: #84CEEB; 
 }
@@ -462,7 +462,7 @@ table {
     margin-top: 20px;
 }
 
-.editModal3-content form .user-details {
+.editModal3-content .user-details {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; 
@@ -514,6 +514,203 @@ table {
     background: linear-gradient(transparent, #5AB9EA);
 }
 
+/*========================== NOTIFICATION ======================*/
+.Notif-table {
+    width: 100%;
+    padding: 50px 30px;
+    margin-left: 50px;
+}
+
+.NotifTable_section {
+    height: 480px;
+    overflow: auto;
+}
+
+.Notif-table table {
+    width: 100%;
+    table-layout: fixed;
+    max-width: 940px;
+    min-width: 800px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+}
+
+.Notif-table a {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 6px;
+    color: #ffffff;
+    transition: .3s ease;
+}
+
+.Notif-table td button {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 8px 9px;
+    color: #ffffff;
+    transition: .3s ease;
+}
+
+.Notif-table td a:nth-child(1) {
+    background-color: #5AB9EA;
+}
+
+.Notif-table td button:nth-child(2) {
+    background-color: #f50b0b;
+}
+
+.Notif-table td a:hover {
+    background-color: #C1C8E4;
+    transition: .3s ease;
+}
+
+.Notif-table td button:hover {
+    background-color: #C1C8E4;
+    transition: .3s ease;
+}
+
+.Notif-table .btn:hover {
+    background: #8860D0;
+    cursor: pointer;
+}
+
+.NotifTable_section thead th {
+    position: sticky;
+    top: 0;
+    background-color: #5680E9;
+    color: #ffffff;
+    font-size: 14px;
+    border: none;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+}
+
+.NotifTable_section thead th:nth-child(1) {
+    border-radius: 10px 0 0 0;
+}
+
+.NotifTable_section thead th:nth-child(2) {
+    border-radius: 0 10px 0 0;
+}
+
+th, td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 5px;
+    word-break: break-all;
+    text-align: center;
+}
+
+.Notif-table thead th:nth-child(1),
+.Notif-table tbody td:nth-child(1) {
+    width: 100%;
+}
+
+.Notif-table thead th:nth-child(2),
+.Notif-table tbody td:nth-child(2) {
+    width: 18%;
+}
+
+.Notif-table tbody td:nth-child(1) {
+    text-align: left; 
+    display: flex;
+    align-items: center;
+}
+
+tr:hover {
+    color: #5AB9EA;
+    cursor: pointer;
+    background-color: #F6F9FC;
+}
+
+tr:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.notification-text strong {
+    font-weight: bold;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.NotiftrashModal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    width: 450px;
+    padding: 43px 69px 31px 69px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+    border-radius: 20px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+}
+
+.NotiftrashModal-content h2 {
+    color: #8860D0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.NotiftrashModal-content button {
+    width: 100px;
+    border-radius: 50px;
+    border: none;
+    color: #ffffff;
+    background: #8860D0;
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.NotiftrashModal-content button:hover {
+    background: #5AB9EA;
+    transition: .3s ease;
+}
+
+.Notif-table .add-button {
+    text-align: right;
+}
+
+.Notif-table .add-button button {
+    width: 100px;
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+    background: #8860D0;
+    padding: 8px 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.Notif-table .add-button button:hover {
+    background: #5AB9EA;
+    transition: .3s ease;
+}
+
+.NotifTable_section img {
+    width: 196px; 
+    height: auto;
+}
+
 /*========================== RESPONSIVENESS ======================*/
 @media screen and (max-width: 2560px) {
   .dashboard img{
@@ -526,4 +723,4 @@ table {
     
     
 }
-} /*merge*/
+}

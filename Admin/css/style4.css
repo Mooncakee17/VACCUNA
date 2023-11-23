@@ -16,6 +16,10 @@
     position: fixed;
     height: 100%;
 }
+.dash-container{
+    position: fixed;
+    height: 100%;
+}
 
 .dashboard {
     position: relative;
@@ -166,4 +170,4 @@
     width: 110%;
   }
 
-} /*merge*/
+}

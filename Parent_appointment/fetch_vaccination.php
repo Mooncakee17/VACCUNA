@@ -64,7 +64,7 @@ if($dosage_status == 0){
 	    END AS hepa1_recommended                            
 	FROM childtable a  
 		LEFT JOIN child_vaccine_status b ON b.cid = a.cid
-		LEFT JOIN vaccineinventory c ON c.vac_name = b.vac_name
+		LEFT JOIN vaccineinventory c ON c.vac_name = b.vac_name AND c.active = 1
 		WHERE a.cid = $cid_session AND (b.status != 2 OR  b.status != 1)") or die('query faile7d');
 	$recommended = mysqli_fetch_all($recommended_date, MYSQLI_ASSOC);
 	foreach($recommended as $value){
@@ -119,7 +119,7 @@ if($dosage_status == 0){
 //compare by appointment date
 $nd_dose = mysqli_query($conn, "SELECT DISTINCT a.appt_date, b.dosage_status, c.vac_name FROM appointmenttable a
 		LEFT JOIN child_vaccine_status b ON b.cid = a.cid
-		LEFT JOIN vaccineinventory c ON c.vacid = a.vacid
+		LEFT JOIN vaccineinventory c ON c.vacid = a.vacid AND c.active = 1
 		WHERE a.cid = $cid_session AND dosage_status = 1") or die('query fail6ed');
 $nd_dose_data = mysqli_fetch_all($nd_dose, MYSQLI_ASSOC);
 foreach($nd_dose_data as $value){
@@ -224,7 +224,7 @@ if($dosage_status == 1){
 //compare by appointment date
 $rd_dose = mysqli_query($conn, "SELECT DISTINCT a.appt_date, b.dosage_status, c.vac_name FROM appointmenttable a
 		LEFT JOIN child_vaccine_status b ON b.cid = a.cid
-		LEFT JOIN vaccineinventory c ON c.vacid = a.vacid
+		LEFT JOIN vaccineinventory c ON c.vacid = a.vacid AND c.active = 1
 		WHERE a.cid = $cid_session AND dosage_status = 2") or die('query faile4d');
 $rd_dose_data = mysqli_fetch_all($rd_dose, MYSQLI_ASSOC);
 foreach($rd_dose_data as $value){
@@ -341,9 +341,9 @@ if($dosage_status == 2){
 	FROM
 	    childtable a
 	LEFT JOIN child_vaccine_status b ON a.cid = b.cid
-	LEFT JOIN vaccineinventory c ON b.vac_name = c.vac_name
+	LEFT JOIN vaccineinventory c ON b.vac_name = c.vac_name AND c.active = 1
 	WHERE
-	     a.cid = $cid_session 
+	     a.cid = $cid_session AND c.active = 1
 	     ORDER BY 
 		    CASE
 		        WHEN b.status = 1 THEN 1
@@ -385,4 +385,3 @@ foreach($child_info as $info){
 	$email = $info['user_email'];
 }
 ?>
-<!--merge -->

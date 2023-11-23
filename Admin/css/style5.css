@@ -109,6 +109,7 @@
     color: #c6c6c6;
 }
 
+
 /*========================== CHARTS DASHBOARD ======================*/
 .graphbox {
     margin-left: 55px;
@@ -139,11 +140,14 @@
     width: 100%;
     padding: 50px 30px;
     margin-left: 50px;
+   
 }
 
 .table2_section {
     height: 370px;
     width: 100%;
+
+   
 }
 
 table {
@@ -416,8 +420,9 @@ form .user-details .date {
 
 
 .table3_section {
-    height: 370px;
+    height: 495px;
     width: 100%;
+    overflow-x: scroll;
 }
 
 table {
@@ -694,10 +699,10 @@ table {
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    margin: 2% auto;
     margin-left: 90px;
-    padding: 1em;
-    width: 950px;
+    margin-top: 10px;
+    padding: 2em;
+    width: 900px;
     border: none;
     border-radius: 10px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
@@ -726,13 +731,19 @@ table {
     padding-top: 15px;
     padding-left: 10px;
     font-size: 30px;
-    margin: 0;
+    padding-right: 200px;
+    margin-right: 100px;
+  
+    
 }
 
 .ReportDetails-content .header img {
-    width: 121px; /* Adjust the width of the image as needed */
+    margin-top: 10px;
+    width: 140px; /* Adjust the width of the image as needed */
     height: auto; /* Maintain the aspect ratio */
-    margin-left: 430px; /* Add some space between the image and the text */
+    margin-left: 1100px; /* Add some space between the image and the text */
+   margin-bottom: 10px;
+    position:absolute;
 }
 
 .ReportDetails-content .title h2 {
@@ -750,7 +761,7 @@ table {
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
-    font-size: 14px;
+    font-size: 17px;
     text-align: justify;
     color: black;
 }
@@ -771,6 +782,7 @@ table {
     border-radius: 10px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
     margin-bottom: -60px;
+    margin-left: 5px;
 }
 
 .ReportDetails-content .modal-table_section thead th {
@@ -819,7 +831,8 @@ table {
 
 #editButton, #saveButton, #editVaccineButton, #saveVaccineButton {
     padding: 5px 10px;
-    margin-left: 800px;
+    margin-left: 1100px;
+    width: 10%;
     font-size: 16px;
     background-color: #8860D0;
     color: #fff;
@@ -840,7 +853,29 @@ table {
     background-color: #8860D0;
 }
 
+.editable-info input{
+    text-align: right;
+    font-size: 17px;
+    border-bottom: 1px solid #000; 
+    width: 100px;
+}
 
+.editable-info select{
+    
+    font-size: 17px;
+    border-bottom: 1px solid #000; 
+    width: 100px;
+}
+/* Main cause
+.box{
+    text-align: left;
+    font-size: 35px;
+    border-bottom: 1px solid #000; 
+    margin-left: 10px;
+    width: 110px;
+   
+}
+/*
 
 /*========================== RESPONSIVENESS ======================*/
 @media screen and (max-width: 2560px) {
@@ -855,7 +890,64 @@ table {
     margin: 0 10px 0 20px;
     
     
+    
 }
- 
+.ReportDetails-content .modal-table table  {
+    max-width: 2000px;
+    font-size: 15px;
+    margin-top: 0;
+    
+    
+    
+}
+.ReportDetails-content{
+    width: 95%;
+}
   
-} /*merge*/
+} 
+
+@media screen and (width: 1600px) {
+    .dashboard img{
+      width: 110%;
+      
+      padding-left: 90px;
+    }
+    table {
+      max-width: 2000px;
+      font-size: 15px;
+      margin: 0 10px 0 20px;
+      
+      
+      
+  }
+  .ReportDetails-content .modal-table table  {
+      max-width: 2000px;
+      font-size: 15px;
+      margin-top: 0;
+      
+      
+      
+  }
+  .ReportDetails-content{
+      width: 95%;
+  }
+  .ReportDetails-content .header img {
+    margin-top: 10px;
+    width: 140px; /* Adjust the width of the image as needed */
+    height: auto; /* Maintain the aspect ratio */
+    margin-left: 1000px; /* Add some space between the image and the text */
+   margin-bottom: 10px;
+    position:absolute;
+}
+#editButton, #saveButton, #editVaccineButton, #saveVaccineButton {
+    padding: 5px 10px;
+    margin-left: 1000px;
+    width: 10%;
+    font-size: 16px;
+    background-color: #8860D0;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+  } 

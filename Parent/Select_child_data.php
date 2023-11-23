@@ -77,22 +77,17 @@ include('../Parent_appointment/fetch_business_days.php');
                       </div>
                       <div class="info-block">
                         <p><span class="label">Middle name: </span> <?php echo $child_mname; ?></p>
-                      </div> </div>
-                      <div class="info-line">
+                      </div>
                       <div class="info-block">
                         <p><span class="label">Age: </span> <?php echo $child_age; ?></p>
                       </div>
                       <div class="info-block">
                         <p><span class="label">Birth Date: </span> <?php echo $birthdate; ?></p>
                       </div>
-                      <div class="info-block">
-                        <p><span class="label">Gender: </span> <?php echo "wala sa db"; ?></p>
-                      </div>
-                      
                     </div>
 
                     <div class="center-container">
-                            <button class="button open-button" id="more_details-<?php echo $cid; ?>">View Child's Data</button>
+                            <button class="button open-button" id="more_details">View Child's Data</button>
                     </div>
             </div>
                     <!--Table Data Start-->
@@ -139,7 +134,7 @@ include('../Parent_appointment/fetch_business_days.php');
                                                     <text></text>
                                                     <?php } ?>
 
-                                                    <?php if($value['status'] == 1 || $value['status'] == 2 ){?>
+                                                    <?php if($value['dosage_status'] == 1){?>
                                                     <i class='fa fa-check fs-3 text-success'></i>
                                                     <?php } ?>   
 
@@ -196,10 +191,6 @@ include('../Parent_appointment/fetch_business_days.php');
                                                                         Email
                                                                         <input type="text" id="email" class="form-control" value="<?php echo $email; ?>" readonly> 
                                                                     </div>
-                                                                    <div class="col-lg-6">
-                                                                        Gender
-                                                                        <input type="text" id="gender" class="form-control" value="<?php echo $gender; ?>" readonly> 
-                                                                    </div>
                                                                 </div> 
 
 
@@ -220,32 +211,18 @@ include('../Parent_appointment/fetch_business_days.php');
                                                                         Appointment Time
                                                                         <input type="time" id="appointment_time" class="form-control" >
                                                                     </div>
-                                                                    <div class="col-lg-6">
+                                                                    <div class="col-lg-6" id="vaccine_list">
                                                                         Vaccine Name
                                                                          <input type="text" id="vaccine_administer" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
-
-
-                                                                    
-                                                          <!--       <div class="row mt-3">
-                                                                    <div class="col-lg-12">
-                                                                        <select id="dosereason" class="form-select">
-                                                                            <option value="-1" disabled>-- Select Reason for appointment --</option>
-                                                                            <option value="1" >For Vaccination</option>
-                                                                            <option value="2" >For Consultation</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                    -->
+                                                            
                                                                  <div class="row mt-3">
                                                                     <div class="col-lg-12">
                                                                         <input type="hidden" id="dose" class="form-control">
                                                                          <input type="text" id="dose_display" class="form-control" readonly>
                                                                     </div>
                                                                 </div>
-
-
 
 
                                                                 <div class="row mt-5">
@@ -271,6 +248,7 @@ include('../Parent_appointment/fetch_business_days.php');
                                                     </div>
                                                 </div>
                                             </div>
+                                           
                                             <!--End Appointment-->
                                             <!-- Inside your existing JavaScript code -->
                                         <script>
@@ -348,11 +326,8 @@ include('../Parent_appointment/fetch_business_days.php');
                                         <?php } ?>   
                                         </tbody>                                
                                     </table>                                    
-                             
+                                    
                             <!--End table-->   
-                            <!--More Details-->
-                            <?php include('../include/more_child_info.php'); ?>
-                            <!--More Details End-->
                         </div>
                         <div class="col-lg-2"></div>
                     </div>
@@ -361,7 +336,7 @@ include('../Parent_appointment/fetch_business_days.php');
             </div>
             </div>           
         </main>
-        
+       
         <!--------------------------------END OF MAIN-------------------------------->
         <div class="right">
             <div class="top">
@@ -376,18 +351,12 @@ include('../Parent_appointment/fetch_business_days.php');
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Get the element by its ID
-        var more_detail_btn = document.getElementById("more_details-<?php echo $cid; ?>");
+        var more_detail_btn = document.getElementById("more_details");
         var more_details_container = document.getElementById("more_details_container");
         var cid_hidden = document.getElementById("cid-hidden");
         var close = document.getElementById("close");
         more_detail_btn.onclick = function() {
-            // Extract the value from the element's ID
-            var id = more_detail_btn.id; 
-            var cid = id.split('-')[1];
-            //Set the hiddenid of child to textbox will use for where statement in fetching data
-            cid_hidden.value = cid;
-            //display block the container
-            more_details_container.style.display = "block";
+            window.location.href="../Parent/parent_more_info.php?id=<?= $cid; ?>"
         };
 
 
@@ -419,7 +388,7 @@ include('../Parent_appointment/fetch_business_days.php');
         });
     });
 
-
+ 
     </script>
     <script src="./js/index.js"></script>
   

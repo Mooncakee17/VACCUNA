@@ -24,4 +24,3 @@ foreach ($on_change_select_child as $info) {
 header('Content-Type: application/json');
 echo json_encode($response);
 ?>
-<!--merge -->

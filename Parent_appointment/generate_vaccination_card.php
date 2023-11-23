@@ -60,4 +60,3 @@ $pdf->Ln();
 $pdf->Output('D','filename.pdf',true);
 //$pdf->Output();
 ?>
-<!--merge -->
