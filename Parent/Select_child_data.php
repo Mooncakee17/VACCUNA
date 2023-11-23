@@ -97,7 +97,7 @@ include('../Parent_appointment/fetch_business_days.php');
                         
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <form action="../Parent_appointment/generate_vaccination_card.php" method="POST"  target="_blank">
+                                            <form action="../Parent_appointment/Vaccination-card.php" method="POST"  target="_blank">
                                             <input type="hidden" name="cid_pdf" id="cid_pdf" value="<?php echo $cid; ?>"/>
                                             <button type="submit" style="margin-bottom: 15px;" class="btn btn-md btn-primary" >Generate Vaccination Card</button>
                                             </form>
