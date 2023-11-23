@@ -36,7 +36,7 @@ if(isset($_GET['id'])){
                
             </div>
             </div>
-        
+           
            <div id="Report-Details">
               <div class="ReportDetails-content">
                     <div class="header">

@@ -240,8 +240,8 @@ include('../Admin_appointment/vaccine_details.php'); ?>
 
 
                                                                 <div class="row mt-3">
-                                                                    <div class="col-lg-12">
-                                                                         <input type="text" id="doctor" class="form-control" readonly>
+                                                                    <div class="col-lg-12" id="doctor" >  
+                                                               
                                                                     </div>
                                                                 </div>
 
@@ -335,7 +335,7 @@ include('../Admin_appointment/vaccine_details.php'); ?>
                                                             $("#vaccine_administer").val(response.vac_name);
                                                             $("#dosage").val(response.dose);
                                                             $("#dose").val(response.dose);
-                                                            $("#doctor").val(response.doctor);
+                                                            $("#doctor").html(response.doctor);
                                                             $("#for_reason").val(response.for_reason);
                                                             if(response.for_reason == "Consultation"){
                                                                 $("#vaccine_name").css("display","none");
