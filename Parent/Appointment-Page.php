@@ -19,9 +19,12 @@ rel="stylesheet">
 <body>
     <div class="dash-container">
 
-        <!--------------------------------Start OF SIDE BAR-------------------------------->
-         <?php include('../include/sidebar.php'); ?>
+        <div  class="dash-container1">
+             <!--------------------------------Start OF SIDE BAR-------------------------------->
+         <?php include('../templates/Select-Child-Dash.php'); ?>
          <!--------------------------------END OF SIDE BAR-------------------------------->
+        </div>
+       
          <main>
             <div class="appt-board">
                 <img src="./images/Appointment.png">

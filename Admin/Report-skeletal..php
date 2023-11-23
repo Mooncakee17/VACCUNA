@@ -27,69 +27,56 @@ include('../Admin_appointment/vaccine_details.php');
             </div>
             </div>
             <div class="search">
-                    <input  type="text" name="search" id="search_data" value="" placeholder="Search ">
-                    <button type="button" id="search_button"><i class="fa fa-search"></i></button>
-                    <button onclick="location.reload()" style="">Refresh</button>  
-            </div>
-            <div class="table3">
-            
-            <div class="table3_section">
-                <table id="data_table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>CHILD NAME</th>
-                            <th>VACCINE NAME</th>
-                            <th>STATUS</th>
-                            <th>DATE</th>
-                            <th>ADMINISTRATOR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                          include '../Homepage/config.php';
-                          $select = mysqli_query($conn, "SELECT * FROM appointmenttable a
-                            LEFT JOIN vaccineinventory b ON a.vacid = b.vacid  ORDER BY appointment_status ASC") or die('query failed');
-                          //$record_run = mysqli_fetch_all($select, MYSQLI_ASSOC);
-                   
-                          if(mysqli_num_rows($select) > 0 ){
-                          foreach($select as $row){
-                            
-                              ?>
-                          
-                          <tr>
-                          <td><?= $row['cid']; ?></td>
-                          <td><?= $row['child_name']; ?></td>
-                          <td><?= $row['vac_name']; ?></td>
-                          <td><?= $row['appointment_status']; ?></td>
-                          <td><?= $row['appt_date']; ?></td>
-                          <td><?= $row['vaccine_administer']; ?></td>
-                          <td>
-                              <a href="Report-Details.php?id=<?= $row['cid']; ?>"><i class="fas fa-eye"></i></a>
-                          </td>
-                      </tr>
-                              <?php
-                          }
-                          }
-                          else {
-                              // Display a message when no records are found
-                              ?>
-                              <tr>
-                                  <td colspan="6"> <!-- colspan should match the number of columns in your table -->
-                                      <div>No Record Found</div>
-                                  </td>
-                              </tr>
-                              <?php
-                          }
-                          ?>
-                  </tbody>
-              </table>
-          </div>
-      </div>
-         
-                  
-      </div>
-</div> 
+            <form method="GET" action="Report.php">
+                    <label for="vaccine_name">Select Vaccine Name:</label>
+                    <select name="vaccine_name" id="vaccine_name">
+                        <option value="">All</option>
+                        <option value="BCG">BCG</option>
+                        <option value="HepB">HepB</option>
+                        <option value="DTap">DTap</option>
+                        <option value="HiB">HiB</option>
+                        <option value="IPV">IPV</option>
+                        <option value="PCV">PCV</option>
+                            <option value="Rota">Rotavirus</option>
+                    <option value="Influenza">Influenza</option>
+                    <option value="MMR">MMR</option>
+                <option value="HepA">HepA</option>
+                    </select>
+
+                <label for="status">Select Status:</label>
+                <select name="status" id="status">
+                    <option value="">All</option>
+                    <option value="1">For Approval</option>
+                    <option value="2">Completed</option>
+                    <option value="3">Missed</option>
+                    <option value="4">Consultation</option>
+                    <option value="5">Walk-In</option>
+                    <!-- Add other status options here -->
+                </select>
+
+            <input type="submit" value="Filter">
+                </form>
+                </div>
+
+                <div class="table3">
+                    <div class="table3_section">
+                        <table id="data_table">
+                            <!-- Table Header -->
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>CHILD NAME</th>
+                                    <th>VACCINE NAME</th>
+                                    <th>STATUS</th>
+                                    <th>DATE</th>
+                                    <th>ADMINISTRATOR</th>
+                                </tr>
+                            </thead>
+                           
+                        </table>
+                    </div>
+                </div>
+
 
 <script>
     // Event delegation for dynamically added element
