@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vaccuna</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/index1.css">
+
     <link rel="stylesheet" type="text/css" href="../assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Poppins&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 </head>
 <body>
 <section>
@@ -50,7 +51,7 @@
      <div class="column1">
         <h1>Safeguard Your Children's Health with VACCUNA</h1>
         <p>Have questions regarding vaccine? Try our chatbot! </p>
-        <button>CHATBOT VACS</button>
+        <a href="ChatBot-Vacs.php"><button>CHATBOT VACS</button></a>
      </div>
         <div class="column2">
             <img src="../assets/images/vacs.png" >
@@ -113,26 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="contactForm">
-                <form>
-                    <h2>Send Message</h2>
-                    <div class="inputBox">
-                        <input type="text" name="" required="required">
-                        <span>Full Name</span>
-                    </div>
-                    <div class="inputBox">
-                        <input type="text" name="" required="required">
-                        <span>Email</span>
-                    </div>
-                    <div class="inputBox">
-                        <textarea required="required"></textarea>
-                        <span>Type Your Message...</span>
-                    </div>
-                    <div class="inputBox">
-                        <input type="submit" name="" value="Send">
-                    </div>
-                </form>
-            </div>
+            
         </div>
 
    </section>

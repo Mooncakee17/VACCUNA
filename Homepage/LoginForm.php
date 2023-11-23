@@ -19,11 +19,15 @@ if(isset($_POST['submit'])){
 
         $_SESSION['user_id'] = $row['userid'];
         header('location: ../Admin/ADMIN-Dashboard.php');
-
+            
      }elseif($row['usertype'] == 'parent'){
 
         $_SESSION['user_id'] = $row['userid'];
         header('location: ../Parent/Dashboard-PARENT.php');
+      
+      } elseif ($row['usertype'] == 'it') {
+         header('location: ../IT/User Management TAB.php');
+         exit();
 
      }
      // header('location:homeprofile.php');

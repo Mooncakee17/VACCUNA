@@ -18,21 +18,23 @@
             </div>
 
             <div class="sider-bar">
-            <a href="User Management TAB.php" >
-                <span class="material-icons-sharp">manage_accounts</span>
-                <h3>User Management</h3>
+                <a href="../Homepage/Index.php" >
+                <span class="material-icons-sharp">home</span>
+                <h3>Home</h3>
                 </a>
 
-
-                <a href="Register Account TAB.php">
-                <span class="material-icons-sharp">how_to_reg</span>
-                <h3>Register Account</h3>
+                <a href="../Homepage/LoginForm.php">
+                <span class="material-icons-sharp">login</span>
+                <h3>Login</h3>
                 </a>
 
-                <a href="../Homepage/Index.php? echo $user_id; ?>" type="button" name="logout" value ="logout" class="material-icons-sharp">logout
+                <a href="../Homepage/SignUp.php">
+                <span class="material-icons-sharp">person_add</span>
+                <h3>Sign Up</h3>
                 </a>
-                
-                
+
+                <a href="#" type="button" name="logout" value ="logout" class="#">
+                </a>
             </div>
         </aside>
          <!--------------------------------END OF SIDE BAR-------------------------------->
