@@ -408,9 +408,7 @@ form .btn:hover {
 
 .appt-board img {
     padding: 8px 85px;
-    width: 1500px;
-    
-    
+    width: 1500px; 
 }
 
 .appt-board-text {
@@ -427,6 +425,109 @@ form .btn:hover {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.Appt-table {
+    width: 100%;
+    padding: 50px 30px;
+    margin-left: 70px;
+    margin-top: -30px;
+}
+
+.table_section {
+    height: 400px;
+    overflow: auto;
+}
+
+.Appt-table table {
+    width: 100%;
+    table-layout: fixed;
+    max-width: 1000px;
+    min-width: 900px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+    
+}
+
+.Appt-table button {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 6px;
+    color: #ffffff;
+    transition: .3s ease;
+}
+
+td button:nth-child(1) {
+    background-color: #8860D0;
+}
+
+td button:nth-child(2) {
+    background-color: #f50b0b;
+}
+
+td button:hover {
+    background-color: #C1C8E4;
+    transition: .3s ease;
+}
+
+.table .btn:hover {
+    background: #8860D0;
+    cursor: pointer;
+}
+
+.ApptTable_section thead th {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    background-color: #5AB9EA;
+    color: #ffffff;
+    font-size: 14px;
+    border: none;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
+}
+
+.ApptTable_section thead th:nth-child(1) {
+    border-radius: 10px 0 0 0;
+}
+
+.ApptTable_section thead th:nth-child(7) {
+    border-radius: 0 10px 0 0;
+}
+
+th, td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 5px;
+    word-break: break-all;
+    text-align: center;
+}
+
+tr:hover td {
+    color: #5AB9EA;
+    cursor: pointer;
+    background-color: #F6F9FC;
+}
+
+.SetAppt-Button {
+    margin-top: 15px;
+    margin-left: 100px;
+}
+
+.SetAppt-Button button {
+    padding: 10px;
+    background-color: #8860D0;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.SetAppt-Button button:hover {
+    background-color: #7939EC;
 }
 
 /*========================== CHILD DATA ======================*/
