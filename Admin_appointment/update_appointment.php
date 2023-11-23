@@ -10,11 +10,12 @@ $vacid = $_POST['vacid'];
 $vaccine_name = $_POST['vaccine_administer'];
 $doctor = $_POST['doctor']; 
 $for_reason = $_POST['for_reason']; 
-
+$status_desc = "Completed / Done / Vaccinated";
+$status_desc1 = "For Consultation / For Visit";
 
 
 if($for_reason == "Consultation"){
-	$sql = "UPDATE appointmenttable SET appointment_status = 4, vaccine_administer = '$doctor' WHERE appt_id = '$appt_id'";
+	$sql = "UPDATE appointmenttable SET appointment_status = 4, vaccine_administer = '$doctor', status_desc = '$status_desc1' WHERE appt_id = '$appt_id'";
 	//After updating the inventory update the appointment status = 0 
 	if(mysqli_query($conn, $sql)){
 		//Success
@@ -48,7 +49,7 @@ else{
 	if(mysqli_query($conn, $sql)){
 		$sql = "UPDATE child_vaccine_status SET status = 2 WHERE vac_name = '$vaccine_name' AND cid = '$cid'";
 		if(mysqli_query($conn, $sql)){
-			$sql = "UPDATE appointmenttable SET appointment_status = 2 , vaccine_administer = '$doctor' WHERE appt_id = '$appt_id'";
+			$sql = "UPDATE appointmenttable SET appointment_status = 2 , vaccine_administer = '$doctor' , status_desc = '$status_desc' WHERE appt_id = '$appt_id'";
 			mysqli_query($conn, $sql);
 			$result = 'success';
 		}
