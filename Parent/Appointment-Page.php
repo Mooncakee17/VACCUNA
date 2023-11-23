@@ -29,40 +29,26 @@ rel="stylesheet">
                 <h1>APPOINTMENT</h1>
             </div>
 
-            <div class="container border-0 px-5">
-                <div class="card border-0">                                 
-                    <!--Table Data Start-->
-                    <div class="row mt-5">
-                        <div class="col-lg-12">
-                            <!--Start table-->
-                                <div class="table-responsive">
-                                     <table class="table table-bordered border-3 ps-5" id="main_table_list">
-                                        <thead class="p-3 fs-7 text-center text-white text-uppercase">
+            <!--Button For Setting up an appointment-->
+            <div class="SetAppt-Button">
+                <button type="button" id="open_appointment_form">Set Appointment</button>
+            </div>
+
+            <div class="Appt-table">
+                <div class="ApptTable_section">
+                                     <table>
+                                        <thead>
                                             <tr>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>id</text>
-                                                </th>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>child name</text>
-                                                </th>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>parent/guardian</text>
-                                                </th>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>contact number</text>
-                                                </th>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>date</text>
-                                                </th>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>time</text>
-                                                </th>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <text>action</text>
-                                                </th>
+                                                <th>ID</th>
+                                                <th>CHILD NAME</th>
+                                                <th>PARENT/GUARDIAN</th>
+                                                <th>CONTACT NUMBER</th>
+                                                <th>DATE</th>
+                                                <th>TIME</th>
+                                                <th>ACTION</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="p-3 fs-7 text-white text-center">
+                                        <tbody>
                                             <?php 
                                                 foreach($appointmenttable as $info){
                                                     $appt_id = $info['appt_id'];
@@ -79,37 +65,29 @@ rel="stylesheet">
                                                     $email = $info['email'];                                                   
                                             ?>            
                                              <tr>
-                                                <td scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
+                                                <td>
                                                     <text><?php echo $appt_id; ?></text>
                                                 </td>
-                                                <td scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
+                                                <td>
                                                     <text><?php echo $child_name; ?></text>
                                                 </td>
-                                                <td scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
+                                                <td>
                                                     <text><?php echo $guardian_name; ?></text>
                                                 </td>
-                                                <td scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
+                                                <td>
                                                     <text><?php echo $contact_number; ?></text>
                                                 </td>
-                                                <td scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
+                                                <td>
                                                     <text><?php echo $appt_date; ?></text>
                                                 </td>
-                                                <td scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
+                                                <td>
                                                     <text><?php echo $appt_time; ?></text>
                                                 </td>
-                                                <td scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <a id="delete_record-<?php echo $appt_id; ?>"  style="cursor:pointer;">
-                                                                <i class='fa fa-times fs-3 text-danger'></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                             <a id="update_record-<?php echo $appt_id; ?>"  style="cursor:pointer;">
-                                                                 <i class='fa fa-edit fs-3 text-primary'></i>
-                                                             </a>
-                                                        </div>
-                                                    </div>
+                                                <td>
+                                                    <button id="update_record-<?php echo $appt_id; ?>">
+                                                                 <i class='fa fa-edit'></i></button>
+                                                    <button id="delete_record-<?php echo $appt_id; ?>">
+                                                                <i class='fa fa-trash'></i></button>
                                                 </td>
                                             </tr>
 
@@ -340,17 +318,7 @@ rel="stylesheet">
                                     </table> 
                                 </div> 
                             <!--End table-->  
-                                <!--Button For Setting up an appointment-->
-                                <div class="row mt-3">
-                                    <div class="col-lg-5"></div>
-                                    <div class="col-lg-6 text-end">
-                                        <button type="button" id="open_appointment_form" class="btn btn-primary btn-lg rounded-4 ps-2 pe-2">
-                                            Set Appointment
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-1"></div>
-                                </div>
-
+                                
 
                         </div>
                     </div>
