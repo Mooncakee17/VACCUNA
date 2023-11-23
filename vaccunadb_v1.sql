@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2023 at 03:37 PM
+-- Generation Time: Nov 23, 2023 at 09:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -42,56 +42,60 @@ CREATE TABLE `appointmenttable` (
   `email` varchar(50) NOT NULL,
   `appointment_status` int(11) DEFAULT 0,
   `vaccine_administer` varchar(100) DEFAULT NULL,
-  `for_reason` varchar(50) DEFAULT NULL
+  `for_reason` varchar(50) DEFAULT NULL,
+  `status_desc` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointmenttable`
 --
 
-INSERT INTO `appointmenttable` (`appt_id`, `userid`, `cid`, `vacid`, `appt_time`, `appt_date`, `dose`, `child_name`, `guardian_name`, `contact_number`, `age`, `email`, `appointment_status`, `vaccine_administer`, `for_reason`) VALUES
-(92, 35, 14, 5, '23:03:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(93, 35, 14, 1, '23:03:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(94, 35, 24, 1, '22:08:00', '2023-11-23', 1, 'New name lastname New name', 'Father', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(95, 35, 14, 12, '23:06:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(96, 35, 14, 7, '23:06:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(97, 35, 16, 7, '00:18:00', '2023-11-23', 1, 'final na test final na test', 'final na test', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(98, 35, 16, 14, '00:20:00', '2023-11-23', 1, 'final na test final na test', 'final na test', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(99, 35, 89, 1, NULL, '2023-11-08', 1, 'Sawndass 23123123 Music', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination'),
-(100, 35, 95, 1, NULL, '2023-11-02', 1, 'tower doom of', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination'),
-(101, 35, 95, 16, NULL, '2023-11-08', 1, 'tower doom of', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination'),
-(102, 35, 97, 1, NULL, '2023-11-10', 1, 'weqwe123 weqwe123 weqwe123', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination'),
-(103, 35, 102, 1, NULL, '2023-11-02', 1, 'wqewq qweqwe eqwe', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination'),
-(104, 35, 96, 1, '05:43:00', '2023-11-25', 1, 'huling sandali', 'eqweqwe', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(105, 35, 14, 9, '04:46:00', '2023-11-23', 1, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(107, 35, 87, 1, '17:54:00', '2023-11-23', 1, 'dfd fdgd', 'fgf', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(108, 35, 14, 14, '08:03:00', '2023-11-23', 1, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(113, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(114, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(115, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(116, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(117, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(118, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(119, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(120, 35, 32, 14, '06:36:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination'),
-(121, 35, 12, 0, '06:37:00', '2023-11-23', 0, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 4, 'JABAR', 'Consultation'),
-(122, 35, 12, 7, '06:39:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination'),
-(123, 35, 12, 9, '06:40:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination'),
-(124, 35, 20, 0, '06:52:00', '2023-11-23', 0, 'input lastname', 'fathersname', '09987414131', '0', 'jw@gmail.com', 4, 'harry styles', 'Consultation'),
-(128, 0, 0, 1, NULL, '2023-11-18', 1, 'sad', 'ewqeqwe', '213123', '12', 'jjsanchez1829@gmail.com', 5, NULL, 'Vaccination'),
-(129, 0, 0, 7, NULL, '2023-11-18', 1, 'Sana', 'Im Nayeon', '098823212', '37', 'jjsanchez1829@gmail.com', 5, NULL, 'Vaccination'),
-(130, 0, 0, 0, NULL, '2023-11-18', 0, '3123123123', 'ewqeqwe2312', '23123', '2131', '22313', 5, NULL, 'Consultation'),
-(131, 0, 0, 0, NULL, '2023-11-19', 0, '', 'Masashi Kishimoto', '2321321', 'Ichiro Oda', '', 5, NULL, 'Consultation'),
-(132, 35, 16, 1, '09:46:00', '2023-11-23', 1, 'final na test final na test', 'final na test', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination'),
-(133, 35, 104, 1, '11:40:00', '2023-11-23', 1, 'SKT Faker', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination'),
-(134, 35, 104, 0, '14:19:00', '2023-11-23', 0, 'Faker SKT', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 4, 'harry styles', 'Consultation'),
-(135, 35, 106, 1, NULL, '2023-10-02', 1, 'labisna sa nasaktanako', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, NULL),
-(136, 35, 106, 2, NULL, '2023-10-02', 1, 'labisna sa nasaktanako', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, NULL),
-(137, 35, 105, 0, '18:03:00', '2023-11-23', 0, 'pusong nasasaktan', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'wqewqe', 'Consultation'),
-(138, 35, 105, 1, '18:16:00', '2023-11-23', 1, 'nasasaktan pusong', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'wqewqe', 'Vaccination'),
-(139, 35, 105, 2, '07:25:00', '2023-11-26', 1, 'pusong nasasaktan', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'PM time', 'Vaccination'),
-(140, 35, 3, 1, '18:05:00', '2023-11-23', 1, 'Mori Harris', 'odette samano', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination'),
-(141, 35, 104, 2, '21:46:00', '2023-11-23', 1, 'SKT Faker', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination');
+INSERT INTO `appointmenttable` (`appt_id`, `userid`, `cid`, `vacid`, `appt_time`, `appt_date`, `dose`, `child_name`, `guardian_name`, `contact_number`, `age`, `email`, `appointment_status`, `vaccine_administer`, `for_reason`, `status_desc`) VALUES
+(92, 35, 14, 5, '23:03:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination', ''),
+(93, 35, 14, 1, '23:03:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination', ''),
+(94, 35, 24, 1, '22:08:00', '2023-11-23', 1, 'New name lastname New name', 'Father', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination', ''),
+(95, 35, 14, 12, '23:06:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination', ''),
+(96, 35, 14, 7, '23:06:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(97, 35, 16, 7, '00:18:00', '2023-11-23', 1, 'final na test final na test', 'final na test', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination', ''),
+(98, 35, 16, 14, '00:20:00', '2023-11-23', 1, 'final na test final na test', 'final na test', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination', ''),
+(99, 35, 89, 1, NULL, '2023-11-08', 1, 'Sawndass 23123123 Music', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination', ''),
+(100, 35, 95, 1, NULL, '2023-11-02', 1, 'tower doom of', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination', ''),
+(101, 35, 95, 16, NULL, '2023-11-08', 1, 'tower doom of', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination', ''),
+(102, 35, 97, 1, NULL, '2023-11-10', 1, 'weqwe123 weqwe123 weqwe123', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination', ''),
+(103, 35, 102, 1, NULL, '2023-11-02', 1, 'wqewq qweqwe eqwe', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, 'Vaccination', ''),
+(104, 35, 96, 1, '05:43:00', '2023-11-25', 1, 'huling sandali', 'eqweqwe', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination', ''),
+(105, 35, 14, 9, '04:46:00', '2023-11-23', 1, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination', ''),
+(107, 35, 87, 1, '17:54:00', '2023-11-23', 1, 'dfd fdgd', 'fgf', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination', ''),
+(108, 35, 14, 14, '08:03:00', '2023-11-23', 1, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination', ''),
+(113, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(114, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(115, 35, 32, 9, '18:32:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(116, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(117, 35, 32, 1, '09:34:00', '2023-11-25', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(118, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(119, 35, 32, 7, '06:35:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(120, 35, 32, 14, '06:36:00', '2023-11-23', 1, 'mmm mmm', 'mmm', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', ''),
+(121, 35, 12, 0, '06:37:00', '2023-11-23', 0, 'gdfgdfg dwewqe', 'dasd', '09987414131', '0', 'jw@gmail.com', 4, 'JABAR', 'Consultation', ''),
+(122, 35, 12, 7, '06:39:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination', ''),
+(123, 35, 12, 9, '06:40:00', '2023-11-23', 1, 'dwewqe gdfgdfg', 'dasd', '09987414131', '0', 'jw@gmail.com', 2, 'JABAR', 'Vaccination', ''),
+(124, 35, 20, 0, '06:52:00', '2023-11-23', 0, 'input lastname', 'fathersname', '09987414131', '0', 'jw@gmail.com', 4, 'harry styles', 'Consultation', ''),
+(128, 0, 0, 1, NULL, '2023-11-18', 1, 'sad', 'ewqeqwe', '213123', '12', 'jjsanchez1829@gmail.com', 5, NULL, 'Vaccination', ''),
+(129, 0, 0, 7, NULL, '2023-11-18', 1, 'Sana', 'Im Nayeon', '098823212', '37', 'jjsanchez1829@gmail.com', 5, NULL, 'Vaccination', ''),
+(130, 0, 0, 0, NULL, '2023-11-18', 0, '3123123123', 'ewqeqwe2312', '23123', '2131', '22313', 5, NULL, 'Consultation', ''),
+(131, 0, 0, 0, NULL, '2023-11-19', 0, '', 'Masashi Kishimoto', '2321321', 'Ichiro Oda', '', 5, NULL, 'Consultation', ''),
+(132, 35, 16, 1, '09:46:00', '2023-11-23', 1, 'final na test final na test', 'final na test', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination', ''),
+(133, 35, 104, 1, '11:40:00', '2023-11-23', 1, 'SKT Faker', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 2, 'harry styles', 'Vaccination', ''),
+(134, 35, 104, 0, '14:19:00', '2023-11-23', 0, 'Faker SKT', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 4, 'harry styles', 'Consultation', ''),
+(135, 35, 106, 1, NULL, '2023-10-02', 1, 'labisna sa nasaktanako', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, NULL, ''),
+(136, 35, 106, 2, NULL, '2023-10-02', 1, 'labisna sa nasaktanako', 'John Wilson', '09987414131 ', NULL, 'jw@gmail.com ', 2, NULL, NULL, ''),
+(137, 35, 105, 0, '18:03:00', '2023-11-23', 0, 'pusong nasasaktan', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'wqewqe', 'Consultation', ''),
+(138, 35, 105, 1, '18:16:00', '2023-11-23', 1, 'nasasaktan pusong', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'wqewqe', 'Vaccination', ''),
+(139, 35, 105, 2, '07:25:00', '2023-11-26', 1, 'pusong nasasaktan', 'iyong', '09987414131', '0', 'jw@gmail.com', 2, 'PM time', 'Vaccination', ''),
+(140, 35, 3, 1, '18:05:00', '2023-11-23', 1, 'Mori Harris', 'odette samano', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination', ''),
+(141, 35, 104, 2, '21:46:00', '2023-11-23', 1, 'SKT Faker', 'Lee Sang-Hyeok', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination', ''),
+(142, 35, 106, 14, '16:47:00', '2023-11-25', 1, 'nasaktanako labisna', 'alaala', '09987414131', '0', 'jw@gmail.com', 2, 'Stephen Speaks', 'Vaccination', 'Completed'),
+(143, 35, 106, 9, '16:49:00', '2023-11-25', 1, 'nasaktanako labisna', 'alaala', '09987414131', '0', 'jw@gmail.com', 3, NULL, 'Vaccination', 'Missed'),
+(144, 35, 106, 12, '15:57:00', '2023-11-25', 1, 'nasaktanako labisna', 'alaala', '09987414131', '0', 'jw@gmail.com', 1, NULL, 'Vaccination', 'Waiting For Approval');
 
 -- --------------------------------------------------------
 
@@ -2155,18 +2159,18 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (0, 105, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
 (0, 106, 'BCG', 1, 2, '1st dose', 'BCG vaccine should be given shortly after birth'),
 (0, 106, 'HepB1', 1, 2, '1st dose', 'First vaccine Hepatitis B should be given after birth'),
-(0, 106, 'HepB2', 0, 0, '2nd dose', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
+(0, 106, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
 (0, 106, 'HepB3', 0, 0, 'No', 'Third vaccine Hepatitis B should be given 6 months after the second dose was taken'),
 (0, 106, 'DTaP1', 0, 0, '1st dose', 'First DTaP vaccine should be given 6 weeks after birth'),
 (0, 106, 'DTaP2', 0, 0, 'No', 'Second DTaP vaccine should be given 10 weeks after the first dose was taken'),
 (0, 106, 'HiB1', 0, 0, '1st dose', 'First HiB vaccine should be given 6 weeks after birth'),
 (0, 106, 'HiB2', 0, 0, 'No', 'Second HiB vaccine should be given 10 weeks after the first dose was taken'),
-(0, 106, 'IPV1', 0, 0, '1st dose', 'First IPV vaccine should be given 6 weeks after birth'),
+(0, 106, 'IPV1', 0, 3, '1st dose', 'First IPV vaccine should be given 6 weeks after birth'),
 (0, 106, 'IPV2', 0, 0, 'No', 'Second IPV vaccine should be given 10 weeks after the first dose was taken'),
 (0, 106, 'IPV3', 0, 0, 'No', 'Third IPV vaccine should be 14 weeks after the second dose was taken'),
-(0, 106, 'PCV1', 0, 0, '1st dose', 'First PCV vaccine should be given 6 weeks after birth'),
+(0, 106, 'PCV1', 1, 1, '1st dose', 'First PCV vaccine should be given 6 weeks after birth'),
 (0, 106, 'PCV2', 0, 0, 'No', 'Second PCV vaccine should be given 10 weeks after the first dose was taken'),
-(0, 106, 'Rotavirus1', 0, 0, '1st dose', 'First  Rotavirus vaccine should be given 6 weeks after birth'),
+(0, 106, 'Rotavirus1', 1, 2, '1st dose', 'First  Rotavirus vaccine should be given 6 weeks after birth'),
 (0, 106, 'Rotavirus2', 0, 0, 'No', 'Second Rotavirus vaccine should be given 10 weeks after the first dose was taken'),
 (0, 106, 'MMR', 0, 0, 'No', 'First MMR vaccine should be given 9 months after birth'),
 (0, 106, 'Influenza', 0, 0, 'No', 'First Influenza vaccine should be given 6 months after birth'),
@@ -2177,7 +2181,7 @@ INSERT INTO `child_vaccine_status` (`cvax_status_id`, `cid`, `vac_name`, `dosage
 (0, 106, 'HiB3', 0, 0, 'No', 'Third HiB vaccine should be 14 weeks after the second dose was taken'),
 (0, 106, 'PCV3', 0, 0, 'No', 'Third PCV vaccine should be 14 weeks after the second dose was taken'),
 (0, 106, 'MMR2', 0, 0, 'No', 'Second MMR vaccine should be given 2 years after the first dose was taken'),
-(0, 106, 'Influenza2', 0, 0, '2nd dose', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
+(0, 106, 'Influenza2', 0, 0, 'No', 'Second Influenza vaccine should be given 4 weeks after the first dose was taken'),
 (0, 107, 'BCG', 0, 0, 'No', 'BCG vaccine should be given shortly after birth'),
 (0, 107, 'HepB1', 0, 0, 'No', 'First vaccine Hepatitis B should be given after birth'),
 (0, 107, 'HepB2', 0, 0, 'No', 'Second vaccine Hepatitis B should be given 1 month after the first dose was taken'),
@@ -2302,7 +2306,7 @@ INSERT INTO `vaccineinventory` (`vacid`, `vac_name`, `vac_desc`, `stocks`, `admi
 (11, 'IPV3', 'P Polio', 200, 0, 1, '24 weeks', '36 weeks', '0000-00-00', 1),
 (12, 'PCV1', 'P Pneumonia, Meningitis', 190, 0, 1, '6 weeks', '12 weeks', '0000-00-00', 1),
 (13, 'PCV2', 'P Pneumonia, Meningitis', 200, 0, 1, '16 weeks', '24 weeks', '0000-00-00', 1),
-(14, 'Rotavirus1', 'P Diarrhea', 189, 1, 1, '6 weeks', '12 weeks', '0000-00-00', 1),
+(14, 'Rotavirus1', 'P Diarrhea', 188, 2, 1, '6 weeks', '12 weeks', '0000-00-00', 1),
 (15, 'Rotavirus2', 'P Diarrhea', 200, 0, 1, '12 weeks', '24 weeks', '0000-00-00', 1),
 (16, 'MMR', 'P Measles, Mumps, Rubella', 186, 0, 1, '12 weeks', '20 weeks', '0000-00-00', 1),
 (17, 'Influenza', 'P Seasonal Flu', 199, 0, 1, '24 weeks ', '32 weeks', '0000-00-00', 1),
@@ -3250,7 +3254,7 @@ ALTER TABLE `vac_rota_table`
 -- AUTO_INCREMENT for table `appointmenttable`
 --
 ALTER TABLE `appointmenttable`
-  MODIFY `appt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `appt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `childtable`
