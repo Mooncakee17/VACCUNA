@@ -9,19 +9,28 @@ $pdf->AddPage();
 $pdf->SetFont('Times', 'B', 25); 
   
 // Framed rectangular area 
-$pdf->Cell(280, 5, 'VACCUNA', 0, 0, 'C'); 
+
   
 // Set it new line 
 $pdf->Ln(); 
-  
+$image='../assets/images/VACUNNA logo.png';
+
+$pdf->Image($image, 100, 10, 100);
 // Set font format and font-size 
 $pdf->SetFont('Times', 'B', 13); 
-  
+
 // Framed rectangular area 
-$pdf->Cell(280, 10, 'A Web-based Child Vaccination Management and Appointment System for Local Community Health Clinic/Center', 0, 1, 'C'); 
+
 // Set font for header
-$pdf->SetFont('Arial', 'B', 13);
+$pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(280, 5, '', 0, 1, 'C'); 
+$pdf->Cell(280, 5, '', 0, 1, 'C'); 
+$pdf->Cell(280, 5, '', 0, 1, 'C'); 
+$pdf->Cell(280, 5, '', 0, 1, 'C'); 
+$pdf->Cell(280, 5, '', 0, 1, 'C'); 
+$pdf->Cell(280, 5, '', 0, 1, 'C'); 
+$pdf->Cell(280, 5, '', 0, 1, 'C');
+$pdf->Cell(280, 10, 'A Web-based Child Vaccination Management and Appointment System for Local Community Health Clinic/Center', 0, 1, 'C'); 
 $pdf->Cell(280, 5, '', 0, 1, 'C'); 
 $pdf->Cell(280, 5, '', 0, 1, 'C'); 
 // Add header

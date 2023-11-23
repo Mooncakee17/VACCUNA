@@ -2,29 +2,30 @@
 <html>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
 rel="stylesheet">
-<link rel="stylesheet" href="../Parent/css/style4.css">
-<link rel="stylesheet" href="./css/style5.css">
-<link rel="stylesheet" href="./css/appointment_tab.css">
 <?php include('../include/include.php'); ?>
 <?php include('../templates/Header.php'); ?>
+
+<link rel="stylesheet" href="./css/style5.css">
+<link rel="stylesheet" href="./css/appointment_tab.css">
+
 <?php include('../Admin_appointment/admin_appointment_controller.php'); 
 include('../Admin_appointment/vaccine_details.php'); ?>
 <!-- Include Bootstrap JavaScript and Popper.js from a CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <body>
     <div class="dash-container">
+    <div class="column1">
         <!--------------------------------Start OF SIDE BAR-------------------------------->
-         <?php include('../include/admin_sidebar.php'); ?>
+         <?php include('../templates/Admin-Dash.php'); ?>
          <!--------------------------------END OF SIDE BAR-------------------------------->
-        <main>
-            <div class="dashboard">
+    </div>
+    <div class="column">
+    <div class="dashboard">
                 <img class="appt" src="./images/Appointment.png">
             <div class="dashboard-text">
                 <h1 class="text-white">APPOINTMENT</h1>
             </div>
-
-
-
+            </div>
 
         <div class="table">
         <div class="search" style="margin-bottom:10px;">
@@ -65,10 +66,10 @@ include('../Admin_appointment/vaccine_details.php'); ?>
                     <div class="row"  style="position:relative; left:80px;">
 
                             <!--Start table-->
-                                     <table class="table border-3" id="data_table">
-                                        <thead class="p-3 fs-7 text-center text-white text-uppercase">
+                                     <table class="table" id="data_table">
+                                        <thead class="">
                                             <tr>
-                                                <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
+                                                <th scope="col" class="col col-auto ps-1 pe-2 text-uppercase">
                                                     <text>id</text>
                                                 </th>
                                                 <th scope="col" class="col col-auto ps-2 pe-2 text-uppercase">
@@ -379,7 +380,9 @@ include('../Admin_appointment/vaccine_details.php'); ?>
 
                     </div>
             </div>
-        </main>
+    </div>
+            
+        
         <!--------------------------------END OF MAIN-------------------------------->
         <div class="right">
             <div class="top">

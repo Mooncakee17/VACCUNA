@@ -17,39 +17,44 @@
             </div>
 
             <div class="sider-bar">
-            <a href="ADMIN-Dashboard.php" >
+            <a href="ADMIN-Dashboard.php" style="text-decoration: none;" >
                 <span class="material-icons-sharp">grid_view</span>
-                <h3>Dashboard</h3>
+                <h7 style =" font-size: 15.5px;">Dashboard</h7>
                 </a>
 
-                <a href="Profile-TAB.php">
+                <a href="Profile-TAB.php" style="text-decoration: none;">
                 <span class="material-icons-sharp">person</span>
-                <h3>Profile</h3>
+                <h7 style =" font-size: 15.5px;">Profile</h7>
                 </a>
 
-                <a href="Appointment-TAB.php">
+                <a href="Appointment-TAB.php" style="text-decoration: none;">
                 <span class="material-icons-sharp">schedule_send</span>
-                <h3>Appointments</h3>
+                <h7 style =" font-size: 15.5px;">Appointments</h7>
                 </a>
 
-                <a href="Calendar-TAB.php">
+                <a href="Calendar-TAB.php" style="text-decoration: none;">
                 <span class="material-icons-sharp">calendar_month</span>
-                <h3>Calendar</h3>
+                <h7 style =" font-size: 15.5px;">Calendar</h7>
                 </a>
 
-                <a href="VaccineInventory-TAB.php">
+                <a href="VaccineInventory-TAB.php" style="text-decoration: none;">
                 <span class="material-icons-sharp">vaccines</span>
-                <h3>Vaccine Inventory</h3>
+                <h7 style =" font-size: 15.5px;">Vaccine Inventory</h7>
                 </a>
 
-                <a href="Notification-TAB.php">
+                <a href="Notification-TAB.php" style="text-decoration: none;">
                 <span class="material-icons-sharp">edit_notifications</span>
-                <h3>Notification</h3>
+                <h7 style =" font-size: 15.5px;">Notification</h7>
                 </a>
 
-                <a href="Report-TAB.php">
+                <a href="Report-TAB.php" style="text-decoration: none;">
                 <span class="material-icons-sharp">folder</span>
-                <h3>Report</h3>
+                <h7 style =" font-size: 15.5px;">Immunization Records</h7>
+                </a>
+
+                <a href="Report-TAB.php" style="text-decoration: none;">
+                <span class="material-icons-sharp">cloud_download</span>
+                <h7 style =" font-size: 15.5px;">Reports</h7>
                 </a>
 
                 <a href="../Homepage/Index.php? echo $user_id; ?>" type="button" name="logout" value ="logout" class="material-icons-sharp">logout
