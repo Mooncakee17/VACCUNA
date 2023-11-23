@@ -1,6 +1,12 @@
 <html>
 <?php 
 include('../templates/Header.php'); 
+$select = mysqli_query($conn, "SELECT * FROM `usertable` WHERE userid = '$user_id'") or die('query failed');
+if(mysqli_num_rows($select) > 0){
+$fetch = mysqli_fetch_assoc($select);
+$user_id = $fetch['userid'];                   
+}   
+
 include('../Admin_appointment/vaccine_details.php'); 
 ?>
 <link rel="stylesheet" href="./css/style5.css">
@@ -42,7 +48,7 @@ include('../Admin_appointment/vaccine_details.php');
                     <option value="MMR">MMR</option>
                 <option value="HepA">HepA</option>
                     </select>
-
+                    <input type="hidden" name="cid_pdf" id="cid_pdf" value="<?php echo $user_id; ?>"/>
                 <label for="status">Select Status:</label>
                 <select name="status" id="status">
                     <option value="">All</option>
@@ -58,24 +64,7 @@ include('../Admin_appointment/vaccine_details.php');
                 </form>
                 </div>
 
-                <div class="table3">
-                    <div class="table3_section">
-                        <table id="data_table">
-                            <!-- Table Header -->
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>CHILD NAME</th>
-                                    <th>VACCINE NAME</th>
-                                    <th>STATUS</th>
-                                    <th>DATE</th>
-                                    <th>ADMINISTRATOR</th>
-                                </tr>
-                            </thead>
-                           
-                        </table>
-                    </div>
-                </div>
+              
 
 
 <script>

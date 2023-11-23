@@ -1,7 +1,21 @@
+<?php
 
-<?php include('../templates/Header.php'); ?>
-<link rel="stylesheet" href="./css/style6.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+include('../templates/Header.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccuna</title>
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/style4.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
 <body>
 <div class="container1">
         <div class="column1">
@@ -28,7 +42,7 @@
         </div>
 </div>
     <script src="./js/index.js"></script>
-    <script src="./js/AIChatbot.js"></script>
-
+    <script src="../assets/js/AIChatbot.js"></script>
+    
 </body>
 </html>

@@ -43,7 +43,7 @@
                 </a>
 
 
-                <a href="#" class="text-decoration-none">
+                <a href="VACCUNA-AI-chatbot-Page.php" class="text-decoration-none">
                  <span class="material-icons-sharp">smart_toy</span>
                  <h7 style =" font-size: 15.5px;">VACCUNA AI Chatbot</h7>
                 </a>

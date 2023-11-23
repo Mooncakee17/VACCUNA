@@ -47,8 +47,7 @@ if(isset($_GET['id'])){
                       <p><span class="label">Father's Name</span> <span id="father'sName" contenteditable="false"><?php echo  $fathername ; ?></span></p>
                       <p><span class="label">Contact Number</span> <span id="contactNumber" contenteditable="false"><?= $phonenumber; ?></span></p>
                     </div>
-                    <button id="editVaccineButton" onclick="enableVaccineEdit()">Edit</button>
-                    <button id="saveVaccineButton" onclick="saveVaccineChanges()" style="display: none;">Save</button>
+                   
         <?php 
             //get child vaccine record
             $bcg = mysqli_query($conn, "SELECT  DISTINCT    

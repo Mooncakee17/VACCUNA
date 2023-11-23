@@ -75,14 +75,15 @@ $result = mysqli_query($conn, $query);
                                 echo "<td>{$row['status']}</td>";
                                 echo "<td><a href='User Management-Details.php?id={$row['userid']}'><i class='fas fa-eye'></i></a>";
                                 echo "<button onclick=\"openModal('edit', {$row['userid']})\"><i class='fas fa-edit'></i></button></td>";
-                                echo "</tr>";
                                 if ($row['status'] == 'Active') {
-                                    echo "<button onclick=\"sendEmail('{$row['user_email']}')\">Send</button>";
+                                    echo "<td><button onclick=\"sendEmail('{$row['user_email']}')\">Send</button></td>";
                                 } else {
-                                    echo "N/A";
+                                    echo "";
                                 }
                             }
-                                ?>                            
+                                echo "";
+                              
+                                                        
                             ?>
                         </tbody>
                     </table>
