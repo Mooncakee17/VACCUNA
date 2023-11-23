@@ -12,11 +12,11 @@ $child_age = $_POST['child_age'];
 $email = $_POST['email'];
 $mother_name = $_POST['mother_name'];
 $appointment_type = $_POST['appointment_type'];
-
+$status_desc = "For Consultation/ To Visit";
 
 	$createAppointment = [
-    "INSERT INTO appointmenttable (userid, cid, appt_time, appt_date, child_name, guardian_name, contact_number, age, email,appointment_status,for_reason) 
-     VALUES ($userid, $cid, '$appointment_time', '$appointment_date', '$child_name', '$mother_name', '$contact', '$child_age', '$email',1,'$appointment_type')"
+    "INSERT INTO appointmenttable (userid, cid, appt_time, appt_date, child_name, guardian_name, contact_number, age, email,appointment_status,for_reason, status_desc) 
+     VALUES ($userid, $cid, '$appointment_time', '$appointment_date', '$child_name', '$mother_name', '$contact', '$child_age', '$email',1,'$appointment_type', '$status_desc')"
 	];
 
 	foreach ($createAppointment as $query) {

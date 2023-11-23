@@ -11,7 +11,7 @@ include '../Homepage/config.php';
 
 	//eto yung query pang basis mo
 		$selectvac = mysqli_query($conn, "SELECT * FROM appointmenttable a
-		LEFT JOIN vaccineinventory b ON a.vacid = b.vacid WHERE CONCAT(appointment_status, vac_name) LIKE '%$searchData%' ORDER BY appointment_status ASC") or die('query failed');
+		LEFT JOIN vaccineinventory b ON a.vacid = b.vacid WHERE CONCAT(status_desc, vac_name) LIKE '%$searchData%' ORDER BY appointment_status ASC") or die('query failed');
     
      }
 	$search_record = mysqli_fetch_all($selectvac, MYSQLI_ASSOC);
