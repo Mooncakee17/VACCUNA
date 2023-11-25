@@ -12,9 +12,12 @@ if(isset($_GET['id'])){
         $mothername = $conn->real_escape_string($_POST['Child_fthrname']);
         $fathername = $conn->real_escape_string($_POST['Child_mthrname']);
         $gender = $conn->real_escape_string($_POST['gender']);
-    
-        $sql = "INSERT INTO `childtable`(`userid`, `child_firstname`, `child_lastname`, `child_middlename`, `birthdate`, `mothername`, `fathername`,`gender`) 
-                VALUES ('$user_id', '$fname', '$lname', '$mdname', '$bday', '$mothername', '$fathername', '$gender')";
+        $birthDate = new DateTime($bday);
+        $today = new DateTime();
+        $diff = $today->diff($birthDate);
+        $ageInMonths = $diff->y * 12 + $diff->m;
+        $sql = "INSERT INTO `childtable`(`userid`, `child_firstname`, `child_lastname`, `child_middlename`, `birthdate`, `mothername`, `fathername`,`gender`,`child_age`) 
+                VALUES ('$user_id', '$fname', '$lname', '$mdname', '$bday', '$mothername', '$fathername', '$gender','$ageInMonths')";
         if ($conn->query($sql) === TRUE) {
             $lastid = $conn->insert_id; // ito yung pag kuha ng id nung bagong insert . ito na pangkuha ng id         
             $cid_query = $conn->query("SELECT cid FROM `childtable` WHERE child_firstname = '$fname' AND child_lastname = '$lname'");

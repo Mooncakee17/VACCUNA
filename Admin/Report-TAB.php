@@ -28,6 +28,9 @@ include('../Admin_appointment/vaccine_details.php');
                     <input  type="text" name="search" id="search_data" value="" placeholder="Search ">
                     <button type="button" id="search_btn" style=""><i class="fa fa-search"></i></button>
                     <button onclick="location.reload()" style="">Refresh</button>  
+                    <a style="background-color:#8860D0; 
+                              padding: 10px; 
+                              border-radius:6px;color:white;" href="Select-User-Tab.php" ><span style="background-color:#8860D0; color:white;" class="fa fa-user-plus"></span> Register Child </a>
             </div>
             <div class="table3">
             

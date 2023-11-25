@@ -32,10 +32,32 @@ include('../Admin_appointment/vaccine_details.php');
                
             </div>
             </div>
-            <div class="search">
-            <form method="GET" action="Report.php">
-                    <label for="vaccine_name">Select Vaccine Name:</label>
-                    <select name="vaccine_name" id="vaccine_name">
+            <div style=" margin:50px 90px 0 90px; ;
+        padding: 50px 0 0 400px; "class="search">
+        <p style="margin-left:110px;
+                  margin-bottom:20px;
+                  font-size:20px;">Filter data that you want to export</p>
+                <form method="GET" action="Report.php">
+                <div style= "border-radius: 6px; border: 1px solid #8860D0;
+                                    width: 50%;
+                                    padding: 8px 10px;
+                                    margin-bottom:20px"class="select1">
+                    <label style="  width: 100px;
+                                    border-radius: 10px;
+                                    border: none;
+                                    color: #8860D0;
+                                    padding: 8px 10px;
+                                    font-size: 20px;
+                                    margin-right:20px;
+                                    cursor: pointer" for="vaccine_name">Select Vaccine Name:</label>
+                    <select style=" width: 200px;
+                                    color: #8860D0;
+                                    background:#ffffff;
+                                    padding: 8px 10px;
+                                    font-size: 20px;
+                                    margin-left:55px;
+                                    
+                                    cursor: pointer" name="vaccine_name" id="vaccine_name">
                         <option value="">All</option>
                         <option value="BCG">BCG</option>
                         <option value="HepB">HepB</option>
@@ -43,14 +65,30 @@ include('../Admin_appointment/vaccine_details.php');
                         <option value="HiB">HiB</option>
                         <option value="IPV">IPV</option>
                         <option value="PCV">PCV</option>
-                            <option value="Rota">Rotavirus</option>
-                    <option value="Influenza">Influenza</option>
-                    <option value="MMR">MMR</option>
-                <option value="HepA">HepA</option>
+                        <option value="Rota">Rotavirus</option>
+                        <option value="Influenza">Influenza</option>
+                        <option value="MMR">MMR</option>
+                        <option value="HepA">HepA</option>
                     </select>
                     <input type="hidden" name="cid_pdf" id="cid_pdf" value="<?php echo $user_id; ?>"/>
-                <label for="status">Select Status:</label>
-                <select name="status" id="status">
+                </div>
+                <div style= "border-radius: 6px; border: 1px solid #8860D0;
+                                    width: 50%;
+                                    padding: 8px 10px;
+                                    margin-bottom:20px"class="">
+                <label style=" width: 100px;
+                                    color: #8860D0;
+                                    background:#ffffff;
+                                    padding: 8px 10px;
+                                    font-size: 20px;
+                                    cursor: pointer"for="status">Select Status:</label>
+                <select style=" width: 200px;
+                                    color: #8860D0;
+                                    background:#ffffff;
+                                    padding: 8px 10px;
+                                    font-size: 20px;
+                                    margin-left:160px;
+                                    cursor: pointer"name="status" id="status">
                     <option value="">All</option>
                     <option value="1">For Approval</option>
                     <option value="2">Completed</option>
@@ -59,8 +97,11 @@ include('../Admin_appointment/vaccine_details.php');
                     <option value="5">Walk-In</option>
                     <!-- Add other status options here -->
                 </select>
-
-            <input type="submit" value="Filter">
+                </div>
+                
+            <input style="background-color:#8860D0;
+            color:#ffffff;
+            margin-left:50px" type="submit" value="Filter">
                 </form>
                 </div>
 

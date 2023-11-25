@@ -56,7 +56,7 @@ $pdf->Cell(20,8,"Name : ",0);
 $pdf->Cell(40,8,$name,0);
 $pdf->Ln();
 $pdf->Cell(20,8,"Age : ",0);
-$pdf->Cell(40,8,$age,0);
+$pdf->Cell(40,8,"$age month/s",0);
 $pdf->Ln();
 $pdf->Cell(30,8,"Birthdate : ",0);
 $pdf->Cell(60,8,$birthdate,0);
@@ -72,266 +72,30 @@ $pdf->Cell(60, 10, 'ADMINISTRATOR NAME', 1, 1, 'C');
 
 // Set font for table body
 $pdf->SetFont('Arial', '', 9);
-$bcg = mysqli_query($conn, "SELECT DISTINCT
-CASE
-WHEN a.status = 2 AND c.appt_date is not null THEN 'YES'
-WHEN c.appt_date is not null THEN 'YES'
-WHEN c.appt_date is null THEN ''
-WHEN a.status = 0 AND c.appt_date is null THEN 'NO'
-WHEN a.status = 1 AND c.appt_date is null THEN 'NO'
-END AS vaccine_status,
-a.vac_name,
-c.vaccine_administer,
-c.appt_date
-FROM child_vaccine_status a
-LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name AND b.active = 1
-LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date is not null
-WHERE a.cid = '$cid' AND b.vac_name = 'BCG'
-ORDER BY
-CASE
-WHEN a.status = 2 AND c.appt_date is not null AND c.vaccine_administer is not null THEN 0
-WHEN a.status = 0 AND c.appt_date is not null AND c.vaccine_administer is not null THEN 2
-WHEN a.status = 1 AND c.appt_date is not null AND c.vaccine_administer is not null THEN 1
-END DESC");
-
-$bcg_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);
-
-// Initialize FPDF
-// Set font and title
-
-// Set font for table data
-$pdf->SetFont('Arial', '', 10);
-
-
-foreach ($bcg_record as $value) {
-    $pdf->Cell(60, 10, $value['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $value['vaccine_status'], 1, 0,  'C');
-    $pdf->Cell(40, 10, $value['appt_date'], 1, 0,  'C');
-    $pdf->Cell(60, 10, $value['vaccine_administer'], 1, 1,  'C');
-}
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-            CASE
-            WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-            END AS vaccine_status,
+$bcg = mysqli_query($conn, " SELECT DISTINCT
+    CASE
+    WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
+    WHEN c.appt_date IS NOT NULL THEN 'YES'
+    END AS vaccine_status,
             a.vac_name,
             c.vaccine_administer,
             c.appt_date
-            FROM child_vaccine_status a 
-            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-            WHERE a.cid = '$cid' AND b.vac_name LIKE '%HepB%'
-            ORDER BY vac_name ASC") or die('query failed');
-$hepb_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC); 
-$pdf->Cell(0, 10, 'Hepatitis B Vaccine', 1, 1, 'C');
-
-foreach ($hepb_record as $value) {
+    FROM
+        child_vaccine_status a
+    LEFT JOIN
+        vaccineinventory b ON a.vac_name = b.vac_name
+    LEFT JOIN
+        appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
+    WHERE
+    a.cid = '$cid' AND a.status = 2
+    ORDER BY
+    vac_name ASC") or die('query failed');
+    $hepb_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC); 
+    foreach ($hepb_record as $value) {
     $pdf->Cell(60, 10, $value['vac_name'], 1, 0, 'C');
     $pdf->Cell(30, 10, $value['vaccine_status'], 1, 0, 'C');
     $pdf->Cell(40, 10, $value['appt_date'], 1, 0, 'C');
     $pdf->Cell(60, 10, $value['vaccine_administer'], 1, 1, 'C');
-}// Add table data
-
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-        CASE
-        WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-        WHEN c.appt_date IS NOT NULL THEN 'YES'
-        WHEN c.appt_date IS NULL THEN 'NO'
-        WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-        WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-        END AS vaccine_status,
-        a.vac_name,
-        c.vaccine_administer,
-        c.appt_date
-        FROM child_vaccine_status a 
-        LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-        LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-        WHERE a.cid = '$cid' AND b.vac_name LIKE '%DTaP%'
-        ORDER BY vac_name ASC") or die('query failed');
-$dtap_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);  
-
-$pdf->Cell(0, 10, 'DTaP Vaccine', 1, 1, 'C');
-
-foreach ($dtap_record as $value) {
-    $pdf->Cell(60, 10, $value['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $value['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $value['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $value['vaccine_administer'], 1, 1, 'C');
-}
-// Get HiB1 vaccine record
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-        CASE
-        WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-        WHEN c.appt_date IS NOT NULL THEN 'YES'
-        WHEN c.appt_date IS NULL THEN 'NO'
-        WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-        WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-        END AS vaccine_status,
-        a.vac_name,
-        c.vaccine_administer,
-        c.appt_date
-        FROM child_vaccine_status a 
-        LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-        LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-        WHERE a.cid = '$cid' AND b.vac_name LIKE '%HiB%'
-        ORDER BY vac_name ASC") or die('query failed');
-$hib_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);  
-
-$pdf->Cell(0, 10, 'HiB Vaccine', 1, 1, 'C');
-foreach ($hib_record as $value) {
-    $pdf->Cell(60, 10, $value['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $value['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $value['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $value['vaccine_administer'], 1, 1, 'C');
-}
-
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-            CASE
-            WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-            END AS vaccine_status,
-            a.vac_name,
-            c.vaccine_administer,
-            c.appt_date
-            FROM child_vaccine_status a 
-            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-            WHERE a.cid = '$cid' AND b.vac_name LIKE '%IPV%'
-            ORDER BY vac_name ASC") or die('query failed');
-$ipv_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC); 
-$pdf->Cell(0, 10, 'IPV VACCINE', 1, 1, 'C');
-foreach ($ipv_record as $row) {
-    $pdf->Cell(60, 10, $row['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $row['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $row['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $row['vaccine_administer'], 1, 1, 'C');
-}
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-            CASE
-            WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-            END AS vaccine_status,
-            a.vac_name,
-            c.vaccine_administer,
-            c.appt_date
-            FROM child_vaccine_status a 
-            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-            WHERE a.cid = '$cid' AND b.vac_name LIKE '%PCV%'
-            ORDER BY vac_name ASC") or die('query failed');
-$pcv_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);
-$pdf->Cell(0, 10, 'PCV VACCINE', 1, 1, 'C');
-foreach ($pcv_record as $row) {
-    $pdf->Cell(60, 10, $row['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $row['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $row['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $row['vaccine_administer'], 1, 1, 'C');
-}
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-            CASE
-            WHEN a.status = 2 AND c.appt_date is not null THEN 'YES'
-            WHEN c.appt_date is not null THEN 'YES'
-            WHEN c.appt_date is null THEN 'NO'
-            WHEN a.status = 0 AND c.appt_date is null THEN 'NO'
-            WHEN a.status = 1 AND c.appt_date is null THEN 'NO'
-            END AS vaccine_status,
-            a.vac_name,
-            c.vaccine_administer,
-            c.appt_date
-            FROM child_vaccine_status a 
-            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date is not null
-            WHERE a.cid = '$cid' AND b.vac_name like '%Rota%'
-            ORDER BY 
-            vac_name asc") or die('query failed');
-$rota_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);
-$pdf->Cell(0, 10, 'Rota VACCINE', 1, 1, 'C');
-foreach ($rota_record as $row) {
-    $pdf->Cell(60, 10, $row['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $row['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $row['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $row['vaccine_administer'], 1, 1, 'C');
-}
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-            CASE
-            WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-            END AS vaccine_status,
-            a.vac_name,
-            c.vaccine_administer,
-            c.appt_date
-            FROM child_vaccine_status a 
-            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-            WHERE a.cid = '$cid' AND b.vac_name LIKE '%MMR%'
-            ORDER BY vac_name ASC") or die('query failed');
-$mmr_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);  
-$pdf->Cell(0, 10, 'MMR VACCINE', 1, 1, 'C');
-foreach ($mmr_record as $row) {
-    $pdf->Cell(60, 10, $row['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $row['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $row['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $row['vaccine_administer'], 1, 1, 'C');
-}
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-            CASE
-            WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-            END AS vaccine_status,
-            a.vac_name,
-            c.vaccine_administer,
-            c.appt_date
-            FROM child_vaccine_status a 
-            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-            WHERE a.cid = '$cid' AND b.vac_name LIKE '%Influenza%'
-            ORDER BY vac_name ASC") or die('query failed');
-$influenza_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);  
-$pdf->Cell(0, 10, 'INFLUENZA VACCINE', 1, 1, 'C');
-foreach ($influenza_record as $row) {
-    $pdf->Cell(60, 10, $row['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $row['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $row['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $row['vaccine_administer'], 1, 1, 'C');
-}
-$bcg = mysqli_query($conn, "SELECT DISTINCT     
-            CASE
-            WHEN a.status = 2 AND c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NOT NULL THEN 'YES'
-            WHEN c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 0 AND c.appt_date IS NULL THEN 'NO'
-            WHEN a.status = 1 AND c.appt_date IS NULL THEN 'NO'
-            END AS vaccine_status,
-            a.vac_name,
-            c.vaccine_administer,
-            c.appt_date
-            FROM child_vaccine_status a 
-            LEFT JOIN vaccineinventory b ON a.vac_name = b.vac_name 
-            LEFT JOIN appointmenttable c ON c.vacid = b.vacid AND c.cid = '$cid' AND c.appt_date IS NOT NULL
-            WHERE a.cid = '$cid' AND b.vac_name LIKE '%Hepa%'
-            ORDER BY vac_name ASC") or die('query failed');
-$hepa_record = mysqli_fetch_all($bcg, MYSQLI_ASSOC);  
-$pdf->Cell(0, 10, 'HepA VACCINE', 1, 1, 'C');
-foreach ($hepa_record as $row) {
-    $pdf->Cell(60, 10, $row['vac_name'], 1, 0, 'C');
-    $pdf->Cell(30, 10, $row['vaccine_status'], 1, 0, 'C');
-    $pdf->Cell(40, 10, $row['appt_date'], 1, 0, 'C');
-    $pdf->Cell(60, 10, $row['vaccine_administer'], 1, 1, 'C');
 }
 
 $pdf->Ln();
@@ -343,6 +107,9 @@ $pdf->Cell(120, 10, '', 1, 1, 'R');
 $pdf->Cell(70, 10, 'ADMINISTRATOR:', 1, 0, 'L'); // Add upper line here
 $pdf->Cell(120, 10, 'CHRISTIAN YVES CONANAN', 1, 1, 'R'); // Add upper line here
 $pdf->Ln();
+$pdf->Ln();
+$pdf->Ln();
+
 $pdf->SetFont('Times', 'I', 10); 
 $pdf->Cell(0, 10, "This vaccination card is the track record of your child's immunization history. Please keep it in a safe place.", 0, 1, 'C');
 $pdf->Cell(0, 10, "Please note that this vaccination card does not replace a written statement of immunization from your child's healthcare provider", 0, 0, 'C');

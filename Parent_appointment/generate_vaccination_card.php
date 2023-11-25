@@ -47,7 +47,7 @@ $pdf->Cell(60,8,"Vaccine Taken Count : ",0);
 $pdf->Cell(60,8, $vaccine_count,0);
 $pdf->Ln();
 }
-
+// Add table data
 // Get the vaccine taken
 $select = "SELECT vac_name FROM child_vaccine_status a WHERE a.cid = $cid AND status = 2";
 $result = $conn->query($select);
@@ -57,6 +57,6 @@ $pdf->Cell(40,8,"Vaccine Taken : ",0);
 $pdf->Cell(60,8, $vac_name,0);
 $pdf->Ln();
 }
-$pdf->Output('D','filename.pdf',true);
+$pdf->Output();
 //$pdf->Output();
 ?>

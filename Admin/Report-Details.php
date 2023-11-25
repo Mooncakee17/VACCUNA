@@ -1,23 +1,33 @@
 
 <?php 
 include('../templates/Header.php'); 
+
 if(isset($_GET['id'])){
-  $cid = $_GET['id'];
-  $record =  "SELECT * FROM `childtable` a
-  LEFT JOIN usertable b ON a.userid = b.userid WHERE a.cid = $cid";
+  $cid = (int)$_GET['id']; // Cast to integer for safety
+  $record = "SELECT * FROM `childtable` a
+             LEFT JOIN usertable b ON a.userid = b.userid WHERE a.cid = $cid";
   $record_run = mysqli_query($conn, $record);
-  $row = mysqli_fetch_all($record_run,MYSQLI_ASSOC);
-  foreach($row as $value){
-    $name = $value['child_firstname'].' '.$value['child_lastname'];
-    $child_age = $value['child_age'];
-    $gender = $value['gender'];
-    $birthdate = $value['birthdate'];
-    $mothername = $value['mothername'];
-    $fathername = $value['fathername'];
-    $phonenumber = $value['phonenumber'];
+
+  if($record_run) {
+    $row = mysqli_fetch_assoc($record_run);
+    if($row) {
+      $name = $row['child_firstname'].' '.$row['child_lastname'];
+      $child_age = $row['child_age'];
+      $gender = $row['gender'];
+      $birthdate = $row['birthdate'];
+      $mothername = $row['mothername'];
+      $fathername = $row['fathername'];
+      $phonenumber = $row['phonenumber'];
+      // Further processing or displaying of data goes here
+    } else {
+      echo "No records found for this child ID.";
+    }
+  } else {
+    echo "Error executing the query: " . mysqli_error($conn);
   }
 }
 ?>
+
 <link rel="stylesheet" href="./css/style5.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
